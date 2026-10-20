@@ -6,6 +6,7 @@ node_modules/
 # Production build artifacts
 dist/
 build/
+.vite/
 
 # Environment variables & local configs
 .env
