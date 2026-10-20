@@ -1,0 +1,1370 @@
+{
+  "products": [
+    {
+      "id": "fm-pickle-mango",
+      "slug": "home-made-raw-mango-pickle",
+      "name": "Home Made Raw Mango Pickle",
+      "category": "Honey & Pickles",
+      "subCategory": "Pickles",
+      "tagline": "Home Made · Made With Woodpressed Mustard Oil",
+      "shortDesc": "Bold and authentic flavours from our kitchen to yours. Made in small batches with cold-woodpressed mustard oil and aromatic spices.",
+      "fullDesc": "Our Home Made Raw Mango Pickle is handcrafted using hand-picked raw mangoes from sun-drenched regional orchards. We preserve each wedge in our own cold woodpressed black mustard oil, slow-aged naturally with whole fenugreek, cracked mustard seeds, rock salt, turmeric and warming spices. Zero vinegar, zero preservatives, 100% natural goodness that takes you straight back to traditional nani-dadi pickling traditions.",
+      "ingredients": "Raw Mango, Pure Woodpressed Cold Mustard Oil, Whole Fenugreek (Methi), Mustard Seeds (Rai), Turmeric Powder, Red Chilli, Fennel Seeds (Saunf), Rock Salt, Hing (Asafoetida) & Love.",
+      "storageTips": "Store in a cool dry place. Always use a clean dry spoon. Keep the mango pieces submerged in mustard oil for lasting freshness.",
+      "shelfLife": "12 Months from batch date",
+      "farmOrigin": "Alphonso & Ramkela Mango Orchards, Ratnagiri & Western Ghats",
+      "millingProcess": "Sun-dried mango slices cured in traditional earthen Martaban jars with cold woodpressed kachi ghani mustard oil.",
+      "badges": [
+        "No Preservatives",
+        "No Chemicals",
+        "100% Natural",
+        "Woodpressed Mustard Oil"
+      ],
+      "rating": 4.9,
+      "reviewCount": 148,
+      "image": "/images/raw-mango-pickle.jpg",
+      "galleryImages": [
+        "/images/raw-mango-pickle.jpg",
+        "/images/489fd6f3-27f0-479c-b0b9-d3404597f705.jpeg",
+        "/images/c88df554-2350-4a18-aa10-44248cb2a078.jpeg"
+      ],
+      "packOptions": [
+        {
+          "size": "250 g",
+          "price": 180,
+          "originalPrice": 210,
+          "stock": 45
+        },
+        {
+          "size": "500 g",
+          "price": 340,
+          "originalPrice": 390,
+          "stock": 30
+        },
+        {
+          "size": "1 kg",
+          "price": 640,
+          "originalPrice": 750,
+          "stock": 15
+        }
+      ],
+      "featured": true,
+      "isBestseller": true,
+      "batchCode": "BATCH-2026-MG12"
+    },
+    {
+      "id": "fm-spice-turmeric",
+      "slug": "turmeric-haldi-stoneground",
+      "name": "Turmeric (Haldi) Powder",
+      "category": "Spices",
+      "subCategory": "Turmeric",
+      "tagline": "Stone Ground · No Additives & Preservatives · With Natural Oils",
+      "shortDesc": "Slow stone-ground whole turmeric rhizomes rich in natural curcumin (3.5%+). Never extracted or heat treated.",
+      "fullDesc": "Farmers Mill Turmeric is made by slowly stone-grinding carefully cured, whole Salem and Waigaon turmeric fingers on traditional stone mills. Industrial mills operate at high friction heat that evaporates delicate curcumin and volatile aromatic oils. Our low-rpm stone grinding keeps the golden natural essential oils intact, giving an intense warm aroma, rich earthy flavour, and potent natural immunity boosting qualities.",
+      "ingredients": "100% Pure Single-Origin Whole Turmeric (Curcuma Longa) Rhizomes. No artificial color, starch or fillers.",
+      "storageTips": "Store in an airtight container away from direct sunlight to preserve the volatile curcumin oils.",
+      "shelfLife": "9 Months from milling date",
+      "farmOrigin": "Erode & Waigaon Certified Organic Turmeric Farms, Maharashtra & Tamil Nadu",
+      "millingProcess": "Traditional low-RPM stone mill grinding under 35°C, ensuring zero volatile oil loss.",
+      "badges": [
+        "Stone Ground",
+        "High Curcumin (3.8%)",
+        "Natural Volatile Oils",
+        "Lab Certified Pure"
+      ],
+      "rating": 4.95,
+      "reviewCount": 312,
+      "image": "/images/haldi-turmeric.jpg",
+      "galleryImages": [
+        "/images/haldi-turmeric.jpg",
+        "/images/14136f19-333f-489d-87fa-c590d89d9acd.jpeg",
+        "/images/e9a45544-d3f4-4f52-863b-9e49c1f7e5c5.jpeg"
+      ],
+      "packOptions": [
+        {
+          "size": "100 g",
+          "price": 85,
+          "originalPrice": 99,
+          "stock": 80
+        },
+        {
+          "size": "200 g",
+          "price": 160,
+          "originalPrice": 190,
+          "stock": 65
+        },
+        {
+          "size": "500 g",
+          "price": 380,
+          "originalPrice": 450,
+          "stock": 25
+        }
+      ],
+      "featured": true,
+      "isBestseller": true,
+      "batchCode": "BATCH-2026-HL41"
+    },
+    {
+      "id": "fm-flour-mota-besan",
+      "slug": "stoneground-mota-besan",
+      "name": "Stoneground Mota Besan",
+      "category": "Besan & Flours",
+      "subCategory": "Besan",
+      "tagline": "Stone Ground · Whole Gram · Low Gluten High Fibers",
+      "shortDesc": "Coarsely stone-milled from whole desi unpolished chana dal. Grainy texture that makes the fluffiest dhoklas and melt-in-mouth laddoos.",
+      "fullDesc": "Unlike commercial besan which is finely pulverized from split pulse powders, our Mota Besan is coarsely ground between traditional granite millstones from premium Desi Chana (Bengal Gram). This artisanal coarse grind produces that beloved \"danedar\" crumb texture required for authentic Besan Ke Laddoo, Mysore Pak, crispy pakoras, Khandvi, and aromatic Kadhi without forming gluten lumps.",
+      "ingredients": "100% Whole Unpolished Desi Chana (Bengal Gram). Zero pea flour adulteration.",
+      "storageTips": "Store in an airtight container in a dry pantry. Best consumed within 60 days of stone milling.",
+      "shelfLife": "3 Months (Milled fresh on order)",
+      "farmOrigin": "Bikaner & Malwa Organic Gram Clusters, Rajasthan & MP",
+      "millingProcess": "Coarse granite chakki stone ground with hull nutrients retained.",
+      "badges": [
+        "No Preservatives",
+        "Whole Gram",
+        "Low Gluten & High Fiber",
+        "Milled Fresh"
+      ],
+      "rating": 4.88,
+      "reviewCount": 220,
+      "image": "/images/mota-besan.jpg",
+      "galleryImages": [
+        "/images/mota-besan.jpg",
+        "/images/44fe32e6-a6f3-4530-a2fd-3065deb31ebc.jpeg",
+        "/images/f1b53163-2b6c-45ce-b19e-ac9731daa175.jpeg"
+      ],
+      "packOptions": [
+        {
+          "size": "500 g",
+          "price": 110,
+          "originalPrice": 130,
+          "stock": 50
+        },
+        {
+          "size": "1 kg",
+          "price": 210,
+          "originalPrice": 250,
+          "stock": 70
+        },
+        {
+          "size": "2 kg",
+          "price": 410,
+          "originalPrice": 490,
+          "stock": 30
+        }
+      ],
+      "featured": true,
+      "isBestseller": true,
+      "batchCode": "BATCH-2026-BS19"
+    },
+    {
+      "id": "fm-honey-raw",
+      "slug": "100-percent-natural-pure-honey",
+      "name": "100% Natural Honey",
+      "category": "Honey & Pickles",
+      "subCategory": "Honey",
+      "tagline": "Raw & Unpasteurized · Zero Added Sugar or Corn Syrup",
+      "shortDesc": "Unprocessed raw forest honey ethically collected by local beekeepers. Retains all natural pollen, live enzymes, and medicinal value.",
+      "fullDesc": "Farmers Mill Raw Honey is harvested straight from forest apiaries in the pristine foothills of the Himalayas and central Indian forest reserves. It is gently filtered through organic cotton mesh to remove honeycomb wax without any heat treatment, micro-filtration, or pasteurization. Zero corn syrup, zero inverted sugar, zero artificial feed. Every spoonful crystallizes naturally in cool weather—the universal hallmark of real pure honey.",
+      "ingredients": "100% Raw Forest Honey (Unpasteurized, Single-Origin Multi-Flora).",
+      "storageTips": "Do not refrigerate. Store at room temperature away from moisture. Crystallization is a natural sign of purity; place jar in warm water to reliquify.",
+      "shelfLife": "24 Months from harvesting",
+      "farmOrigin": "Wild Forest Apiaries, Corbett Foothills & Jim Corbett Biosphere Reserve",
+      "millingProcess": "Cold-gravity strained through natural cotton. No thermal pasteurization.",
+      "badges": [
+        "NMR Tested Pure",
+        "Zero Added Sugar",
+        "Raw & Unfiltered",
+        "Pollen Rich"
+      ],
+      "rating": 4.92,
+      "reviewCount": 185,
+      "image": "/images/pure-honey.jpg",
+      "galleryImages": [
+        "/images/pure-honey.jpg",
+        "/images/35c1d045-3d13-4947-92b5-dab7d918a9a9.jpeg",
+        "/images/8bd16e9c-ddc0-4aab-8d0e-381650ef08dc.jpeg"
+      ],
+      "packOptions": [
+        {
+          "size": "250 g",
+          "price": 220,
+          "originalPrice": 260,
+          "stock": 40
+        },
+        {
+          "size": "500 g",
+          "price": 410,
+          "originalPrice": 490,
+          "stock": 35
+        },
+        {
+          "size": "1 kg",
+          "price": 790,
+          "originalPrice": 950,
+          "stock": 20
+        }
+      ],
+      "featured": true,
+      "isBestseller": true,
+      "batchCode": "BATCH-2026-HN07"
+    },
+    {
+      "id": "fm-spice-dhaniya",
+      "slug": "coriander-dhaniya-powder-stoneground",
+      "name": "Coriander (Dhaniya) Powder",
+      "category": "Spices",
+      "subCategory": "Coriander",
+      "tagline": "Stone Ground · Whole Coriander Seeds · Rich Volatile Aroma",
+      "shortDesc": "Made from aromatic Ramganj coriander seeds with high volatile essential oil content. Fresh citrusy aroma in every pinch.",
+      "fullDesc": "Our stoneground Dhaniya Powder is produced exclusively from unbroken, parrot-green coriander berries harvested in the famous Ramganj Mandi of Rajasthan. The whole seeds are slow-crushed at room temperature on slow-moving traditional granite stones to avoid scorching the fragrant linalool and essential oils. The result is a vibrant green-tinted fragrant powder that lends a fresh, citrusy aroma and appetizing richness to daily Indian curries.",
+      "ingredients": "100% Pure Whole Green Coriander (Coriandrum Sativum) Seeds. No husk or stalk dilution.",
+      "storageTips": "Store in an airtight dark jar in a cool, moisture-free space.",
+      "shelfLife": "9 Months from milling date",
+      "farmOrigin": "Ramganj Mandi & Hadoti Agricultural Corridor, Rajasthan",
+      "millingProcess": "Sun-cured whole coriander seeds milled on low-temperature stone chakki.",
+      "badges": [
+        "Slow Stone Ground",
+        "Aroma Rich (1.2% Linalool)",
+        "No Stem Dilution",
+        "Zero Artificial Color"
+      ],
+      "rating": 4.87,
+      "reviewCount": 94,
+      "image": "/images/dhaniya-powder.jpg",
+      "galleryImages": [
+        "/images/dhaniya-powder.jpg",
+        "/images/2a790d48-0812-4400-a06d-7958748f8da7.jpeg",
+        "/images/598f000a-1790-4cd8-8fde-bdbc8aca96dd.jpeg"
+      ],
+      "packOptions": [
+        {
+          "size": "100 g",
+          "price": 75,
+          "originalPrice": 90,
+          "stock": 60
+        },
+        {
+          "size": "200 g",
+          "price": 140,
+          "originalPrice": 170,
+          "stock": 50
+        },
+        {
+          "size": "500 g",
+          "price": 330,
+          "originalPrice": 395,
+          "stock": 25
+        }
+      ],
+      "featured": true,
+      "isBestseller": false,
+      "batchCode": "BATCH-2026-DH22"
+    },
+    {
+      "id": "fm-atta-chakki",
+      "slug": "freshly-milled-chakki-atta",
+      "name": "Chakki Fresh Atta (100% MP Sharbati)",
+      "category": "Besan & Flours",
+      "subCategory": "Atta",
+      "tagline": "Stone Ground Fresh on Order · Zero Maida · 100% Whole Grain",
+      "shortDesc": "Milled fresh on cold-grinding stone chakki hours before delivery. Ultra-soft rotis that stay tender for 12+ hours.",
+      "fullDesc": "Commercial packaged flour sits in warehouses for months, treated with bleaching agents, artificial enzymes, and preservatives. Farmers Mill Chakki Fresh Atta is strictly milled to order on our slow-revolving heavy granite stone chakki. Because the mill stone stays below 40°C, the vital wheat germ, natural dietary fiber (bran), vitamins B & E, and wheat germ oils remain completely unharmed. Makes exceptionally fragrant, golden-hued rotis that puff up effortlessly.",
+      "ingredients": "100% Grade-A Sehore Sharbati Whole Wheat. 100% Bran + 100% Germ retained.",
+      "storageTips": "Keep in a clean dry stainless steel container or the provided craft bag. Consume within 30-45 days for optimal freshness.",
+      "shelfLife": "45 Days (No artificial shelf-life extenders)",
+      "farmOrigin": "Sehore & Vidisha Rainfed Black Soil Farms, Madhya Pradesh",
+      "millingProcess": "Slow-speed natural sandstone chakki. Milled at under 40°C to preserve wheat germ.",
+      "badges": [
+        "Milled on Order",
+        "Cold Chakki (< 40°C)",
+        "Zero Bleach or Maida",
+        "High Bran Fiber"
+      ],
+      "rating": 4.96,
+      "reviewCount": 480,
+      "image": "/images/mota-besan.jpg",
+      "galleryImages": [
+        "/images/mota-besan.jpg",
+        "/images/44fe32e6-a6f3-4530-a2fd-3065deb31ebc.jpeg",
+        "/images/f1b53163-2b6c-45ce-b19e-ac9731daa175.jpeg"
+      ],
+      "packOptions": [
+        {
+          "size": "1 kg",
+          "price": 65,
+          "originalPrice": 75,
+          "stock": 120
+        },
+        {
+          "size": "5 kg",
+          "price": 280,
+          "originalPrice": 325,
+          "stock": 81
+        },
+        {
+          "size": "10 kg",
+          "price": 540,
+          "originalPrice": 630,
+          "stock": 40
+        }
+      ],
+      "featured": true,
+      "isBestseller": true,
+      "batchCode": "BATCH-2026-CH89"
+    },
+    {
+      "id": "fm-oil-mustard",
+      "slug": "woodpressed-kachi-ghani-mustard-oil",
+      "name": "Woodpressed Mustard Oil (Kachi Ghani)",
+      "category": "Cold-Pressed Oils",
+      "subCategory": "Mustard Oil",
+      "tagline": "Traditional Kolhu Pressed · Unrefined & Unfiltered · High Pungency",
+      "shortDesc": "Cold-extracted in traditional wooden Kolhu (Vaagai wood) at low RPM. Distinctive golden hue, sharp pungency, and natural antioxidants.",
+      "fullDesc": "Our Kachi Ghani Mustard Oil is pressed from selectively graded black and yellow mustard seeds in artisanal wooden presses without applying external heat or chemical solvents. Traditional woodpressing extracts oil gently below 38°C, retaining the pungency factor (sinigrin), authentic aroma, natural omega-3 and omega-6 fatty acids. Unrefined, unfiltered, and rich in natural phytosterols.",
+      "ingredients": "100% Pure First Cold Woodpressed Black Mustard Seeds.",
+      "storageTips": "Store in a cool dark place away from heat. Avoid direct sunlight.",
+      "shelfLife": "12 Months from pressing date",
+      "farmOrigin": "Bharatpur & Morena Mustard Belt, Rajasthan",
+      "millingProcess": "Traditional wooden kolhu slow-churned extraction at room temperature.",
+      "badges": [
+        "Wood Pressed",
+        "Cold Extracted (< 38°C)",
+        "Zero Chemicals",
+        "Kachi Ghani"
+      ],
+      "rating": 4.91,
+      "reviewCount": 164,
+      "image": "/images/raw-mango-pickle.jpg",
+      "galleryImages": [
+        "/images/raw-mango-pickle.jpg",
+        "/images/3a0d39f9-75fe-4e5d-9a7e-e5386a51a5de.jpeg"
+      ],
+      "packOptions": [
+        {
+          "size": "500 ml",
+          "price": 165,
+          "originalPrice": 190,
+          "stock": 60
+        },
+        {
+          "size": "1 L",
+          "price": 310,
+          "originalPrice": 360,
+          "stock": 50
+        },
+        {
+          "size": "5 L",
+          "price": 1490,
+          "originalPrice": 1750,
+          "stock": 20
+        }
+      ],
+      "featured": true,
+      "isBestseller": false,
+      "batchCode": "BATCH-2026-MS04"
+    },
+    {
+      "id": "fm-flour-multigrain",
+      "slug": "super-grain-multigrain-atta",
+      "name": "Super-Grain Multigrain Atta",
+      "category": "Besan & Flours",
+      "subCategory": "Multigrain Atta",
+      "tagline": "7 Super Grains · Low Glycemic Index · Diabetic Friendly",
+      "shortDesc": "A nutritionist-crafted blend of Sharbati Wheat, Ragi, Jowar, Bajra, Chana, Barley (Jau), and Roasted Flaxseeds.",
+      "fullDesc": "Our 7-Grain Multigrain Atta provides a balanced nutritional profile designed for today's urban lifestyle. Combining whole Sharbati wheat with drought-resilient super-millets (Finger Millet, Pearl Millet, Sorghum), protein-rich desi chana, soluble-fiber rich barley, and omega-3 loaded roasted flaxseeds. Stone ground in small batches to preserve soluble dietary fiber and reduce blood sugar spikes.",
+      "ingredients": "Whole Sharbati Wheat (60%), Desi Chana (12%), Jowar (8%), Ragi (8%), Bajra (5%), Barley/Jau (5%), Flaxseeds (2%).",
+      "storageTips": "Store in an airtight container in a dry cool place.",
+      "shelfLife": "45 Days",
+      "farmOrigin": "Certified Millet & Grain Collectives, Karnataka & Rajasthan",
+      "millingProcess": "Multi-grain coarse stone milling with controlled temperature.",
+      "badges": [
+        "7 Super Grains",
+        "Diabetic Friendly",
+        "High Soluble Fiber",
+        "Stone Ground"
+      ],
+      "rating": 4.89,
+      "reviewCount": 142,
+      "image": "/images/mota-besan.jpg",
+      "galleryImages": [
+        "/images/mota-besan.jpg"
+      ],
+      "packOptions": [
+        {
+          "size": "1 kg",
+          "price": 85,
+          "originalPrice": 99,
+          "stock": 75
+        },
+        {
+          "size": "5 kg",
+          "price": 390,
+          "originalPrice": 460,
+          "stock": 45
+        }
+      ],
+      "featured": false,
+      "isBestseller": false,
+      "batchCode": "BATCH-2026-MG09"
+    },
+    {
+      "id": "fm-spice-red-chilli",
+      "slug": "stoneground-mathania-red-chilli-powder",
+      "name": "Mathania Red Chilli Powder",
+      "category": "Spices",
+      "subCategory": "Red Chilli",
+      "tagline": "Sun Dried · Stone Ground · High Natural Color & Moderate Heat",
+      "shortDesc": "Authentic Mathania chillies grown in Rajasthan. Renowned for its rich burgundy red hue and delightful, non-acrid warmth.",
+      "fullDesc": "Mathania chilli is one of India's most prized heirloom culinary treasures. Grown exclusively in the sand dunes of Mathania village near Jodhpur, this unique chilli is famous for imparting the signature rich crimson red color to Rajasthani Lal Maas and Dal Tadka without unbearable sharp pungency. We de-stem each pod by hand, sun-dry them on raised beds, and slow stone-grind with pure stemless pods. Zero added color or Sudan red dyes.",
+      "ingredients": "100% Whole Stemless Heirloom Mathania Red Chillies (Capsicum Annuum).",
+      "storageTips": "Keep tightly sealed in glass or ceramic jar away from direct sun.",
+      "shelfLife": "9 Months from milling",
+      "farmOrigin": "Heirloom Farms, Mathania Village, Jodhpur District, Rajasthan",
+      "millingProcess": "Hand-stemmed and cold-ground on water-cooled stone mills.",
+      "badges": [
+        "Heirloom Variety",
+        "Zero Sudan Dye",
+        "Natural Crimson Hue",
+        "Lab Tested Safe"
+      ],
+      "rating": 4.93,
+      "reviewCount": 118,
+      "image": "/images/haldi-turmeric.jpg",
+      "galleryImages": [
+        "/images/haldi-turmeric.jpg"
+      ],
+      "packOptions": [
+        {
+          "size": "100 g",
+          "price": 95,
+          "originalPrice": 115,
+          "stock": 65
+        },
+        {
+          "size": "200 g",
+          "price": 180,
+          "originalPrice": 220,
+          "stock": 50
+        },
+        {
+          "size": "500 g",
+          "price": 420,
+          "originalPrice": 510,
+          "stock": 20
+        }
+      ],
+      "featured": false,
+      "isBestseller": false,
+      "batchCode": "BATCH-2026-RC15"
+    },
+    {
+      "id": "fm-rice-indrayani",
+      "slug": "traditional-indrayani-unpolished-rice",
+      "name": "Unpolished Indrayani Sticky Rice",
+      "category": "Rice & Millets",
+      "subCategory": "Rice",
+      "tagline": "Single Origin · Rich Natural Aroma · Unpolished Red/Brown Bran",
+      "shortDesc": "Aromatic native paddy cultivated in the Sahyadri mountains of Maharashtra. Sticky, fragrant texture perfect for comforting khichdi & bowls.",
+      "fullDesc": "Indrayani is an aromatic indigenous short-grain rice beloved across Western India for its sweet fragrant steam and naturally sticky, velvety texture when cooked. Unlike commercial mills that strip away 100% of the nutrient-dense aleurone layer (bran) through abrasive polishers, our rice is unpolished or semi-polished, retaining vital zinc, magnesium, and dietary fiber.",
+      "ingredients": "100% Unpolished Single-Origin Indrayani Paddy Grain.",
+      "storageTips": "Store in a cool dry bin. Add 2 dried bay leaves or neem leaves to ward off pantry weevils naturally.",
+      "shelfLife": "12 Months",
+      "farmOrigin": "Maval & Mulshi Valleys, Pune & Sahyadri Hills, Maharashtra",
+      "millingProcess": "Rubber-roll dehusking with 100% bran layers retained.",
+      "badges": [
+        "Unpolished Grain",
+        "Rich Natural Aroma",
+        "High Mineral Zinc",
+        "Farm Direct"
+      ],
+      "rating": 4.86,
+      "reviewCount": 76,
+      "image": "/images/dhaniya-powder.jpg",
+      "galleryImages": [
+        "/images/dhaniya-powder.jpg"
+      ],
+      "packOptions": [
+        {
+          "size": "1 kg",
+          "price": 95,
+          "originalPrice": 110,
+          "stock": 90
+        },
+        {
+          "size": "5 kg",
+          "price": 440,
+          "originalPrice": 520,
+          "stock": 40
+        }
+      ],
+      "featured": false,
+      "isBestseller": false,
+      "batchCode": "BATCH-2026-IN08"
+    },
+    {
+      "id": "fm-millet-ragi",
+      "slug": "whole-grain-finger-millet-ragi-flour",
+      "name": "Sprouted Ragi (Finger Millet) Flour",
+      "category": "Besan & Flours",
+      "subCategory": "Millets",
+      "tagline": "Sprouted & Cold Stone Milled · 10x More Calcium Than Milk · Zero Gluten",
+      "shortDesc": "Traditional sprouted finger millet (Nachni) slow stone-ground. Sprouting enhances bio-available calcium, iron, and makes it gentle on digestion.",
+      "fullDesc": "Ragi is nature's premier calcium powerhouse. We elevate this ancient super-grain by first soaking and sprouting whole ragi berries for 36 hours. Sprouting activates digestive enzymes, neutralizes phytic acid anti-nutrients, and triples the bioavailability of calcium and iron. After sun-drying, the sprouted ragi is slowly stone-milled into a fine, aromatic mauve-colored flour that makes heavenly malt, dosas, rotis, and baby porridge.",
+      "ingredients": "100% Sprouted Whole Red Finger Millet (Eleusine Coracana).",
+      "storageTips": "Store in an airtight container. Refrigeration after opening extends aroma freshness.",
+      "shelfLife": "4 Months",
+      "farmOrigin": "Mandya Organic Millet Farmers Society, Karnataka",
+      "millingProcess": "36-hour germination followed by low-heat granite chakki milling.",
+      "badges": [
+        "Sprouted Goodness",
+        "10x Calcium of Milk",
+        "Zero Gluten",
+        "Easy to Digest"
+      ],
+      "rating": 4.94,
+      "reviewCount": 160,
+      "image": "/images/mota-besan.jpg",
+      "galleryImages": [
+        "/images/mota-besan.jpg"
+      ],
+      "packOptions": [
+        {
+          "size": "500 g",
+          "price": 90,
+          "originalPrice": 110,
+          "stock": 70
+        },
+        {
+          "size": "1 kg",
+          "price": 170,
+          "originalPrice": 205,
+          "stock": 55
+        }
+      ],
+      "featured": false,
+      "isBestseller": false,
+      "batchCode": "BATCH-2026-RG33"
+    }
+  ],
+  "coupons": [
+    {
+      "code": "FARMERS10",
+      "type": "percentage",
+      "value": 10,
+      "minOrderAmount": 299,
+      "maxDiscount": 150,
+      "description": "10% OFF on all orders above ₹299 (Max ₹150)",
+      "isActive": true,
+      "expiryDate": "2026-12-31"
+    },
+    {
+      "code": "WELCOME50",
+      "type": "flat",
+      "value": 50,
+      "minOrderAmount": 350,
+      "maxDiscount": 50,
+      "description": "Flat ₹50 OFF on your first fresh chakki order",
+      "isActive": true,
+      "firstOrderOnly": true,
+      "expiryDate": "2026-12-31"
+    },
+    {
+      "code": "FREESHIP",
+      "type": "free_shipping",
+      "value": 0,
+      "minOrderAmount": 199,
+      "maxDiscount": 49,
+      "description": "Free doorstep delivery on orders above ₹199",
+      "isActive": true,
+      "expiryDate": "2026-12-31"
+    },
+    {
+      "code": "PURE20",
+      "type": "percentage",
+      "value": 20,
+      "minOrderAmount": 1000,
+      "maxDiscount": 400,
+      "description": "20% OFF on pantry stocking orders above ₹1,000 (Max ₹400)",
+      "isActive": true,
+      "expiryDate": "2026-12-31"
+    },
+    {
+      "code": "CHAKKI15",
+      "type": "category_percentage",
+      "value": 15,
+      "category": "Besan & Flours",
+      "minOrderAmount": 400,
+      "maxDiscount": 200,
+      "description": "15% OFF on stoneground flours and chakki fresh atta above ₹400",
+      "isActive": true,
+      "expiryDate": "2026-12-31"
+    }
+  ],
+  "pincodes": {
+    "110001": {
+      "city": "New Delhi",
+      "state": "Delhi",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "110021": {
+      "city": "New Delhi",
+      "state": "Delhi",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "110048": {
+      "city": "New Delhi",
+      "state": "Delhi",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "122001": {
+      "city": "Gurugram",
+      "state": "Haryana",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "122002": {
+      "city": "Gurugram",
+      "state": "Haryana",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "201301": {
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "400001": {
+      "city": "Mumbai (Fort)",
+      "state": "Maharashtra",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "400050": {
+      "city": "Mumbai (Bandra West)",
+      "state": "Maharashtra",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "400053": {
+      "city": "Mumbai (Andheri West)",
+      "state": "Maharashtra",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "400076": {
+      "city": "Mumbai (Powai)",
+      "state": "Maharashtra",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "400601": {
+      "city": "Thane",
+      "state": "Maharashtra",
+      "zone": "Zone B",
+      "express": false,
+      "morningSlot": true,
+      "fee": 49,
+      "minFree": 499
+    },
+    "411001": {
+      "city": "Pune (Camp)",
+      "state": "Maharashtra",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "411004": {
+      "city": "Pune (Shivajinagar)",
+      "state": "Maharashtra",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "411057": {
+      "city": "Pune (Hinjawadi)",
+      "state": "Maharashtra",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "500001": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "500081": {
+      "city": "Hyderabad (HITEC City)",
+      "state": "Telangana",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "560001": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "560034": {
+      "city": "Bengaluru (Koramangala)",
+      "state": "Karnataka",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "560038": {
+      "city": "Bengaluru (Indiranagar)",
+      "state": "Karnataka",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "560066": {
+      "city": "Bengaluru (Whitefield)",
+      "state": "Karnataka",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "560102": {
+      "city": "Bengaluru (HSR Layout)",
+      "state": "Karnataka",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "560103": {
+      "city": "Bengaluru (Bellandur)",
+      "state": "Karnataka",
+      "zone": "Zone A",
+      "express": true,
+      "morningSlot": true,
+      "fee": 0,
+      "minFree": 399
+    },
+    "DEFAULT": {
+      "city": "National Delivery",
+      "state": "India",
+      "zone": "Zone C",
+      "express": false,
+      "morningSlot": false,
+      "fee": 49,
+      "minFree": 499
+    }
+  },
+  "orders": [
+    {
+      "id": "FM-83315",
+      "date": "Oct 20, 2026",
+      "createdAt": "2026-10-20T02:14:56.762Z",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta (100% MP Sharbati)",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/mota-besan.jpg"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 0,
+      "discount": 0,
+      "appliedCoupon": null,
+      "total": 280,
+      "status": "Milled on Chakki",
+      "shippingAddress": {
+        "fullName": "Aarav Mehta",
+        "phone": "9876543210",
+        "address": "B-404, Palm Meadows",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "UPI (PhonePe)",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "estimatedDelivery": "Wednesday, Oct 21 (7:00 AM - 11:00 AM)",
+      "trackingEvents": [
+        {
+          "status": "Order Placed & Payment Confirmed",
+          "time": "Oct 20, 2026 07:44 AM",
+          "note": "Order received via UPI (PhonePe). Grains queued in grain hopper."
+        },
+        {
+          "status": "Chakki Milling Scheduled",
+          "time": "Wednesday, Oct 21 05:00 AM",
+          "note": "Assigned to Stone Chakki Mill #3 (Master Miller Ram Singh). Cold-milling speed set to 280 RPM (< 40°C)."
+        }
+      ]
+    },
+    {
+      "id": "FM-66727",
+      "date": "Oct 20, 2026",
+      "createdAt": "2026-10-19T19:34:52.087Z",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta (100% MP Sharbati)",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/mota-besan.jpg"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 0,
+      "discount": 0,
+      "appliedCoupon": null,
+      "total": 280,
+      "status": "Milled on Chakki",
+      "shippingAddress": {
+        "fullName": "Aarav Mehta",
+        "phone": "9876543210",
+        "address": "B-404, Palm Meadows",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "UPI (PhonePe)",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "estimatedDelivery": "Wednesday, Oct 21 (7:00 AM - 11:00 AM)",
+      "trackingEvents": [
+        {
+          "status": "Order Placed & Payment Confirmed",
+          "time": "Oct 20, 2026 01:04 AM",
+          "note": "Order received via UPI (PhonePe). Grains queued in grain hopper."
+        },
+        {
+          "status": "Chakki Milling Scheduled",
+          "time": "Wednesday, Oct 21 05:00 AM",
+          "note": "Assigned to Stone Chakki Mill #3 (Master Miller Ram Singh). Cold-milling speed set to 280 RPM (< 40°C)."
+        }
+      ]
+    },
+    {
+      "id": "FM-12301",
+      "date": "Oct 20, 2026",
+      "createdAt": "2026-10-19T19:28:39.202Z",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta (100% MP Sharbati)",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/mota-besan.jpg"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 0,
+      "discount": 0,
+      "appliedCoupon": null,
+      "total": 280,
+      "status": "Milled on Chakki",
+      "shippingAddress": {
+        "fullName": "Aarav Mehta",
+        "phone": "9876543210",
+        "address": "B-404, Palm Meadows",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "UPI (PhonePe)",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "estimatedDelivery": "Wednesday, Oct 21 (7:00 AM - 11:00 AM)",
+      "trackingEvents": [
+        {
+          "status": "Order Placed & Payment Confirmed",
+          "time": "Oct 20, 2026 12:58 AM",
+          "note": "Order received via UPI (PhonePe). Grains queued in grain hopper."
+        },
+        {
+          "status": "Chakki Milling Scheduled",
+          "time": "Wednesday, Oct 21 05:00 AM",
+          "note": "Assigned to Stone Chakki Mill #3 (Master Miller Ram Singh). Cold-milling speed set to 280 RPM (< 40°C)."
+        }
+      ]
+    },
+    {
+      "id": "FM-12161",
+      "date": "Oct 20, 2026",
+      "createdAt": "2026-10-19T19:25:03.308Z",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta (100% MP Sharbati)",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/mota-besan.jpg"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 0,
+      "discount": 0,
+      "appliedCoupon": null,
+      "total": 280,
+      "status": "Milled on Chakki",
+      "shippingAddress": {
+        "fullName": "Aarav Mehta",
+        "phone": "9876543210",
+        "address": "B-404, Palm Meadows",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "UPI (PhonePe)",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "estimatedDelivery": "Wednesday, Oct 21 (7:00 AM - 11:00 AM)",
+      "trackingEvents": [
+        {
+          "status": "Order Placed & Payment Confirmed",
+          "time": "Oct 20, 2026 12:55 AM",
+          "note": "Order received via UPI (PhonePe). Grains queued in grain hopper."
+        },
+        {
+          "status": "Chakki Milling Scheduled",
+          "time": "Wednesday, Oct 21 05:00 AM",
+          "note": "Assigned to Stone Chakki Mill #3 (Master Miller Ram Singh). Cold-milling speed set to 280 RPM (< 40°C)."
+        }
+      ]
+    },
+    {
+      "id": "FM-73914",
+      "date": "Oct 14, 2026",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/mota-besan.jpg"
+        },
+        {
+          "id": "fm-spice-turmeric",
+          "name": "Turmeric (Haldi) Powder",
+          "packSize": "200 g",
+          "price": 160,
+          "quantity": 1,
+          "image": "/images/haldi-turmeric.jpg"
+        }
+      ],
+      "subtotal": 440,
+      "deliveryFee": 0,
+      "discount": 44,
+      "total": 396,
+      "status": "Delivered",
+      "shippingAddress": {
+        "fullName": "Priya Sharma",
+        "phone": "+91 98765 43210",
+        "address": "Flat 402, Green Glen Palms, Bellandur",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "UPI (Google Pay)",
+      "estimatedDelivery": "Oct 16, 2026",
+      "trackingEvents": [
+        {
+          "status": "Order Placed & Confirmed",
+          "time": "Oct 14, 2026 09:30 AM",
+          "note": "Order received. Grains queued for cleaning."
+        },
+        {
+          "status": "Stone Ground on Chakki #4",
+          "time": "Oct 15, 2026 05:45 AM",
+          "note": "Slow milled at 38°C by Master Miller Ram Singh."
+        },
+        {
+          "status": "Quality & Lab Batch Check",
+          "time": "Oct 15, 2026 07:15 AM",
+          "note": "Passed moisture & bran retention inspection."
+        },
+        {
+          "status": "Packed & Dispatched",
+          "time": "Oct 15, 2026 08:30 AM",
+          "note": "Airtight kraft bag sealed."
+        },
+        {
+          "status": "Delivered",
+          "time": "Oct 16, 2026 10:15 AM",
+          "note": "Handed over directly to customer."
+        }
+      ]
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "sub-1792462496773",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta (100% MP Sharbati)",
+      "productImage": "/images/mota-besan.jpg",
+      "packSize": "5 kg",
+      "originalPrice": 280,
+      "discountedPrice": 238,
+      "discountPercent": 15,
+      "frequency": "Every 2 Weeks",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-20T02:14:56.773Z",
+      "nextDeliveryDate": "Tuesday, Nov 3",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "deliveryAddress": "B-404, Palm Meadows, Bengaluru - 560103"
+    },
+    {
+      "id": "sub-1792438492097",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta (100% MP Sharbati)",
+      "productImage": "/images/mota-besan.jpg",
+      "packSize": "5 kg",
+      "originalPrice": 280,
+      "discountedPrice": 238,
+      "discountPercent": 15,
+      "frequency": "Every 2 Weeks",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-19T19:34:52.097Z",
+      "nextDeliveryDate": "Tuesday, Nov 3",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "deliveryAddress": "B-404, Palm Meadows, Bengaluru - 560103"
+    },
+    {
+      "id": "sub-1792438119210",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta (100% MP Sharbati)",
+      "productImage": "/images/mota-besan.jpg",
+      "packSize": "5 kg",
+      "originalPrice": 280,
+      "discountedPrice": 238,
+      "discountPercent": 15,
+      "frequency": "Every 2 Weeks",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-19T19:28:39.210Z",
+      "nextDeliveryDate": "Tuesday, Nov 3",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "deliveryAddress": "B-404, Palm Meadows, Bengaluru - 560103"
+    },
+    {
+      "id": "sub-1792437903316",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta (100% MP Sharbati)",
+      "productImage": "/images/mota-besan.jpg",
+      "packSize": "5 kg",
+      "originalPrice": 280,
+      "discountedPrice": 238,
+      "discountPercent": 15,
+      "frequency": "Every 2 Weeks",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-19T19:25:03.316Z",
+      "nextDeliveryDate": "Tuesday, Nov 3",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "deliveryAddress": "B-404, Palm Meadows, Bengaluru - 560103"
+    },
+    {
+      "id": "sub-1",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta (100% MP Sharbati)",
+      "packSize": "5 kg",
+      "price": 280,
+      "discountedPrice": 238,
+      "frequency": "Every 2 Weeks",
+      "status": "ACTIVE",
+      "nextDeliveryDate": "Friday, Oct 24",
+      "discountPercent": 15,
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "deliveryAddress": "Flat 402, Green Glen Palms, Bellandur, Bengaluru - 560103"
+    }
+  ],
+  "labReports": {
+    "fm-atta-chakki": {
+      "id": "LAB-FM-8921",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta",
+      "batchNumber": "BATCH-2026-CH89",
+      "testDate": "Oct 15, 2026",
+      "labName": "Shri Ram Institute for Industrial Research (NABL Accredited)",
+      "nablAccreditation": "TC-5482 / FSSAI Recognized",
+      "parameters": [
+        {
+          "name": "230+ Pesticide Residues (Organochlorine & Phosphates)",
+          "standard": "< 0.01 mg/kg",
+          "result": "Not Detected (0.00)",
+          "status": "Pass"
+        },
+        {
+          "name": "Lead (Pb) & Heavy Metals",
+          "standard": "< 0.2 mg/kg",
+          "result": "Not Detected (0.00)",
+          "status": "Pass"
+        },
+        {
+          "name": "Artificial Bleach (Benzoyl Peroxide)",
+          "standard": "Absent",
+          "result": "Negative (100% Zero)",
+          "status": "Pass"
+        },
+        {
+          "name": "Dietary Bran & Germ Content",
+          "standard": "> 11.5%",
+          "result": "12.8% (Intact)",
+          "status": "Safe"
+        },
+        {
+          "name": "Natural Moisture",
+          "standard": "< 13.0%",
+          "result": "11.4%",
+          "status": "Safe"
+        },
+        {
+          "name": "Gluten Strength / Index",
+          "standard": "> 80%",
+          "result": "88.5%",
+          "status": "Pass"
+        }
+      ]
+    },
+    "fm-spice-turmeric": {
+      "id": "LAB-FM-7740",
+      "productId": "fm-spice-turmeric",
+      "productName": "Turmeric (Haldi) Powder",
+      "batchNumber": "BATCH-2026-HL41",
+      "testDate": "Oct 14, 2026",
+      "labName": "Eurofins Analytical Services India (NABL & EIC Approved)",
+      "nablAccreditation": "TC-6291 / FSSAI Recognized",
+      "parameters": [
+        {
+          "name": "Active Curcumin Content (HPLC method)",
+          "standard": "> 2.50%",
+          "result": "3.82% w/w (Superior)",
+          "status": "Pass"
+        },
+        {
+          "name": "Lead Chromate & Artificial Yellow Dyes",
+          "standard": "Negative",
+          "result": "Absent (Zero)",
+          "status": "Pass"
+        },
+        {
+          "name": "Starch & Chalk Adulteration",
+          "standard": "Negative",
+          "result": "Absent",
+          "status": "Pass"
+        },
+        {
+          "name": "Aflatoxins B1, B2, G1, G2",
+          "standard": "< 10 mcg/kg",
+          "result": "Not Detected",
+          "status": "Pass"
+        },
+        {
+          "name": "Volatile Essential Oils",
+          "standard": "> 3.5 ml/100g",
+          "result": "5.2 ml/100g (Intact)",
+          "status": "Safe"
+        }
+      ]
+    },
+    "fm-flour-mota-besan": {
+      "id": "LAB-FM-6312",
+      "productId": "fm-flour-mota-besan",
+      "productName": "Stoneground Mota Besan",
+      "batchNumber": "BATCH-2026-BS19",
+      "testDate": "Oct 16, 2026",
+      "labName": "Vimta Labs Ltd. (NABL Accredited)",
+      "nablAccreditation": "TC-5120 / FSSAI Recognized",
+      "parameters": [
+        {
+          "name": "Kesari Dal / Pea Flour Adulteration",
+          "standard": "Negative",
+          "result": "Absent (100% Chana)",
+          "status": "Pass"
+        },
+        {
+          "name": "Crude Protein (N x 6.25)",
+          "standard": "> 20.0%",
+          "result": "22.4% (High Protein)",
+          "status": "Pass"
+        },
+        {
+          "name": "Uric Acid / Insect Fragments",
+          "standard": "< 100 mg/kg",
+          "result": "Not Detected",
+          "status": "Pass"
+        },
+        {
+          "name": "Particle Granularity (Danedar Mesh)",
+          "standard": "Coarse 60 Mesh",
+          "result": "Conforms to Mota",
+          "status": "Safe"
+        }
+      ]
+    },
+    "fm-honey-raw": {
+      "id": "LAB-FM-9410",
+      "productId": "fm-honey-raw",
+      "productName": "100% Natural Honey",
+      "batchNumber": "BATCH-2026-HN07",
+      "testDate": "Oct 12, 2026",
+      "labName": "Intertek Food Testing Services (Bruker NMR Profile)",
+      "nablAccreditation": "TC-7043 / Export Council Approved",
+      "parameters": [
+        {
+          "name": "Nuclear Magnetic Resonance (NMR) Adulteration",
+          "standard": "Negative",
+          "result": "Pass (100% Authentic Flora)",
+          "status": "Pass"
+        },
+        {
+          "name": "C4 Sugars (Corn / Cane Syrup)",
+          "standard": "< 7.0%",
+          "result": "0.0% (Zero Added Sugar)",
+          "status": "Pass"
+        },
+        {
+          "name": "HMF (Hydroxymethylfurfural heat marker)",
+          "standard": "< 40 mg/kg",
+          "result": "8.4 mg/kg (Raw & Unheated)",
+          "status": "Safe"
+        },
+        {
+          "name": "Diastase Activity (Live Digestive Enzyme)",
+          "standard": "> 8 Schade units",
+          "result": "18.2 Schade (Alive & Active)",
+          "status": "Pass"
+        },
+        {
+          "name": "Natural Flower Pollen Count",
+          "standard": "> 25,000 / 10g",
+          "result": "42,000 / 10g (Rich)",
+          "status": "Safe"
+        }
+      ]
+    },
+    "fm-oil-mustard": {
+      "id": "LAB-FM-5519",
+      "productId": "fm-oil-mustard",
+      "productName": "Woodpressed Mustard Oil (Kachi Ghani)",
+      "batchNumber": "BATCH-2026-MS04",
+      "testDate": "Oct 17, 2026",
+      "labName": "SGS India Testing Laboratory (NABL Accredited)",
+      "nablAccreditation": "TC-6902 / FSSAI Recognized",
+      "parameters": [
+        {
+          "name": "Argemone Oil Adulteration",
+          "standard": "Negative",
+          "result": "Negative (Zero Adulteration)",
+          "status": "Pass"
+        },
+        {
+          "name": "Free Fatty Acids (as Oleic)",
+          "standard": "< 1.5%",
+          "result": "0.62% (Cold Extracted)",
+          "status": "Pass"
+        },
+        {
+          "name": "Natural Sinigrin / Allyl Isothiocyanate",
+          "standard": "> 0.25%",
+          "result": "0.38% (High Pungency)",
+          "status": "Safe"
+        },
+        {
+          "name": "Mineral Oil & Added Solvents",
+          "standard": "Negative",
+          "result": "Not Detected (100% Pure)",
+          "status": "Pass"
+        }
+      ]
+    }
+  },
+  "reviews": [
+    {
+      "id": "rev-1",
+      "productId": "fm-atta-chakki",
+      "author": "Ananya Deshmukh",
+      "rating": 5,
+      "date": "Oct 12, 2026",
+      "verified": true,
+      "city": "Bengaluru",
+      "title": "Rotis stay soft even when packed in kids lunchboxes!",
+      "comment": "We switched from commercial brand atta to Farmers Mill after seeing their cold chakki process. The difference is night and day. The flour is fragrant, not stripped of bran, and the rotis stay soft till dinner time."
+    },
+    {
+      "id": "rev-2",
+      "productId": "fm-spice-turmeric",
+      "author": "Dr. Ramesh Iyer",
+      "rating": 5,
+      "date": "Oct 15, 2026",
+      "verified": true,
+      "city": "Mumbai",
+      "title": "True medicinal turmeric aroma",
+      "comment": "As an Ayurvedic practitioner, finding turmeric that isn’t spent root from curcumin extractors is very rare. Farmers Mill haldi leaves an oily aromatic sheen on your fingers. Truly exceptional quality."
+    },
+    {
+      "id": "rev-3",
+      "productId": "fm-flour-mota-besan",
+      "author": "Meenakshi Sundaram",
+      "rating": 5,
+      "date": "Oct 17, 2026",
+      "verified": true,
+      "city": "Delhi",
+      "title": "Perfect grainy texture for Mysore Pak and Laddoos",
+      "comment": "Store bought besan is like maida powder, makes laddoos sticky and pasty. This mota besan roasts with an intoxicating nutty fragrance and gives that authentic danedar bite!"
+    }
+  ]
+}
