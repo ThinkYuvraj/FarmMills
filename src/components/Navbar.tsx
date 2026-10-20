@@ -7,6 +7,7 @@ export const Navbar: React.FC = () => {
   const {
     activePage,
     setActivePage,
+    selectedCategory,
     setSelectedCategory,
     cartCount,
     setIsCartDrawerOpen,
@@ -63,7 +64,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav style={{ display: 'none', gap: '22px', flexWrap: 'wrap', fontWeight: 500, fontSize: '15px', alignItems: 'center' }} className="desktop-nav">
+          <nav style={{ display: 'none', gap: '18px', flexWrap: 'wrap', fontWeight: 500, fontSize: '14.5px', alignItems: 'center' }} className="desktop-nav">
             <a
               onClick={() => handleNavClick('subscriptions')}
               style={{ color: activePage === 'subscriptions' ? '#3F6B2C' : '#B01C15', fontWeight: 700 }}
@@ -71,32 +72,38 @@ export const Navbar: React.FC = () => {
               ✨ Subscribe &amp; Save
             </a>
             <a
+              onClick={() => handleNavClick('shop', 'All')}
+              style={{ color: activePage === 'shop' && selectedCategory === 'All' ? '#3F6B2C' : '#1E2B17', fontWeight: activePage === 'shop' && selectedCategory === 'All' ? 700 : 500 }}
+            >
+              Shop All
+            </a>
+            <a
               onClick={() => handleNavClick('shop', 'Fresh Atta')}
-              style={{ color: activePage === 'shop' ? '#3F6B2C' : '#1E2B17', fontWeight: 600 }}
+              style={{ color: activePage === 'shop' && selectedCategory === 'Fresh Atta' ? '#3F6B2C' : '#1E2B17', fontWeight: activePage === 'shop' && selectedCategory === 'Fresh Atta' ? 700 : 500 }}
             >
               Fresh Atta
             </a>
             <a
               onClick={() => handleNavClick('shop', 'Besan & Flours')}
-              style={{ color: '#1E2B17' }}
+              style={{ color: activePage === 'shop' && selectedCategory === 'Besan & Flours' ? '#3F6B2C' : '#1E2B17', fontWeight: activePage === 'shop' && selectedCategory === 'Besan & Flours' ? 700 : 500 }}
             >
               Besan &amp; Flours
             </a>
             <a
               onClick={() => handleNavClick('shop', 'Spices')}
-              style={{ color: '#1E2B17' }}
+              style={{ color: activePage === 'shop' && selectedCategory === 'Spices' ? '#3F6B2C' : '#1E2B17', fontWeight: activePage === 'shop' && selectedCategory === 'Spices' ? 700 : 500 }}
             >
               Spices
             </a>
             <a
               onClick={() => handleNavClick('shop', 'Oils & Ghee')}
-              style={{ color: '#1E2B17' }}
+              style={{ color: activePage === 'shop' && selectedCategory === 'Oils & Ghee' ? '#3F6B2C' : '#1E2B17', fontWeight: activePage === 'shop' && selectedCategory === 'Oils & Ghee' ? 700 : 500 }}
             >
               Oils &amp; Ghee
             </a>
             <a
               onClick={() => handleNavClick('shop', 'Honey & Pickles')}
-              style={{ color: '#1E2B17' }}
+              style={{ color: activePage === 'shop' && selectedCategory === 'Honey & Pickles' ? '#3F6B2C' : '#1E2B17', fontWeight: activePage === 'shop' && selectedCategory === 'Honey & Pickles' ? 700 : 500 }}
             >
               Honey &amp; Pickles
             </a>
