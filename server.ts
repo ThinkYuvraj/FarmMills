@@ -14,7 +14,7 @@ async function startServer() {
   if (!isProd) {
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true, hmr: false },
+      server: { middlewareMode: true, hmr: false, allowedHosts: true },
       appType: 'spa'
     });
     // Mount Vite middleware after the backend Express app routes
