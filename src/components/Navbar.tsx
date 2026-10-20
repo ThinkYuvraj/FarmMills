@@ -114,6 +114,12 @@ export const Navbar: React.FC = () => {
               Our Story
             </a>
             <a
+              onClick={() => handleNavClick('track-order')}
+              style={{ color: activePage === 'track-order' ? '#3F6B2C' : '#1E2B17', fontWeight: activePage === 'track-order' ? 700 : 500 }}
+            >
+              🚚 Track Order
+            </a>
+            <a
               onClick={() => handleNavClick('contact')}
               style={{ color: activePage === 'contact' ? '#3F6B2C' : '#1E2B17' }}
             >
@@ -235,6 +241,7 @@ export const Navbar: React.FC = () => {
             <div style={{ height: '1px', background: '#D3E0BC', margin: '4px 0' }} />
             <a onClick={() => handleNavClick('shop')} style={{ fontSize: '16px', fontWeight: 600, color: '#3F6B2C' }}>Browse All Products →</a>
             <a onClick={() => handleNavClick('story')} style={{ fontSize: '16px', fontWeight: 500 }}>Our Story &amp; Milling Process</a>
+            <a onClick={() => handleNavClick('track-order')} style={{ fontSize: '16px', fontWeight: 600, color: '#3F6B2C' }}>🚚 Track Order Shipment</a>
             <a onClick={() => handleNavClick('contact')} style={{ fontSize: '16px', fontWeight: 500 }}>Contact &amp; Support</a>
             {user ? (
               <a onClick={() => handleNavClick('account')} style={{ fontSize: '16px', fontWeight: 600 }}>My Orders &amp; Profile</a>

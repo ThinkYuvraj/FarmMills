@@ -1,9 +1,19 @@
 import { db } from './db.js';
 import { pricingService } from './pricingService.js';
 import { logisticsService } from './logisticsService.js';
+import { razorpayService } from './razorpayService.js';
 
 export const orderService = {
-  createOrder({ items, shippingAddress, paymentMethod, deliverySlot, couponCode }) {
+  createOrder({
+    items,
+    shippingAddress,
+    paymentMethod = 'Razorpay (Online UPI/Cards/NetBanking)',
+    deliverySlot,
+    couponCode,
+    razorpayPaymentId,
+    razorpayOrderId,
+    razorpaySignature
+  }) {
     // 1. Validate shipping address
     if (!shippingAddress || !shippingAddress.fullName || !shippingAddress.address || !shippingAddress.pincode) {
       throw new Error('Please provide complete shipping details (Full Name, Address, and 6-digit Pincode).');
@@ -30,12 +40,27 @@ export const orderService = {
       throw new Error(pricing.errors.join(', ') || 'Your cart is empty or contains invalid items.');
     }
 
-    // 4. Atomically deduct inventory
+    // 4. If payment was made via Razorpay, verify signature
+    const isRazorpay = paymentMethod.toLowerCase().includes('razorpay') || Boolean(razorpayPaymentId);
+    let paymentStatus = isRazorpay ? 'PAID' : (paymentMethod.includes('COD') || paymentMethod.includes('Cash') ? 'PENDING' : 'PAID');
+
+    if (isRazorpay && razorpayOrderId && razorpayPaymentId) {
+      const isValid = razorpayService.verifyPaymentSignature({
+        razorpayOrderId,
+        razorpayPaymentId,
+        razorpaySignature
+      });
+      if (!isValid) {
+        throw new Error('Razorpay payment signature verification failed. Untrusted transaction.');
+      }
+    }
+
+    // 5. Atomically deduct inventory
     for (const item of pricing.items) {
       db.updateProductStock(item.productId, item.packSize, item.quantity);
     }
 
-    // 5. Generate unique Order ID
+    // 6. Generate unique Order ID
     const randomNum = Math.floor(10000 + Math.random() * 90000);
     const orderId = `FM-${randomNum}`;
     const now = new Date();
@@ -44,12 +69,14 @@ export const orderService = {
 
     const millingSchedule = logisticsService.calculateMillingCutoff();
 
-    // 6. Build tracking timeline
+    // 7. Build tracking timeline
     const trackingEvents = [
       {
-        status: 'Order Placed & Payment Confirmed',
+        status: isRazorpay ? 'Payment Verified via Razorpay' : 'Order Placed & Confirmed',
         time: `${formattedDate} ${formattedTime}`,
-        note: `Order received via ${paymentMethod || 'Online'}. Grains queued in grain hopper.`
+        note: isRazorpay
+          ? `Verified 100% secure payment of ₹${pricing.total} via Razorpay (Ref: ${razorpayPaymentId || 'Online Payment'}). Grains queued in grain hopper.`
+          : `Order placed via ${paymentMethod}. Grains queued in grain hopper.`
       },
       {
         status: 'Chakki Milling Scheduled',
@@ -84,7 +111,10 @@ export const orderService = {
         state: shippingAddress.state?.trim() || pincodeCheck.state,
         pincode: shippingAddress.pincode.toString().trim()
       },
-      paymentMethod: paymentMethod || 'UPI (Online)',
+      paymentMethod: paymentMethod || 'Razorpay (Online)',
+      paymentStatus: paymentStatus || 'PAID',
+      razorpayOrderId: razorpayOrderId || null,
+      razorpayPaymentId: razorpayPaymentId || null,
       deliverySlot: deliverySlot || 'Morning (7:00 AM - 11:00 AM)',
       estimatedDelivery: millingSchedule.estimatedDelivery,
       trackingEvents

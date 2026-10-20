@@ -26,6 +26,35 @@ class Database {
       this.data = JSON.parse(JSON.stringify(INITIAL_DATA));
       this.save();
     }
+
+    if (!this.data.users) {
+      this.data.users = [
+        {
+          id: 'usr_priya_sharma',
+          name: 'Priya Sharma',
+          email: 'priya.sharma@example.com',
+          phone: '+91 98765 43210',
+          authProvider: 'password',
+          googleConnected: false,
+          appleConnected: false,
+          passkeys: [],
+          memberSince: 'Oct 2026',
+          addresses: [
+            {
+              id: 'addr-1',
+              tag: 'Home',
+              address: 'Flat 402, Green Glen Palms, Bellandur',
+              city: 'Bengaluru',
+              pincode: '560103',
+              isDefault: true
+            }
+          ]
+        }
+      ];
+    }
+    if (!this.data.sessions) this.data.sessions = {};
+    if (!this.data.passkeys) this.data.passkeys = [];
+    if (!this.data.challenges) this.data.challenges = {};
   }
 
   save() {
@@ -89,7 +118,17 @@ class Database {
   }
 
   getOrderById(id) {
-    return this.data.orders.find((o) => o.id === id);
+    if (!id) return null;
+    const clean = id.toString().trim().toUpperCase();
+    const digitsOnly = clean.replace(/\D/g, '');
+    return this.data.orders.find((o) => {
+      const oId = (o.id || '').toUpperCase();
+      if (oId === clean) return true;
+      if (oId === `FM-${clean}`) return true;
+      if (clean === `FM-${oId}`) return true;
+      if (digitsOnly && digitsOnly.length >= 4 && oId.replace(/\D/g, '') === digitsOnly) return true;
+      return false;
+    });
   }
 
   createOrder(orderData) {
@@ -176,6 +215,102 @@ class Database {
     }
     this.save();
     return reviewData;
+  }
+
+  // --- Auth, Users & Passkeys ---
+  getUsers() {
+    return this.data.users || [];
+  }
+
+  getUserByEmail(email) {
+    if (!email) return null;
+    const clean = email.trim().toLowerCase();
+    return (this.data.users || []).find((u) => u.email.toLowerCase() === clean);
+  }
+
+  getUserById(id) {
+    if (!id) return null;
+    return (this.data.users || []).find((u) => u.id === id);
+  }
+
+  createUser(userData) {
+    if (!this.data.users) this.data.users = [];
+    this.data.users.push(userData);
+    this.save();
+    return userData;
+  }
+
+  updateUser(id, updates) {
+    const user = this.getUserById(id);
+    if (!user) return null;
+    Object.assign(user, updates);
+    this.save();
+    return user;
+  }
+
+  // Passkey credentials
+  savePasskey(passkeyRecord) {
+    if (!this.data.passkeys) this.data.passkeys = [];
+    this.data.passkeys.push(passkeyRecord);
+    this.save();
+    return passkeyRecord;
+  }
+
+  getPasskeysByUserId(userId) {
+    return (this.data.passkeys || []).filter((p) => p.userId === userId);
+  }
+
+  getPasskeyById(credentialId) {
+    return (this.data.passkeys || []).find((p) => p.id === credentialId);
+  }
+
+  // Challenges for WebAuthn / Passkeys
+  saveChallenge(challengeId, data) {
+    if (!this.data.challenges) this.data.challenges = {};
+    this.data.challenges[challengeId] = {
+      ...data,
+      expiresAt: Date.now() + 5 * 60 * 1000 // 5 minutes validity
+    };
+  }
+
+  getChallenge(challengeId) {
+    if (!this.data.challenges || !this.data.challenges[challengeId]) return null;
+    const item = this.data.challenges[challengeId];
+    if (Date.now() > item.expiresAt) {
+      delete this.data.challenges[challengeId];
+      return null;
+    }
+    return item;
+  }
+
+  deleteChallenge(challengeId) {
+    if (this.data.challenges) {
+      delete this.data.challenges[challengeId];
+    }
+  }
+
+  // Sessions
+  saveSession(token, user) {
+    if (!this.data.sessions) this.data.sessions = {};
+    this.data.sessions[token] = {
+      userId: user.id,
+      user,
+      createdAt: new Date().toISOString()
+    };
+    return this.data.sessions[token];
+  }
+
+  getSession(token) {
+    if (!this.data.sessions || !this.data.sessions[token]) return null;
+    return this.data.sessions[token];
+  }
+
+  deleteSession(token) {
+    if (this.data.sessions && this.data.sessions[token]) {
+      delete this.data.sessions[token];
+      return true;
+    }
+    return false;
   }
 }
 

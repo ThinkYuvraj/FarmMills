@@ -88,15 +88,74 @@ export interface Order {
     pincode: string;
   };
   paymentMethod: string;
+  paymentStatus?: 'PAID' | 'PENDING' | 'FAILED' | string;
+  razorpayOrderId?: string | null;
+  razorpayPaymentId?: string | null;
+  razorpaySignature?: string | null;
   deliverySlot?: string;
   estimatedDelivery: string;
   trackingEvents?: OrderTrackingEvent[];
 }
 
+export interface RazorpayConfig {
+  isConfigured: boolean;
+  keyId: string;
+  currency: string;
+  isTestMode: boolean;
+}
+
+export interface RazorpayOrderResponse {
+  orderId: string;
+  amount: number;
+  amountInRupees: number;
+  currency: string;
+  keyId: string;
+  receipt: string;
+  isSimulated: boolean;
+  pricing: {
+    subtotal: number;
+    deliveryFee: number;
+    discount: number;
+    total: number;
+  };
+}
+
+export interface RazorpayVerificationPayload {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+  items: { productId: string; packSize: string; quantity: number }[];
+  shippingAddress: {
+    fullName: string;
+    phone: string;
+    address: string;
+    city: string;
+    state: string;
+    pincode: string;
+  };
+  deliverySlot?: string;
+  couponCode?: string | null;
+}
+
+export interface PasskeyCredential {
+  id: string;
+  name: string;
+  createdAt: string;
+  lastUsedAt?: string;
+  deviceType?: string;
+}
+
 export interface UserProfile {
+  id?: string;
   name: string;
   email: string;
   phone: string;
+  avatar?: string;
+  authProvider?: 'password' | 'google' | 'apple' | 'passkey';
+  googleConnected?: boolean;
+  appleConnected?: boolean;
+  passkeys?: PasskeyCredential[];
+  memberSince?: string;
   addresses: Array<{
     id: string;
     tag: string;
@@ -174,4 +233,5 @@ export type ActivePage =
   | 'story' 
   | 'account' 
   | 'contact' 
-  | 'subscriptions';
+  | 'subscriptions'
+  | 'track-order';

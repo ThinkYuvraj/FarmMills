@@ -9,6 +9,8 @@ import ordersRouter from './routes/orders.js';
 import subscriptionsRouter from './routes/subscriptions.js';
 import labReportsRouter from './routes/labReports.js';
 import reviewsRouter from './routes/reviews.js';
+import paymentsRouter from './routes/payments.js';
+import authRouter from './routes/auth.js';
 
 export const app = express();
 
@@ -31,6 +33,8 @@ app.use('/api/cart', cartRouter);
 app.use('/api/coupons', couponsRouter);
 app.use('/api/pincodes', pincodesRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/api/payments', paymentsRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/subscriptions', subscriptionsRouter);
 app.use('/api/lab-reports', labReportsRouter);
 app.use('/api/reviews', reviewsRouter);

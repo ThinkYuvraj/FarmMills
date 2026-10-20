@@ -1,9 +1,34 @@
 import React, { useState } from 'react';
 import { useShop } from '../context/ShopContext';
-import { ShieldCheck, Truck, CreditCard, QrCode, Banknote, ArrowRight, CheckCircle2 } from 'lucide-react';
+import {
+  ShieldCheck,
+  Truck,
+  CreditCard,
+  QrCode,
+  Banknote,
+  ArrowRight,
+  CheckCircle2,
+  Lock,
+  Sparkles,
+  Loader2,
+  Zap,
+  Info
+} from 'lucide-react';
 
 export const CheckoutView: React.FC = () => {
-  const { cart, cartSubtotal, deliveryFee, discount, cartTotal, user, placeOrder, setActivePage } = useShop();
+  const {
+    cart,
+    cartSubtotal,
+    deliveryFee,
+    discount,
+    cartTotal,
+    user,
+    placeOrder,
+    setActivePage,
+    processRazorpayPayment,
+    razorpayConfig,
+    isProcessingPayment
+  } = useShop();
 
   const [step, setStep] = useState<1 | 2 | 3>(1);
 
@@ -19,9 +44,7 @@ export const CheckoutView: React.FC = () => {
   const [slot, setSlot] = useState('Morning Fresh Batch (7:00 AM - 11:00 AM)');
 
   // Payment method
-  const [paymentMethod, setPaymentMethod] = useState<'upi' | 'card' | 'cod'>('upi');
-  const [upiId, setUpiId] = useState('priyasharma@oksbi');
-  const [cardNumber, setCardNumber] = useState('4532 •••• •••• 8921');
+  const [paymentMethod, setPaymentMethod] = useState<'razorpay' | 'cod'>('razorpay');
 
   if (cart.length === 0) {
     return (
@@ -35,27 +58,27 @@ export const CheckoutView: React.FC = () => {
     );
   }
 
-  const handlePlaceOrder = (e: React.FormEvent) => {
+  const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formattedPayment =
-      paymentMethod === 'upi'
-        ? `UPI (${upiId})`
-        : paymentMethod === 'card'
-        ? `Card (${cardNumber})`
-        : 'Cash on Delivery (COD)';
 
-    placeOrder(
-      {
-        fullName,
-        phone,
-        address,
-        city,
-        state,
-        pincode
-      },
-      formattedPayment,
-      slot
-    );
+    const addressPayload = {
+      fullName,
+      phone,
+      address,
+      city,
+      state,
+      pincode
+    };
+
+    if (paymentMethod === 'razorpay') {
+      try {
+        await processRazorpayPayment(addressPayload, slot);
+      } catch (err) {
+        // error handled via toast in context
+      }
+    } else {
+      placeOrder(addressPayload, 'Cash on Delivery (COD)', slot);
+    }
   };
 
   return (
@@ -278,111 +301,162 @@ export const CheckoutView: React.FC = () => {
 
             {step === 3 && (
               <div>
-                <h3 style={{ fontSize: '24px', marginBottom: '8px' }}>3. Payment &amp; Confirmation</h3>
-                <p style={{ fontSize: '14px', color: '#5C6E52', marginBottom: '24px' }}>
-                  Select your preferred secure payment method.
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '24px' }}>3. Secure Payment</h3>
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', background: '#E1EBCB', color: '#1E3415', padding: '4px 10px', borderRadius: '999px', fontWeight: 600 }}>
+                    <Lock size={13} />
+                    <span>256-Bit SSL Encrypted</span>
+                  </div>
+                </div>
+
+                <p style={{ fontSize: '14px', color: '#5C6E52', marginBottom: '20px' }}>
+                  Choose your payment method to confirm your fresh chakki milling order.
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Payment Options */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px' }}>
-                    <button
-                      type="button"
-                      onClick={() => setPaymentMethod('upi')}
-                      className={`btn sm ${paymentMethod === 'upi' ? 'p' : 'g'}`}
-                      style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '6px' }}
-                    >
-                      <QrCode size={22} />
-                      <span>Instant UPI / QR</span>
-                    </button>
+                  {/* Primary Razorpay Option */}
+                  <label
+                    onClick={() => setPaymentMethod('razorpay')}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '12px',
+                      padding: '20px',
+                      borderRadius: '16px',
+                      border: paymentMethod === 'razorpay' ? '2px solid #3F6B2C' : '1px solid #D3E0BC',
+                      background: paymentMethod === 'razorpay' ? '#F2F6E6' : '#ffffff',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          checked={paymentMethod === 'razorpay'}
+                          onChange={() => setPaymentMethod('razorpay')}
+                          style={{ accentColor: '#3F6B2C', width: '18px', height: '18px' }}
+                        />
+                        <div>
+                          <b style={{ fontSize: '16px', color: '#1E2B17' }}>Razorpay Secure Checkout</b>
+                          <span style={{ display: 'block', fontSize: '13px', color: '#5C6E52', marginTop: '2px' }}>
+                            UPI Apps, Credit/Debit Cards, NetBanking &amp; Wallets
+                          </span>
+                        </div>
+                      </div>
+                      <span
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 700,
+                          textTransform: 'uppercase',
+                          background: '#0c2340',
+                          color: '#ffffff',
+                          padding: '4px 8px',
+                          borderRadius: '6px',
+                          letterSpacing: '0.04em'
+                        }}
+                      >
+                        Razorpay
+                      </span>
+                    </div>
 
-                    <button
-                      type="button"
-                      onClick={() => setPaymentMethod('card')}
-                      className={`btn sm ${paymentMethod === 'card' ? 'p' : 'g'}`}
-                      style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '6px' }}
-                    >
-                      <CreditCard size={22} />
-                      <span>Card / NetBanking</span>
-                    </button>
+                    {/* Supported method pills */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', paddingLeft: '30px' }}>
+                      <span style={{ fontSize: '12px', background: '#ffffff', padding: '4px 10px', borderRadius: '6px', border: '1px solid #D3E0BC', color: '#3F6B2C', fontWeight: 600 }}>
+                        ⚡ Google Pay / PhonePe / Paytm / BHIM
+                      </span>
+                      <span style={{ fontSize: '12px', background: '#ffffff', padding: '4px 10px', borderRadius: '6px', border: '1px solid #D3E0BC', color: '#1E2B17' }}>
+                        💳 Visa, Mastercard, RuPay
+                      </span>
+                      <span style={{ fontSize: '12px', background: '#ffffff', padding: '4px 10px', borderRadius: '6px', border: '1px solid #D3E0BC', color: '#1E2B17' }}>
+                        🏦 50+ Banks NetBanking
+                      </span>
+                      <span style={{ fontSize: '12px', background: '#ffffff', padding: '4px 10px', borderRadius: '6px', border: '1px solid #D3E0BC', color: '#1E2B17' }}>
+                        👛 Cred / PayZapp / Amazon Pay
+                      </span>
+                    </div>
 
-                    <button
-                      type="button"
-                      onClick={() => setPaymentMethod('cod')}
-                      className={`btn sm ${paymentMethod === 'cod' ? 'p' : 'g'}`}
-                      style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '6px' }}
-                    >
-                      <Banknote size={22} />
-                      <span>Cash on Delivery</span>
-                    </button>
+                    {razorpayConfig?.isTestMode && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#FEF3D6', padding: '8px 12px', borderRadius: '8px', fontSize: '12px', color: '#946808', marginLeft: '30px' }}>
+                        <Info size={14} />
+                        <span>
+                          <b>Test Mode:</b> Razorpay sandbox active. Instant test verification enabled.
+                        </span>
+                      </div>
+                    )}
+                  </label>
+
+                  {/* Cash on Delivery Option */}
+                  <label
+                    onClick={() => setPaymentMethod('cod')}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '18px 20px',
+                      borderRadius: '16px',
+                      border: paymentMethod === 'cod' ? '2px solid #3F6B2C' : '1px solid #D3E0BC',
+                      background: paymentMethod === 'cod' ? '#F2F6E6' : '#ffffff',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        checked={paymentMethod === 'cod'}
+                        onChange={() => setPaymentMethod('cod')}
+                        style={{ accentColor: '#3F6B2C', width: '18px', height: '18px' }}
+                      />
+                      <div>
+                        <b style={{ fontSize: '15px', color: '#1E2B17' }}>Cash on Delivery (COD)</b>
+                        <span style={{ display: 'block', fontSize: '13px', color: '#5C6E52', marginTop: '2px' }}>
+                          Pay with cash or scan delivery agent's UPI QR upon doorstep arrival
+                        </span>
+                      </div>
+                    </div>
+                    <Banknote size={22} color="#3F6B2C" />
+                  </label>
+
+                  {/* Security Assurance footer */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#F8FAF2', padding: '12px 16px', borderRadius: '12px', border: '1px solid #E1EBCB', fontSize: '12px', color: '#5C6E52' }}>
+                    <ShieldCheck size={20} color="#3F6B2C" style={{ flex: 'none' }} />
+                    <span>
+                      Transactions processed authoritatively on backend with HMAC-SHA256 verification. Grains queued for fresh milling upon confirmation.
+                    </span>
                   </div>
 
-                  {/* Payment Details Container */}
-                  {paymentMethod === 'upi' && (
-                    <div className="card" style={{ padding: '20px', background: '#F2F6E6', textAlign: 'center' }}>
-                      <p style={{ fontSize: '14px', fontWeight: 600, color: '#1E2B17' }}>Scan &amp; Pay via any UPI App</p>
-                      <div style={{ width: '140px', height: '140px', background: '#ffffff', borderRadius: '12px', border: '1px solid #D3E0BC', margin: '14px auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <QrCode size={110} color="#3F6B2C" />
-                      </div>
-                      <p style={{ fontSize: '12px', color: '#5C6E52' }}>
-                        Supports Google Pay, PhonePe, Paytm, BHIM &amp; Cred
-                      </p>
-                      <input
-                        type="text"
-                        value={upiId}
-                        onChange={(e) => setUpiId(e.target.value)}
-                        placeholder="Or enter UPI ID (e.g. name@upi)"
-                        className="input-field"
-                        style={{ marginTop: '12px', textAlign: 'center' }}
-                      />
-                    </div>
-                  )}
-
-                  {paymentMethod === 'card' && (
-                    <div className="card" style={{ padding: '20px', background: '#F2F6E6', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                      <div>
-                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Card Number</label>
-                        <input
-                          type="text"
-                          value={cardNumber}
-                          onChange={(e) => setCardNumber(e.target.value)}
-                          className="input-field"
-                          style={{ marginTop: '4px' }}
-                        />
-                      </div>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                        <div>
-                          <label style={{ fontSize: '12px', fontWeight: 600 }}>Expiry (MM/YY)</label>
-                          <input type="text" defaultValue="08/29" className="input-field" style={{ marginTop: '4px' }} />
-                        </div>
-                        <div>
-                          <label style={{ fontSize: '12px', fontWeight: 600 }}>CVV</label>
-                          <input type="password" defaultValue="892" maxLength={4} className="input-field" style={{ marginTop: '4px' }} />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {paymentMethod === 'cod' && (
-                    <div className="card" style={{ padding: '16px', background: '#F2F6E6' }}>
-                      <p style={{ fontSize: '14px', color: '#1E2B17', lineHeight: 1.5 }}>
-                        💵 <b>Cash on Delivery:</b> Pay ₹{cartTotal} in cash or via UPI QR to the delivery executive when the fresh package arrives.
-                      </p>
-                    </div>
-                  )}
-
+                  {/* Action Buttons */}
                   <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
-                    <button type="button" className="btn g" onClick={() => setStep(2)}>
+                    <button type="button" className="btn g" onClick={() => setStep(2)} disabled={isProcessingPayment}>
                       Back to Slots
                     </button>
                     <button
                       type="button"
                       className="btn p lg"
                       onClick={handlePlaceOrder}
+                      disabled={isProcessingPayment}
                       style={{ flex: 1 }}
                     >
-                      <span>Place Order (₹{cartTotal})</span>
-                      <CheckCircle2 size={18} />
+                      {isProcessingPayment ? (
+                        <>
+                          <Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} />
+                          <span>Processing with Razorpay...</span>
+                        </>
+                      ) : paymentMethod === 'razorpay' ? (
+                        <>
+                          <Lock size={16} />
+                          <span>Pay with Razorpay (₹{cartTotal})</span>
+                          <ArrowRight size={16} />
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle2 size={18} />
+                          <span>Place COD Order (₹{cartTotal})</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>

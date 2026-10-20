@@ -103,6 +103,7 @@ export const Footer: React.FC = () => {
           <a onClick={() => handleNav('subscriptions')} style={{ color: '#E1EBCB', fontWeight: 600 }}>✨ Subscribe &amp; Save (15% OFF)</a>
           <a onClick={() => handleNav('story')} style={{ color: '#D2E0BC' }}>Our Story &amp; Origin</a>
           <a onClick={() => handleNav('story')} style={{ color: '#D2E0BC' }}>The Stone Chakki Difference</a>
+          <a onClick={() => handleNav('track-order')} style={{ color: '#E1EBCB', fontWeight: 600 }}>🚚 Track Your Order Batch</a>
           <a onClick={() => openLabReport(PRODUCTS[5])} style={{ color: '#D2E0BC' }}>🔬 NABL Certified Lab Reports</a>
           <a onClick={() => handleNav('contact')} style={{ color: '#D2E0BC' }}>Shipping &amp; Delivery Policy</a>
           <a onClick={() => handleNav('contact')} style={{ color: '#D2E0BC' }}>Frequently Asked Questions</a>

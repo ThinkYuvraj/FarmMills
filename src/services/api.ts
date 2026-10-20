@@ -1,8 +1,54 @@
-import { Product, Order, SubscriptionItem, LabReport, Review, CartItem, PackOption } from '../types';
+import {
+  Product,
+  Order,
+  SubscriptionItem,
+  LabReport,
+  Review,
+  CartItem,
+  PackOption,
+  RazorpayConfig,
+  RazorpayOrderResponse,
+  RazorpayVerificationPayload
+} from '../types';
 
 const API_BASE = '/api';
 
 export const api = {
+  // --- Razorpay Payments ---
+  async getRazorpayConfig(): Promise<RazorpayConfig> {
+    const res = await fetch(`${API_BASE}/payments/razorpay/config`);
+    if (!res.ok) throw new Error('Failed to load Razorpay configuration');
+    const json = await res.json();
+    return json.data;
+  },
+
+  async createRazorpayOrder(payload: {
+    items: { productId: string; packSize: string; quantity: number }[];
+    couponCode?: string | null;
+    pincode?: string | null;
+    customerName?: string;
+    customerPhone?: string;
+  }): Promise<RazorpayOrderResponse> {
+    const res = await fetch(`${API_BASE}/payments/razorpay/create-order`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to initiate Razorpay transaction');
+    return json.data;
+  },
+
+  async verifyRazorpayPayment(payload: RazorpayVerificationPayload): Promise<Order> {
+    const res = await fetch(`${API_BASE}/payments/razorpay/verify-payment`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to verify payment with Razorpay');
+    return json.data;
+  },
   // --- Products ---
   async getProducts(params?: { category?: string; search?: string; sort?: string }): Promise<Product[]> {
     const query = new URLSearchParams();
@@ -191,5 +237,102 @@ export const api = {
     const json = await res.json();
     if (!res.ok) throw new Error(json.message || 'Failed to submit review');
     return json.data;
+  },
+
+  // --- Authentication (Email, Google, Apple, Passkeys) ---
+  async signup(payload: { name: string; email: string; password: string; phone?: string }) {
+    const res = await fetch(`${API_BASE}/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Signup failed');
+    return json.data;
+  },
+
+  async login(payload: { email: string; password: string }) {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Login failed');
+    return json.data;
+  },
+
+  async loginWithGoogle(payload: { email: string; name?: string; avatar?: string; googleId?: string }) {
+    const res = await fetch(`${API_BASE}/auth/google`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Google login failed');
+    return json.data;
+  },
+
+  async loginWithApple(payload: { email?: string; name?: string; appleUserId?: string }) {
+    const res = await fetch(`${API_BASE}/auth/apple`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Apple login failed');
+    return json.data;
+  },
+
+  async getPasskeyRegisterChallenge(userId: string) {
+    const res = await fetch(`${API_BASE}/auth/passkey/register-challenge`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId })
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to create passkey challenge');
+    return json.data;
+  },
+
+  async verifyPasskeyRegister(payload: { challengeId: string; credentialId?: string; deviceName?: string }) {
+    const res = await fetch(`${API_BASE}/auth/passkey/register-verify`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Passkey verification failed');
+    return json.data;
+  },
+
+  async getPasskeyLoginChallenge(email?: string) {
+    const res = await fetch(`${API_BASE}/auth/passkey/login-challenge`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to create passkey login challenge');
+    return json.data;
+  },
+
+  async verifyPasskeyLogin(payload: { challengeId: string; credentialId?: string; email?: string }) {
+    const res = await fetch(`${API_BASE}/auth/passkey/login-verify`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Passkey login failed');
+    return json.data;
+  },
+
+  async logout(token?: string) {
+    await fetch(`${API_BASE}/auth/logout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token })
+    });
   }
 };

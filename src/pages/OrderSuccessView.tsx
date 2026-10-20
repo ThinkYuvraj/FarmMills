@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { Check, Sparkles, Printer, ArrowRight, Package, Clock, ShieldCheck, ShoppingBag } from 'lucide-react';
 
 export const OrderSuccessView: React.FC = () => {
-  const { latestOrder, orders, setActivePage } = useShop();
+  const { latestOrder, orders, setActivePage, openTrackOrder } = useShop();
 
   const order = latestOrder || orders[0];
 
@@ -117,20 +117,48 @@ export const OrderSuccessView: React.FC = () => {
 
         {/* Detailed Receipt Card */}
         <div className="card" style={{ marginTop: '28px', padding: '32px', background: '#ffffff' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #D3E0BC', paddingBottom: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #D3E0BC', paddingBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
             <div>
               <b style={{ fontSize: '18px', color: '#1E2B17' }}>Receipt &amp; Summary</b>
               <p style={{ fontSize: '13px', color: '#5C6E52', marginTop: '2px' }}>Date: {order.date} · Payment: {order.paymentMethod}</p>
             </div>
-            <button
-              onClick={handlePrint}
-              className="btn g sm"
-              style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
-            >
-              <Printer size={15} />
-              <span>Print Invoice</span>
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {order.paymentStatus === 'PAID' && (
+                <span style={{ fontSize: '12px', background: '#E1EBCB', color: '#2E5220', padding: '4px 10px', borderRadius: '999px', fontWeight: 700 }}>
+                  ✓ PAID &amp; VERIFIED
+                </span>
+              )}
+              <button
+                onClick={handlePrint}
+                className="btn g sm"
+                style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+              >
+                <Printer size={15} />
+                <span>Print Invoice</span>
+              </button>
+            </div>
           </div>
+
+          {/* Razorpay Transaction Details banner if paid via Razorpay */}
+          {order.razorpayPaymentId && (
+            <div style={{ background: '#F2F6E6', border: '1px solid #D3E0BC', borderRadius: '12px', padding: '12px 16px', marginTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', fontSize: '13px' }}>
+              <div>
+                <span style={{ color: '#5C6E52' }}>Razorpay Payment ID: </span>
+                <code style={{ background: '#ffffff', padding: '2px 8px', borderRadius: '6px', border: '1px solid #D3E0BC', fontWeight: 600, color: '#1E2B17' }}>
+                  {order.razorpayPaymentId}
+                </code>
+              </div>
+              {order.razorpayOrderId && (
+                <div>
+                  <span style={{ color: '#5C6E52' }}>Order Ref: </span>
+                  <code style={{ background: '#ffffff', padding: '2px 8px', borderRadius: '6px', border: '1px solid #D3E0BC', color: '#1E2B17' }}>
+                    {order.razorpayOrderId}
+                  </code>
+                </div>
+              )}
+              <span style={{ color: '#2E7D32', fontWeight: 600 }}>100% Secure via Razorpay</span>
+            </div>
+          )}
 
           {/* Items */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', margin: '20px 0' }}>
@@ -190,13 +218,21 @@ export const OrderSuccessView: React.FC = () => {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', marginTop: '36px', flexWrap: 'wrap' }}>
           <button
             className="btn p lg"
+            onClick={() => openTrackOrder(order.id)}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <span>Track This Milling Batch Live</span>
+            <ArrowRight size={18} />
+          </button>
+
+          <button
+            className="btn g lg"
             onClick={() => {
               setActivePage('shop');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
             <span>Continue Shopping</span>
-            <ArrowRight size={18} />
           </button>
 
           <button

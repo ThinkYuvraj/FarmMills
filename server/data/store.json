@@ -299,7 +299,7 @@
           "size": "5 kg",
           "price": 280,
           "originalPrice": 325,
-          "stock": 81
+          "stock": 80
         },
         {
           "size": "10 kg",
@@ -810,6 +810,53 @@
     }
   },
   "orders": [
+    {
+      "id": "FM-82397",
+      "date": "Oct 20, 2026",
+      "createdAt": "2026-10-20T06:42:42.323Z",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta (100% MP Sharbati)",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/mota-besan.jpg"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 0,
+      "discount": 0,
+      "appliedCoupon": null,
+      "total": 280,
+      "status": "Milled on Chakki",
+      "shippingAddress": {
+        "fullName": "Test Patron",
+        "phone": "9876543210",
+        "address": "123 Farm Lane",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "Razorpay (Online UPI/Cards/NetBanking)",
+      "paymentStatus": "PAID",
+      "razorpayOrderId": "order_1792478555926_4aed254a",
+      "razorpayPaymentId": "pay_test_99881122",
+      "deliverySlot": "Morning Fresh Batch (7:00 AM - 11:00 AM)",
+      "estimatedDelivery": "Wednesday, Oct 21 (7:00 AM - 11:00 AM)",
+      "trackingEvents": [
+        {
+          "status": "Payment Verified via Razorpay",
+          "time": "Oct 20, 2026 06:42 AM",
+          "note": "Verified 100% secure payment of ₹280 via Razorpay (Ref: pay_test_99881122). Grains queued in grain hopper."
+        },
+        {
+          "status": "Chakki Milling Scheduled",
+          "time": "Wednesday, Oct 21 05:00 AM",
+          "note": "Assigned to Stone Chakki Mill #3 (Master Miller Ram Singh). Cold-milling speed set to 280 RPM (< 40°C)."
+        }
+      ]
+    },
     {
       "id": "FM-83315",
       "date": "Oct 20, 2026",
@@ -1366,5 +1413,98 @@
       "title": "Perfect grainy texture for Mysore Pak and Laddoos",
       "comment": "Store bought besan is like maida powder, makes laddoos sticky and pasty. This mota besan roasts with an intoxicating nutty fragrance and gives that authentic danedar bite!"
     }
-  ]
+  ],
+  "users": [
+    {
+      "id": "usr_priya_sharma",
+      "name": "Priya Sharma",
+      "email": "priya.sharma@example.com",
+      "phone": "+91 98765 43210",
+      "authProvider": "password",
+      "googleConnected": false,
+      "appleConnected": false,
+      "passkeys": [],
+      "memberSince": "Oct 2026",
+      "addresses": [
+        {
+          "id": "addr-1",
+          "tag": "Home",
+          "address": "Flat 402, Green Glen Palms, Bellandur",
+          "city": "Bengaluru",
+          "pincode": "560103",
+          "isDefault": true
+        }
+      ]
+    },
+    {
+      "id": "usr_g_1792481000632_9dc704",
+      "name": "Google Patron Test",
+      "email": "test.google@farmersmill.in",
+      "phone": "+91 98765 43210",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80",
+      "authProvider": "google",
+      "googleConnected": true,
+      "appleConnected": false,
+      "memberSince": "Oct 2026",
+      "addresses": [
+        {
+          "id": "addr-1792481000655",
+          "tag": "Home",
+          "address": "Add your full address",
+          "city": "Bengaluru",
+          "pincode": "560103",
+          "isDefault": true
+        }
+      ]
+    },
+    {
+      "id": "usr_apple_1792481007947_8a7cfd",
+      "name": "Apple Patron Test",
+      "email": "apple.patron@example.com",
+      "phone": "+91 98765 43210",
+      "authProvider": "apple",
+      "googleConnected": false,
+      "appleConnected": true,
+      "memberSince": "Oct 2026",
+      "addresses": [
+        {
+          "id": "addr-1792481007947",
+          "tag": "Home",
+          "address": "Add your full address",
+          "city": "Bengaluru",
+          "pincode": "560103",
+          "isDefault": true
+        }
+      ]
+    }
+  ],
+  "sessions": {
+    "39ef02db3cd5aaa7fccb00b6dc00f8dcd2369b32994bff37eb45e22b3a387c7a": {
+      "userId": "usr_g_1792481000632_9dc704",
+      "user": {
+        "id": "usr_g_1792481000632_9dc704",
+        "name": "Google Patron Test",
+        "email": "test.google@farmersmill.in",
+        "phone": "+91 98765 43210",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80",
+        "authProvider": "google",
+        "googleConnected": true,
+        "appleConnected": false,
+        "memberSince": "Oct 2026",
+        "addresses": [
+          {
+            "id": "addr-1792481000655",
+            "tag": "Home",
+            "address": "Add your full address",
+            "city": "Bengaluru",
+            "pincode": "560103",
+            "isDefault": true
+          }
+        ]
+      },
+      "createdAt": "2026-10-20T07:23:20.656Z"
+    }
+  },
+  "passkeys": [],
+  "challenges": {}
 }
