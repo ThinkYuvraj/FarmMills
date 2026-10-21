@@ -65,16 +65,41 @@ export const Navbar: React.FC = () => {
           background: '#1E2B17',
           color: '#E1EBCB',
           fontSize: '12.5px',
-          padding: '6px 16px',
-          textAlign: 'center',
+          padding: '6px 20px',
           fontWeight: 500,
-          letterSpacing: '0.01em'
+          letterSpacing: '0.01em',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
         }}
       >
-        <span>
-          🌾 Stoneground Fresh on Order &nbsp;·&nbsp; Free Delivery above ₹499 &nbsp;·&nbsp; Use code{' '}
-          <strong style={{ color: '#FBFDF5', textDecoration: 'underline' }}>FARMERS10</strong> for 10% OFF
-        </span>
+        <div style={{ flex: 1, textAlign: 'center' }}>
+          <span>
+            🌾 Stoneground Fresh on Order &nbsp;·&nbsp; Free Delivery above ₹499 &nbsp;·&nbsp; Use code{' '}
+            <strong style={{ color: '#FBFDF5', textDecoration: 'underline' }}>FARMERS10</strong> for 10% OFF
+          </span>
+        </div>
+        <div>
+          <a
+            onClick={() => handleNavClick('admin')}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px',
+              color: activePage === 'admin' ? '#7BC652' : '#E1EBCB',
+              fontWeight: 600,
+              fontSize: '11.5px',
+              background: 'rgba(255, 255, 255, 0.12)',
+              padding: '2px 10px',
+              borderRadius: '999px',
+              border: '1px solid rgba(225, 235, 203, 0.25)',
+              cursor: 'pointer'
+            }}
+            title="Open Store Operations &amp; Milling Admin Dashboard"
+          >
+            ⚙️ Admin Console
+          </a>
+        </div>
       </div>
 
       {/* Main Header */}
@@ -634,6 +659,24 @@ export const Navbar: React.FC = () => {
               >
                 Need Help? Contact Support
               </a>
+              <button
+                onClick={() => handleNavClick('admin')}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  background: '#1E2B17',
+                  color: '#CBE3B0',
+                  padding: '10px',
+                  borderRadius: '10px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  marginTop: '4px'
+                }}
+              >
+                <span>⚙️ Open Operations &amp; Admin Dashboard</span>
+              </button>
             </div>
           </div>
         )}

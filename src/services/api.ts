@@ -8,7 +8,8 @@ import {
   PackOption,
   RazorpayConfig,
   RazorpayOrderResponse,
-  RazorpayVerificationPayload
+  RazorpayVerificationPayload,
+  AdminStats
 } from '../types';
 
 const API_BASE = '/api';
@@ -334,5 +335,57 @@ export const api = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token })
     });
+  },
+
+  // --- Admin Console Operations ---
+  async getAdminStats(): Promise<AdminStats> {
+    const res = await fetch(`${API_BASE}/admin/stats`);
+    if (!res.ok) throw new Error('Failed to load admin metrics');
+    const json = await res.json();
+    return json.data;
+  },
+
+  async updateAdminOrderStatus(orderId: string, status: string, note?: string): Promise<Order> {
+    const res = await fetch(`${API_BASE}/admin/orders/${orderId}/status`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status, note })
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to update order status');
+    return json.data;
+  },
+
+  async updateAdminPaymentStatus(orderId: string, paymentStatus: string, paymentId?: string): Promise<Order> {
+    const res = await fetch(`${API_BASE}/admin/orders/${orderId}/payment`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ paymentStatus, paymentId })
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to update payment status');
+    return json.data;
+  },
+
+  async updateAdminProductStock(productId: string, packSize: string, stock: number): Promise<Product> {
+    const res = await fetch(`${API_BASE}/admin/products/${productId}/stock`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ packSize, stock })
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to update stock');
+    return json.data;
+  },
+
+  async updateAdminSubscriptionStatus(id: string, status: string): Promise<any> {
+    const res = await fetch(`${API_BASE}/admin/subscriptions/${id}/status`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status })
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to update subscription status');
+    return json.data;
   }
 };

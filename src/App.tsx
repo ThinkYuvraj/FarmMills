@@ -17,6 +17,7 @@ import { OurStoryView } from './pages/OurStoryView';
 import { AccountView } from './pages/AccountView';
 import { SubscriptionsView } from './pages/SubscriptionsView';
 import { TrackOrderView } from './pages/TrackOrderView';
+import { AdminDashboardView } from './pages/AdminDashboardView';
 import { LabReportModal } from './components/LabReportModal';
 
 const MainContent: React.FC = () => {
@@ -35,6 +36,7 @@ const MainContent: React.FC = () => {
       {activePage === 'account' && <AccountView />}
       {activePage === 'subscriptions' && <SubscriptionsView />}
       {activePage === 'track-order' && <TrackOrderView />}
+      {activePage === 'admin' && <AdminDashboardView />}
     </main>
   );
 };

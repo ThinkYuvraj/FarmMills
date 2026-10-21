@@ -223,6 +223,39 @@ export interface PincodeInfo {
   };
 }
 
+export interface AdminStats {
+  totalRevenue: number;
+  onlineRevenue: number;
+  codRevenue: number;
+  totalOrders: number;
+  orderStatusCounts: {
+    total: number;
+    placed: number;
+    milling: number;
+    dispatched: number;
+    delivered: number;
+    cancelled: number;
+  };
+  activeSubscriptionsCount: number;
+  totalStockUnits: number;
+  lowStockItems: {
+    productId: string;
+    productName: string;
+    packSize: string;
+    currentStock: number;
+    price: number;
+  }[];
+  razorpayConfig: RazorpayConfig;
+  millingChakkis: {
+    id: string;
+    rpm: number;
+    temperature: string;
+    status: string;
+    load: string;
+    miller: string;
+  }[];
+}
+
 export type ActivePage = 
   | 'home' 
   | 'shop' 
@@ -234,4 +267,5 @@ export type ActivePage =
   | 'account' 
   | 'contact' 
   | 'subscriptions'
-  | 'track-order';
+  | 'track-order'
+  | 'admin';

@@ -86,6 +86,31 @@ class Database {
     return true;
   }
 
+  setProductStock(productId, packSize, newStock) {
+    const prod = this.getProductById(productId);
+    if (!prod) return false;
+    const pack = prod.packOptions.find((p) => p.size === packSize);
+    if (!pack) return false;
+    pack.stock = Math.max(0, Number(newStock));
+    this.save();
+    return true;
+  }
+
+  updatePaymentStatus(orderId, paymentStatus, paymentId) {
+    const order = this.getOrderById(orderId);
+    if (!order) return null;
+    order.paymentStatus = paymentStatus;
+    if (paymentId) order.razorpayPaymentId = paymentId;
+    if (!order.trackingEvents) order.trackingEvents = [];
+    order.trackingEvents.push({
+      status: `Payment ${paymentStatus}`,
+      time: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
+      note: `Payment status updated to ${paymentStatus}${paymentId ? ` (Ref: ${paymentId})` : ''}`
+    });
+    this.save();
+    return order;
+  }
+
   // --- Coupons ---
   getCoupons() {
     return this.data.coupons;
