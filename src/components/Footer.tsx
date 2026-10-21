@@ -65,25 +65,41 @@ export const Footer: React.FC = () => {
 
       {/* Main Links */}
       <div className="w" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '40px', paddingTop: '56px', paddingBottom: '40px' }}>
-        {/* Brand Col */}
+        {/* Brand Column with Prominent Logo */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div
+            onClick={() => handleNav('home')}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              background: '#FBFDF5',
+              padding: '10px 18px',
+              borderRadius: '14px',
+              border: '1.5px solid #D3E0BC',
+              cursor: 'pointer',
+              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+              transition: 'transform 0.2s ease'
+            }}
+            title="Farmers Mill - Return to Home"
+          >
             <img
               src="/images/farmers-mill-logo.png"
-              alt="Farmers Mill"
+              alt="Farmers Mill Official Logo"
               style={{
-                height: '48px',
+                height: '44px',
                 width: 'auto',
                 objectFit: 'contain',
-                filter: 'brightness(0) invert(1)'
+                display: 'block'
               }}
             />
           </div>
-          <p style={{ marginTop: '16px', lineHeight: '1.7', fontSize: '14px', color: '#D2E0BC' }}>
+          <p style={{ marginTop: '18px', lineHeight: '1.7', fontSize: '14px', color: '#D2E0BC' }}>
             Honest grains, single-origin spices, wood-pressed oils and raw honey from farm to your kitchen table. Milled slowly on natural emery stone chakkis without artificial heat.
           </p>
-          <div style={{ marginTop: '18px', display: 'flex', gap: '12px', fontSize: '12px', color: '#A9BF93' }}>
-            <span>FSSAI Lic. No: <b>10822999000142</b></span>
+          <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#A9BF93' }}>
+            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#7BC652' }} />
+            <span>FSSAI Lic. No: <strong style={{ color: '#E1EBCB' }}>10822999000142</strong></span>
           </div>
         </div>
 
