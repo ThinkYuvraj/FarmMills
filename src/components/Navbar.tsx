@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
   const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown on outside click
+  // Close dropdown on outside click and listen for admin shortcuts
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -30,8 +30,35 @@ export const Navbar: React.FC = () => {
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+
+    // Administrative access via hash or query param (#admin or ?admin=true)
+    const checkAdminRoute = () => {
+      if (
+        window.location.hash === '#admin' ||
+        window.location.search.includes('admin=true') ||
+        window.location.search.includes('admin=1')
+      ) {
+        setActivePage('admin');
+      }
+    };
+    checkAdminRoute();
+    window.addEventListener('hashchange', checkAdminRoute);
+
+    // Keyboard shortcut for internal store managers: Ctrl+Shift+A or Cmd+Shift+A
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        setActivePage(activePage === 'admin' ? 'home' : 'admin');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('hashchange', checkAdminRoute);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activePage, setActivePage]);
 
   const handleNavClick = (page: any, category?: string) => {
     if (category) {
@@ -48,7 +75,15 @@ export const Navbar: React.FC = () => {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
+    const query = searchQuery.trim();
+    if (query.toLowerCase() === 'admin') {
+      setActivePage('admin');
+      setShowSearchInput(false);
+      setMobileMenuOpen(false);
+      setSearchQuery('');
+      return;
+    }
+    if (query) {
       setActivePage('shop');
       setShowSearchInput(false);
       setMobileMenuOpen(false);
@@ -65,41 +100,16 @@ export const Navbar: React.FC = () => {
           background: '#1E2B17',
           color: '#E1EBCB',
           fontSize: '12.5px',
-          padding: '6px 20px',
+          padding: '7px 20px',
           fontWeight: 500,
           letterSpacing: '0.01em',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
+          textAlign: 'center'
         }}
       >
-        <div style={{ flex: 1, textAlign: 'center' }}>
-          <span>
-            🌾 Stoneground Fresh on Order &nbsp;·&nbsp; Free Delivery above ₹499 &nbsp;·&nbsp; Use code{' '}
-            <strong style={{ color: '#FBFDF5', textDecoration: 'underline' }}>FARMERS10</strong> for 10% OFF
-          </span>
-        </div>
-        <div>
-          <a
-            onClick={() => handleNavClick('admin')}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '5px',
-              color: activePage === 'admin' ? '#7BC652' : '#E1EBCB',
-              fontWeight: 600,
-              fontSize: '11.5px',
-              background: 'rgba(255, 255, 255, 0.12)',
-              padding: '2px 10px',
-              borderRadius: '999px',
-              border: '1px solid rgba(225, 235, 203, 0.25)',
-              cursor: 'pointer'
-            }}
-            title="Open Store Operations &amp; Milling Admin Dashboard"
-          >
-            ⚙️ Admin Console
-          </a>
-        </div>
+        <span>
+          🌾 Stoneground Fresh on Order &nbsp;·&nbsp; Free Delivery above ₹499 &nbsp;·&nbsp; Use code{' '}
+          <strong style={{ color: '#FBFDF5', textDecoration: 'underline' }}>FARMERS10</strong> for 10% OFF
+        </span>
       </div>
 
       {/* Main Header */}
@@ -147,7 +157,6 @@ export const Navbar: React.FC = () => {
           <nav
             className="desktop-nav"
             style={{
-              display: 'none',
               alignItems: 'center',
               gap: '24px',
               fontWeight: 500,
@@ -315,7 +324,7 @@ export const Navbar: React.FC = () => {
           {/* Right Action Controls */}
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             {/* Desktop Quick Search */}
-            <form onSubmit={handleSearchSubmit} className="desktop-search" style={{ display: 'none', position: 'relative' }}>
+            <form onSubmit={handleSearchSubmit} className="desktop-search" style={{ position: 'relative' }}>
               <input
                 type="text"
                 placeholder="Search atta, spices, oils..."

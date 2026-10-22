@@ -160,10 +160,10 @@ export const paymentController = {
   handleWebhook(req, res) {
     try {
       const signature = req.headers['x-razorpay-signature'];
-      const rawBody = JSON.stringify(req.body);
+      const rawBody = req.rawBody ? req.rawBody.toString('utf8') : JSON.stringify(req.body);
 
-      const isValid = razorpayService.verifyWebhookSignature(rawBody, signature);
-      if (!isValid) {
+      // If webhook secret is configured, verify HMAC signature
+      if (razorpayService.hasWebhookSecret && !razorpayService.verifyWebhookSignature(rawBody, signature)) {
         console.warn('⚠️ Webhook received with invalid signature.');
         return res.status(400).json({ success: false, message: 'Invalid webhook signature.' });
       }
@@ -188,6 +188,65 @@ export const paymentController = {
     } catch (err) {
       console.error('Webhook error:', err);
       res.status(500).json({ success: false, error: err.message });
+    }
+  },
+
+  /**
+   * POST /api/payments/razorpay/save-credentials
+   * Dynamically sets test or live Razorpay credentials
+   */
+  async saveCredentials(req, res) {
+    try {
+      const { keyId, keySecret, webhookSecret } = req.body;
+      if (!keyId || !keySecret) {
+        return res.status(400).json({
+          success: false,
+          message: 'Both keyId and keySecret are required to configure Razorpay.'
+        });
+      }
+
+      const result = await razorpayService.updateCredentials({
+        keyId,
+        keySecret,
+        webhookSecret
+      });
+
+      // Test connection right away
+      const test = await razorpayService.testConnection();
+
+      res.json({
+        success: true,
+        message: 'Razorpay credentials saved successfully!',
+        data: {
+          ...result,
+          connectionTest: test
+        }
+      });
+    } catch (err) {
+      console.error('Error saving Razorpay credentials:', err);
+      res.status(400).json({
+        success: false,
+        message: err.message || 'Failed to save Razorpay credentials.'
+      });
+    }
+  },
+
+  /**
+   * GET /api/payments/razorpay/test-connection
+   * Tests the connection with Razorpay servers using configured credentials
+   */
+  async testConnection(req, res) {
+    try {
+      const test = await razorpayService.testConnection();
+      res.json({
+        success: true,
+        data: test
+      });
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: err.message || 'Failed to test Razorpay connection.'
+      });
     }
   }
 };

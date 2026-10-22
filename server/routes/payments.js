@@ -12,6 +12,12 @@ router.post('/razorpay/create-order', paymentController.createRazorpayOrder);
 // POST /api/payments/razorpay/verify-payment - Verify signature & finalize order
 router.post('/razorpay/verify-payment', paymentController.verifyAndPlaceOrder);
 
+// POST /api/payments/razorpay/save-credentials - Save/update Razorpay test or live keys
+router.post('/razorpay/save-credentials', paymentController.saveCredentials);
+
+// GET /api/payments/razorpay/test-connection - Test Razorpay API key validity
+router.get('/razorpay/test-connection', paymentController.testConnection);
+
 // POST /api/payments/razorpay/webhook - Asynchronous webhook notifications from Razorpay
 router.post('/razorpay/webhook', paymentController.handleWebhook);
 

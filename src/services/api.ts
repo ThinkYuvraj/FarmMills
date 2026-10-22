@@ -50,6 +50,24 @@ export const api = {
     if (!res.ok) throw new Error(json.message || 'Failed to verify payment with Razorpay');
     return json.data;
   },
+
+  async saveRazorpayCredentials(payload: { keyId: string; keySecret: string; webhookSecret?: string }) {
+    const res = await fetch(`${API_BASE}/payments/razorpay/save-credentials`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to save Razorpay credentials');
+    return json;
+  },
+
+  async testRazorpayConnection() {
+    const res = await fetch(`${API_BASE}/payments/razorpay/test-connection`);
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || 'Failed to test Razorpay connection');
+    return json.data;
+  },
   // --- Products ---
   async getProducts(params?: { category?: string; search?: string; sort?: string }): Promise<Product[]> {
     const query = new URLSearchParams();

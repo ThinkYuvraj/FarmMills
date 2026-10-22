@@ -16,7 +16,11 @@ import adminRouter from './routes/admin.js';
 export const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({
+  verify: (req, res, buf) => {
+    req.rawBody = buf;
+  }
+}));
 
 // API Root & Health Check
 app.get('/api/health', (req, res) => {

@@ -39,6 +39,15 @@ export const AdminDashboardView: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
+  // Razorpay credentials configuration state
+  const [keyIdInput, setKeyIdInput] = useState('');
+  const [keySecretInput, setKeySecretInput] = useState('');
+  const [webhookSecretInput, setWebhookSecretInput] = useState('');
+  const [isSavingRazorpay, setIsSavingRazorpay] = useState(false);
+  const [isTestingRazorpay, setIsTestingRazorpay] = useState(false);
+  const [connectionTestResult, setConnectionTestResult] = useState<{ connected?: boolean; message?: string; mode?: string } | null>(null);
+  const [showConfigForm, setShowConfigForm] = useState(false);
+
   // Filters for orders
   const [orderStatusFilter, setOrderStatusFilter] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
@@ -46,6 +55,48 @@ export const AdminDashboardView: React.FC = () => {
 
   // Status update modal / action
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
+
+  const handleSaveRazorpay = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!keyIdInput.trim() || !keySecretInput.trim()) {
+      showToast('Both Key ID and Key Secret are required.', 'error');
+      return;
+    }
+    setIsSavingRazorpay(true);
+    try {
+      const res = await api.saveRazorpayCredentials({
+        keyId: keyIdInput.trim(),
+        keySecret: keySecretInput.trim(),
+        webhookSecret: webhookSecretInput.trim() || undefined
+      });
+      showToast('Razorpay credentials updated successfully!', 'success');
+      setConnectionTestResult(res.data?.connectionTest || null);
+      loadData(true);
+      setShowConfigForm(false);
+      setKeySecretInput('');
+    } catch (err: any) {
+      showToast(err.message || 'Failed to update credentials', 'error');
+    } finally {
+      setIsSavingRazorpay(false);
+    }
+  };
+
+  const handleTestRazorpay = async () => {
+    setIsTestingRazorpay(true);
+    try {
+      const res = await api.testRazorpayConnection();
+      setConnectionTestResult(res);
+      if (res.connected) {
+        showToast(res.message || 'Connection successful!', 'success');
+      } else {
+        showToast(res.message || 'Connection test failed', 'error');
+      }
+    } catch (err: any) {
+      showToast(err.message || 'Could not test connection', 'error');
+    } finally {
+      setIsTestingRazorpay(false);
+    }
+  };
 
   const loadData = async (silent = false) => {
     if (!silent) setIsLoading(true);
@@ -796,6 +847,107 @@ export const AdminDashboardView: React.FC = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Gateway Connection Actions & Settings Form */}
+                <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #D3E0BC', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                    <button
+                      onClick={handleTestRazorpay}
+                      disabled={isTestingRazorpay}
+                      className="btn g sm"
+                      style={{ fontSize: '12.5px', padding: '7px 14px' }}
+                    >
+                      {isTestingRazorpay ? 'Testing Connection...' : '⚡ Test Gateway Connection'}
+                    </button>
+                    <button
+                      onClick={() => setShowConfigForm(!showConfigForm)}
+                      className="btn p sm"
+                      style={{ fontSize: '12.5px', padding: '7px 14px' }}
+                    >
+                      {showConfigForm ? 'Close Configuration' : '🔑 Configure Razorpay Keys'}
+                    </button>
+                  </div>
+
+                  {connectionTestResult && (
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: connectionTestResult.connected ? '#2E7D32' : '#D94436', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span>{connectionTestResult.connected ? '✅' : '⚠️'}</span>
+                      <span>{connectionTestResult.message}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Form to enter or update Razorpay Test/Live keys */}
+                {showConfigForm && (
+                  <form onSubmit={handleSaveRazorpay} style={{ marginTop: '20px', padding: '20px', background: '#F8FAF2', borderRadius: '14px', border: '1.5px solid #D3E0BC' }}>
+                    <h4 style={{ fontSize: '16px', color: '#1E2B17', marginBottom: '6px' }}>Update Razorpay API Credentials</h4>
+                    <p style={{ fontSize: '13px', color: '#5C6E52', marginBottom: '16px' }}>
+                      Enter your Razorpay Test (or Live) Key ID and Secret below. You can obtain these from the <a href="https://dashboard.razorpay.com/#/app/keys" target="_blank" rel="noopener noreferrer" style={{ color: '#3F6B2C', fontWeight: 600, textDecoration: 'underline' }}>Razorpay Dashboard &gt; Settings &gt; API Keys</a>.
+                    </p>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px', marginBottom: '16px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: '#1E2B17', marginBottom: '4px' }}>
+                          Razorpay Key ID *
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="rzp_test_..."
+                          value={keyIdInput}
+                          onChange={(e) => setKeyIdInput(e.target.value)}
+                          className="input-field"
+                          style={{ padding: '9px 12px', fontSize: '13.5px' }}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: '#1E2B17', marginBottom: '4px' }}>
+                          Razorpay Key Secret *
+                        </label>
+                        <input
+                          type="password"
+                          placeholder="Enter your key secret..."
+                          value={keySecretInput}
+                          onChange={(e) => setKeySecretInput(e.target.value)}
+                          className="input-field"
+                          style={{ padding: '9px 12px', fontSize: '13.5px' }}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: '#1E2B17', marginBottom: '4px' }}>
+                          Webhook Secret (Optional)
+                        </label>
+                        <input
+                          type="password"
+                          placeholder="Optional webhook secret..."
+                          value={webhookSecretInput}
+                          onChange={(e) => setWebhookSecretInput(e.target.value)}
+                          className="input-field"
+                          style={{ padding: '9px 12px', fontSize: '13.5px' }}
+                        />
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                      <button
+                        type="submit"
+                        disabled={isSavingRazorpay}
+                        className="btn p sm"
+                        style={{ padding: '9px 20px', fontSize: '13.5px' }}
+                      >
+                        {isSavingRazorpay ? 'Saving & Verifying...' : 'Save & Activate Keys'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowConfigForm(false)}
+                        className="btn g sm"
+                        style={{ padding: '9px 16px', fontSize: '13.5px' }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
             )}
 

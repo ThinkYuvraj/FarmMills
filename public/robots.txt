@@ -1,0 +1,28 @@
+# Robots.txt for Farmers Mill
+# Allows search crawlers and AI search agents to index fresh harvest products
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin
+
+# Specific AI & LLM Search Engine User Agents (AEO/GEO Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://farmersmill.in/sitemap.xml

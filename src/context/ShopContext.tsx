@@ -99,6 +99,7 @@ interface ShopContextType {
   // Feedback
   toasts: ToastItem[];
   addToast: (message: string, type?: 'success' | 'info' | 'error') => void;
+  showToast: (message: string, type?: 'success' | 'info' | 'error') => void;
   removeToast: (id: string) => void;
 
   // Lab Reports
@@ -891,6 +892,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
         checkPincode,
         toasts,
         addToast,
+        showToast: addToast,
         removeToast,
         labReportProduct,
         openLabReport,
