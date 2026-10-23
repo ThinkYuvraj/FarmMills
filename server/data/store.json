@@ -299,7 +299,7 @@
           "size": "5 kg",
           "price": 280,
           "originalPrice": 325,
-          "stock": 84
+          "stock": 83
         },
         {
           "size": "10 kg",
@@ -811,6 +811,53 @@
   },
   "orders": [
     {
+      "id": "FM-11973",
+      "date": "Oct 23, 2026",
+      "createdAt": "2026-10-23T06:23:24.773Z",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta (100% MP Sharbati)",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 0,
+      "discount": 0,
+      "appliedCoupon": null,
+      "total": 280,
+      "status": "Milled on Chakki",
+      "shippingAddress": {
+        "fullName": "Aarav Mehta",
+        "phone": "9876543210",
+        "address": "B-404, Palm Meadows",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "UPI (PhonePe)",
+      "paymentStatus": "PAID",
+      "razorpayOrderId": null,
+      "razorpayPaymentId": null,
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "estimatedDelivery": "Saturday, Oct 24 (7:00 AM - 11:00 AM)",
+      "trackingEvents": [
+        {
+          "status": "Order Placed & Confirmed",
+          "time": "Oct 23, 2026 06:23 AM",
+          "note": "Order placed via UPI (PhonePe). Grains queued in grain hopper."
+        },
+        {
+          "status": "Chakki Milling Scheduled",
+          "time": "Saturday, Oct 24 05:00 AM",
+          "note": "Assigned to Stone Chakki Mill #3 (Master Miller Ram Singh). Cold-milling speed set to 280 RPM (< 40°C)."
+        }
+      ]
+    },
+    {
       "id": "FM-93292",
       "date": "Oct 23, 2026",
       "createdAt": "2026-10-23T06:18:37.198Z",
@@ -1193,6 +1240,22 @@
     }
   ],
   "subscriptions": [
+    {
+      "id": "sub-1792736604781",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta (100% MP Sharbati)",
+      "productImage": "/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg",
+      "packSize": "5 kg",
+      "originalPrice": 280,
+      "discountedPrice": 238,
+      "discountPercent": 15,
+      "frequency": "Every 2 Weeks",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-23T06:23:24.781Z",
+      "nextDeliveryDate": "Friday, Nov 6",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "deliveryAddress": "B-404, Palm Meadows, Bengaluru - 560103"
+    },
     {
       "id": "sub-1792736317206",
       "productId": "fm-atta-chakki",

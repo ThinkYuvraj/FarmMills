@@ -12,6 +12,7 @@ import reviewsRouter from './routes/reviews.js';
 import paymentsRouter from './routes/payments.js';
 import authRouter from './routes/auth.js';
 import adminRouter from './routes/admin.js';
+import databaseRouter from './routes/database.js';
 
 export const app = express();
 
@@ -44,6 +45,7 @@ app.use('/api/subscriptions', subscriptionsRouter);
 app.use('/api/lab-reports', labReportsRouter);
 app.use('/api/reviews', reviewsRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/database', databaseRouter);
 
 // 404 handler for unmatched API routes
 app.use('/api', (req, res) => {
