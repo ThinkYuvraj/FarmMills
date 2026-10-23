@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
 import { useShop } from '../context/ShopContext';
-import { PRODUCTS, CATEGORIES, MOCK_REVIEWS } from '../data/products';
-import { ProductCard } from '../components/ProductCard';
+import { PRODUCTS, CATEGORIES } from '../data/products';
 import { CategoryProductSection } from '../components/CategoryProductSection';
 import { ProofSection } from '../components/ProofSection';
 import { FacilitySection } from '../components/FacilitySection';
 import { AppDownloadBanner } from '../components/AppDownloadBanner';
-import { Sparkles, ArrowRight, CheckCircle, ShieldCheck, Heart, Award, Star, Truck, Flame } from 'lucide-react';
+import { HeroProductCarousel } from '../components/HeroProductCarousel';
+import { Testimonials } from '../components/Testimonials';
+import {
+  Sparkles,
+  ArrowRight,
+  CheckCircle,
+  MapPin,
+  Flame,
+  Award,
+  Thermometer,
+  ShieldAlert,
+  ShieldCheck,
+  ChevronRight,
+  Store
+} from 'lucide-react';
 
 export const HomeView: React.FC = () => {
-  const { setActivePage, setSelectedCategory, addToast } = useShop();
+  const {
+    setActivePage,
+    setSelectedCategory,
+    addToast,
+    selectedOutlet,
+    setIsOutletPickerOpen
+  } = useShop();
+
   const [emailSub, setEmailSub] = useState('');
-
-  const featuredProducts = PRODUCTS.slice(0, 6);
-
-  const handleCategoryClick = (catName: string) => {
-    setSelectedCategory(catName);
-    setActivePage('shop');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,42 +41,87 @@ export const HomeView: React.FC = () => {
   };
 
   return (
-    <div style={{ paddingBottom: '60px' }}>
+    <div style={{ paddingBottom: '60px', overflowX: 'hidden', width: '100%' }}>
+      {/* Factory Outlet Location Sharing Strip */}
+      <section className="w" style={{ paddingTop: '16px' }}>
+        <div
+          onClick={() => setIsOutletPickerOpen(true)}
+          className="clay-inset"
+          style={{
+            padding: '10px 18px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '12px',
+            cursor: 'pointer',
+            flexWrap: 'wrap',
+            transition: 'all 0.2s ease'
+          }}
+          title="Click to change your milling outlet location"
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <span
+              style={{
+                background: '#3F6B2C',
+                color: '#ffffff',
+                padding: '3px 8px',
+                borderRadius: '6px',
+                fontSize: '11px',
+                fontWeight: 700,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+            >
+              <Store size={12} /> FACTORY OUTLET
+            </span>
+            <span style={{ fontSize: '13px', color: '#1E2B17', fontWeight: 600 }}>
+              📍 I’m sharing you the location for now:{' '}
+              <strong style={{ color: '#2E5220' }}>{selectedOutlet.name}</strong> ({selectedOutlet.landmark})
+            </span>
+            <span
+              style={{
+                background: '#E1EBCB',
+                color: '#3F6B2C',
+                padding: '2px 8px',
+                borderRadius: '999px',
+                fontSize: '11px',
+                fontWeight: 700
+              }}
+            >
+              Milling Active Today
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#3F6B2C', fontSize: '12.5px', fontWeight: 700 }}>
+            <span>Change Outlet</span>
+            <ChevronRight size={14} />
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section
         className="w"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
-          gap: 'clamp(28px, 4vw, 48px)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+          gap: 'clamp(24px, 4vw, 48px)',
           alignItems: 'center',
-          paddingTop: 'clamp(24px, 4vw, 56px)',
+          paddingTop: 'clamp(20px, 3vw, 40px)',
           paddingBottom: '24px'
         }}
       >
         <div>
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: '#E1EBCB',
-              color: '#3F6B2C',
-              fontWeight: 700,
-              fontSize: '13px',
-              letterSpacing: '0.08em',
-              padding: '8px 16px',
-              borderRadius: '999px'
-            }}
-          >
-            <Sparkles size={15} /> FRESHLY MILLED · FARM SOURCED
+          <span className="clay-badge" style={{ marginBottom: '16px' }}>
+            <Sparkles size={14} /> FRESHLY MILLED · FARM SOURCED
           </span>
 
           <h1
             style={{
-              fontSize: 'clamp(38px, 5.5vw, 62px)',
-              lineHeight: 1.05,
-              marginTop: '22px',
+              fontSize: 'clamp(34px, 5vw, 56px)',
+              lineHeight: 1.1,
+              marginTop: '12px',
               color: '#1E2B17'
             }}
           >
@@ -72,10 +129,9 @@ export const HomeView: React.FC = () => {
           </h1>
 
           <p
+            className="subheading"
             style={{
-              fontSize: 'clamp(16px, 2vw, 19px)',
-              lineHeight: 1.6,
-              marginTop: '22px',
+              marginTop: '16px',
               maxWidth: '520px',
               color: '#435538'
             }}
@@ -83,9 +139,10 @@ export const HomeView: React.FC = () => {
             Stone-ground chakki attas, pure cold spices, coarse pulses, and wood-pressed oils — milled with care and delivered fresh to your door.
           </p>
 
-          <div style={{ display: 'flex', gap: '14px', marginTop: '32px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '14px', marginTop: '28px', flexWrap: 'wrap' }}>
             <button
-              className="btn p lg"
+              className="clay-btn-primary"
+              style={{ padding: '14px 28px', fontSize: '15px' }}
               onClick={() => {
                 setSelectedCategory('All');
                 setActivePage('shop');
@@ -97,7 +154,8 @@ export const HomeView: React.FC = () => {
             </button>
 
             <button
-              className="btn g lg"
+              className="clay-btn-secondary"
+              style={{ padding: '14px 26px', fontSize: '15px' }}
               onClick={() => {
                 setActivePage('story');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -107,7 +165,17 @@ export const HomeView: React.FC = () => {
             </button>
           </div>
 
-          <div style={{ display: 'flex', gap: '20px', alignItems: 'center', marginTop: '32px', fontSize: '13px', color: '#5C6E52' }}>
+          <div
+            style={{
+              display: 'flex',
+              gap: '16px',
+              alignItems: 'center',
+              marginTop: '28px',
+              fontSize: '13px',
+              color: '#5C6E52',
+              flexWrap: 'wrap'
+            }}
+          >
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <CheckCircle size={16} color="#3F6B2C" />
               <span>Zero Preservatives</span>
@@ -123,112 +191,44 @@ export const HomeView: React.FC = () => {
           </div>
         </div>
 
-        {/* Hero Visual Banner */}
-        <div
-          style={{
-            position: 'relative',
-            borderRadius: '32px',
-            background: '#3F6B2C',
-            minHeight: '440px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'hidden',
-            boxShadow: 'var(--shadow-lg)'
-          }}
-        >
-          <div
-            className="ph"
-            style={{
-              position: 'relative',
-              overflow: 'hidden',
-              aspectRatio: '1/1',
-              width: '100%',
-              height: '100%'
-            }}
-          >
-            <img
-              src="/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg"
-              alt="Farmers Mill stone ground chakki fresh atta"
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </div>
-
-          {/* Floating Freshness Stamp */}
-          <div
-            style={{
-              position: 'absolute',
-              left: '20px',
-              bottom: '20px',
-              right: '20px',
-              background: 'rgba(251, 253, 245, 0.94)',
-              backdropFilter: 'blur(8px)',
-              borderRadius: '20px',
-              padding: '16px 20px',
-              border: '1px solid #D3E0BC',
-              boxShadow: '0 8px 24px rgba(30,43,23,0.15)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '12px'
-            }}
-          >
-            <div>
-              <b style={{ color: '#1E2B17', fontSize: '15px', display: 'block' }}>Milled in small batches</b>
-              <p style={{ fontSize: '13px', color: '#5C6E52', marginTop: '2px' }}>
-                No additives. Exact date of milling printed on every single pack.
-              </p>
-            </div>
-            <span
-              style={{
-                background: '#E1EBCB',
-                color: '#3F6B2C',
-                padding: '6px 12px',
-                borderRadius: '999px',
-                fontWeight: 700,
-                fontSize: '12px',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              Batch #892 Fresh
-            </span>
-          </div>
+        {/* Hero Product Carousel */}
+        <div>
+          <HeroProductCarousel />
         </div>
       </section>
 
       {/* 4 Value Pillars Strip */}
-      <section className="w" style={{ marginTop: '48px' }}>
+      <section className="w" style={{ marginTop: '36px' }}>
         <div
-          className="card"
+          className="clay-card-static"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
             gap: '24px',
-            padding: '32px',
-            boxShadow: 'var(--shadow-sm)'
+            padding: '28px'
           }}
         >
           <div>
-            <b style={{ fontSize: '17px', color: '#1E2B17', display: 'block' }}>Same-day fresh</b>
-            <p style={{ fontSize: '14px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
+            <b style={{ fontSize: '16px', color: '#1E2B17', display: 'block' }}>Same-day fresh</b>
+            <p style={{ fontSize: '13.5px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
               Milled on order so you get the natural essential wheat oils, distinct aroma and authentic sweet flavour.
             </p>
           </div>
           <div>
-            <b style={{ fontSize: '17px', color: '#1E2B17', display: 'block' }}>Zero additives</b>
-            <p style={{ fontSize: '14px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
+            <b style={{ fontSize: '16px', color: '#1E2B17', display: 'block' }}>Zero additives</b>
+            <p style={{ fontSize: '13.5px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
               Pure grain from clean fields. No preservatives, bleaching agents, anti-caking chemicals, or maida blends.
             </p>
           </div>
           <div>
-            <b style={{ fontSize: '17px', color: '#1E2B17', display: 'block' }}>Slow stone milling</b>
-            <p style={{ fontSize: '14px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
+            <b style={{ fontSize: '16px', color: '#1E2B17', display: 'block' }}>Slow stone milling</b>
+            <p style={{ fontSize: '13.5px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
               Natural emery stone chakki running at low RPM keeps friction heat below 35°C to protect delicate vitamins.
             </p>
           </div>
           <div>
-            <b style={{ fontSize: '17px', color: '#1E2B17', display: 'block' }}>Traceable to the farm</b>
-            <p style={{ fontSize: '14px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
+            <b style={{ fontSize: '16px', color: '#1E2B17', display: 'block' }}>Traceable to the farm</b>
+            <p style={{ fontSize: '13.5px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
               Direct partnerships with smallholder farmers across Sehore, Bikaner, and Ramganj Mandi.
             </p>
           </div>
@@ -238,77 +238,144 @@ export const HomeView: React.FC = () => {
       {/* Unified Category & Product Type Section */}
       <CategoryProductSection initialCategory="Fresh Atta" showExploreAllButton={true} />
 
-      {/* The Stone Milling Difference (Comparative Story) */}
-      <section className="w" style={{ marginTop: '96px' }}>
+      {/* FIXED: The Stone Milling Difference (Comparative Story) */}
+      <section className="w" style={{ marginTop: '80px' }}>
         <div
+          className="clay-card-static"
           style={{
-            background: '#1E2B17',
-            borderRadius: '28px',
+            background: 'linear-gradient(135deg, #1E2B17 0%, #293D1F 100%)',
+            borderRadius: '32px',
             color: '#FBFDF5',
-            padding: 'clamp(32px, 5vw, 64px)',
-            overflow: 'hidden',
-            position: 'relative'
+            padding: 'clamp(28px, 4.5vw, 56px)',
+            overflow: 'hidden'
           }}
         >
-          <div style={{ maxWidth: '640px' }}>
-            <span style={{ background: 'rgba(225, 235, 203, 0.2)', color: '#E1EBCB', padding: '6px 14px', borderRadius: '999px', fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em' }}>
+          {/* Header */}
+          <div style={{ maxWidth: '680px' }}>
+            <span
+              style={{
+                background: 'rgba(225, 235, 203, 0.2)',
+                color: '#E1EBCB',
+                padding: '6px 14px',
+                borderRadius: '999px',
+                fontSize: '12px',
+                fontWeight: 700,
+                letterSpacing: '0.08em'
+              }}
+            >
               ANCIENT WISDOM · MODERN TRANSPARENCY
             </span>
-            <h2 style={{ fontSize: 'clamp(30px, 4.5vw, 44px)', color: '#ffffff', marginTop: '16px', lineHeight: 1.15 }}>
+            <h2 style={{ fontSize: 'clamp(26px, 4vw, 40px)', color: '#ffffff', marginTop: '14px', lineHeight: 1.15 }}>
               Why stone-ground chakki flour beats industrial roller mills.
             </h2>
-            <p style={{ fontSize: '16px', color: '#D2E0BC', marginTop: '16px', lineHeight: 1.7 }}>
-              Commercial mass-market mills use high-speed steel rollers that generate friction temperatures over 85°C. This extreme heat damages vital B-vitamins, burns aromatic germ oils, and dries out the bran.
+            <p style={{ fontSize: '15.5px', color: '#D2E0BC', marginTop: '12px', lineHeight: 1.7 }}>
+              Factory mills use fast steel rollers that generate friction temperatures over 85°C. This extreme heat scorches delicate B-vitamins, burns vital germ oils, and dries out the bran. Here is how Farmers Mill natural stone chakkis differ:
             </p>
           </div>
 
+          {/* Comparative Cards Grid */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: '24px',
-              marginTop: '40px'
+              marginTop: '36px'
             }}
           >
+            {/* Farmers Mill Column */}
             <div
+              className="clay-card"
               style={{
-                background: 'rgba(63, 107, 44, 0.4)',
-                border: '1.5px solid #3F6B2C',
-                borderRadius: '20px',
-                padding: '24px'
+                background: 'rgba(63, 107, 44, 0.55)',
+                border: '1.5px solid #7BC652',
+                borderRadius: '24px',
+                padding: '28px',
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#7BC652', fontWeight: 700, fontSize: '16px' }}>
-                <CheckCircle size={20} />
-                <span>Farmers Mill Natural Stone Chakki</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#7BC652', fontWeight: 700, fontSize: '18px' }}>
+                  <ShieldCheck size={24} />
+                  <span>Farmers Mill Stone Chakki</span>
+                </div>
+                <span
+                  style={{
+                    background: '#7BC652',
+                    color: '#1E2B17',
+                    fontWeight: 800,
+                    fontSize: '11px',
+                    padding: '3px 8px',
+                    borderRadius: '999px'
+                  }}
+                >
+                  &lt; 35°C COLD
+                </span>
               </div>
-              <ul style={{ marginTop: '16px', paddingLeft: '20px', fontSize: '14px', lineHeight: 1.8, color: '#F2F6E6' }}>
-                <li>Low RPM rotation keeps temperatures below 35°C</li>
-                <li>Retains 100% of germ oil, endosperm and dietary bran</li>
-                <li>High natural moisture absorption: softer rotis for 12+ hours</li>
-                <li>Zero chemical preservatives, benzoyl peroxide or maida</li>
-                <li>Milled fresh on order with milling date stamped</li>
+
+              <ul style={{ paddingLeft: '18px', fontSize: '14px', lineHeight: 1.85, color: '#F2F6E6', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <li>
+                  <b>Low-RPM Stone Pulverization:</b> Friction temperature stays below 35°C, ensuring zero vitamin destruction.
+                </li>
+                <li>
+                  <b>100% Whole Grain Retained:</b> Retains the aleurone layer, rich wheat germ oils, and natural dietary fiber.
+                </li>
+                <li>
+                  <b>Soft Rotis for 12+ Hours:</b> Natural moisture absorption creates fluffy, tender rotis that don't dry out.
+                </li>
+                <li>
+                  <b>Zero Preservatives or Bleach:</b> Zero benzoyl peroxide, zero maida blending, and zero artificial shelf extenders.
+                </li>
+                <li>
+                  <b>Milled on Order with Date:</b> Dispatched within 24 hours of stone milling with batch date stamped on pack.
+                </li>
               </ul>
             </div>
 
+            {/* Industrial Factory Column */}
             <div
+              className="clay-card"
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '20px',
-                padding: '24px'
+                background: 'rgba(255, 255, 255, 0.06)',
+                border: '1.5px solid rgba(255, 138, 128, 0.4)',
+                borderRadius: '24px',
+                padding: '28px'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#FF8A80', fontWeight: 700, fontSize: '16px' }}>
-                <Flame size={20} />
-                <span>Typical Factory Roller Mills</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FF8A80', fontWeight: 700, fontSize: '18px' }}>
+                  <Flame size={24} />
+                  <span>Commercial Factory Mills</span>
+                </div>
+                <span
+                  style={{
+                    background: 'rgba(255, 138, 128, 0.2)',
+                    color: '#FF8A80',
+                    fontWeight: 800,
+                    fontSize: '11px',
+                    padding: '3px 8px',
+                    borderRadius: '999px'
+                  }}
+                >
+                  &gt; 85°C HEAT
+                </span>
               </div>
-              <ul style={{ marginTop: '16px', paddingLeft: '20px', fontSize: '14px', lineHeight: 1.8, color: '#B3C4A5' }}>
-                <li>High friction heats up to 90°C, destroying nutrients</li>
-                <li>Germ and bran stripped away to extend shelf life</li>
-                <li>Rotis turn rubbery or dry quickly within 2 hours</li>
-                <li>Often stored in warehouses for 3 to 6 months</li>
-                <li>Pesticide residues and chemical bleaching common</li>
+
+              <ul style={{ paddingLeft: '18px', fontSize: '14px', lineHeight: 1.85, color: '#C8D8BE', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <li>
+                  <b>High Friction Scorching:</b> Steel rollers exceed 85°C–90°C, burning away volatile nutrients and natural sweetness.
+                </li>
+                <li>
+                  <b>Germ &amp; Bran Stripped:</b> Vital nutritious germ oils removed to prolong warehouse shelf-life up to 6 months.
+                </li>
+                <li>
+                  <b>Rubber-like Rotis:</b> Rotis turn stiff, chewy, or rubbery within 2 hours of cooking.
+                </li>
+                <li>
+                  <b>Chemical Bleaching:</b> Frequently treated with chemical bleaches and anti-caking agents for stark white color.
+                </li>
+                <li>
+                  <b>Stale Warehouse Storage:</b> Packet flours sit in distribution hubs for months before reaching supermarket shelves.
+                </li>
               </ul>
             </div>
           </div>
@@ -324,74 +391,42 @@ export const HomeView: React.FC = () => {
       {/* Download the App Promotional Banner */}
       <AppDownloadBanner />
 
-      {/* Customer Reviews Section */}
-      <section className="w" style={{ marginTop: '90px' }}>
-        <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto' }}>
-          <span style={{ color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.08em', fontSize: '13px' }}>
-            VERIFIED PATRON VOICES
-          </span>
-          <h2 style={{ fontSize: 'clamp(28px, 4vw, 38px)', marginTop: '8px' }}>
-            Loved by families who care about pure food.
-          </h2>
-          <p style={{ fontSize: '16px', color: '#5C6E52', marginTop: '10px' }}>
-            Over 12,000 kitchens across India trust Farmers Mill for their daily rotis, pure haldi, and cold-pressed oils.
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '24px',
-            marginTop: '36px'
-          }}
-        >
-          {MOCK_REVIEWS.map((rev) => (
-            <div key={rev.id} className="card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div style={{ display: 'flex', gap: '4px' }}>
-                {[...Array(rev.rating)].map((_, i) => (
-                  <Star key={i} size={16} fill="#D4A346" stroke="#D4A346" />
-                ))}
-              </div>
-              <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#1E2B17', fontStyle: 'italic', flex: 1 }}>
-                "{rev.comment}"
-              </p>
-              <div style={{ borderTop: '1px solid #D3E0BC', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
-                  <b style={{ fontSize: '14px', color: '#1E2B17', display: 'block' }}>{rev.author}</b>
-                  <span style={{ fontSize: '12px', color: '#5C6E52' }}>{rev.location} · {rev.date}</span>
-                </div>
-                <span className="badge" style={{ fontSize: '11px', padding: '3px 8px' }}>
-                  ✓ Verified
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Dynamic Testimonials Grid */}
+      <Testimonials />
 
       {/* Newsletter Batch Notification */}
-      <section className="w" style={{ marginTop: '90px' }}>
+      <section className="w" style={{ marginTop: '80px' }}>
         <div
-          className="card"
+          className="clay-card-static"
           style={{
-            background: '#E1EBCB',
-            borderColor: '#B8CC98',
-            padding: 'clamp(32px, 5vw, 48px)',
+            background: 'linear-gradient(135deg, #E1EBCB 0%, #D4E3BA 100%)',
+            padding: 'clamp(28px, 4vw, 44px)',
             textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
           }}
         >
-          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#3F6B2C', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', marginBottom: '16px' }}>
+          <div
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              background: '#3F6B2C',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#fff',
+              marginBottom: '14px'
+            }}
+          >
             <Sparkles size={24} />
           </div>
-          <h3 style={{ fontSize: 'clamp(24px, 3.5vw, 32px)', color: '#1E2B17' }}>
+          <h2 style={{ fontSize: 'clamp(22px, 3.2vw, 30px)', color: '#1E2B17' }}>
             Get Fresh Batch Milling Notifications
-          </h3>
-          <p style={{ fontSize: '15px', color: '#435538', maxWidth: '540px', marginTop: '10px', lineHeight: 1.6 }}>
-            Never run out of pure chakki atta or cold-pressed mustard oil. Subscribe for seasonal harvest alerts, pickle drops, and subscriber-only 15% discounts.
+          </h2>
+          <p className="subheading" style={{ maxWidth: '540px', marginTop: '8px', color: '#3A4D30' }}>
+            Never run out of pure chakki atta or cold-pressed mustard oil. Subscribe for seasonal harvest alerts, pickle drops, and subscriber-only discounts.
           </p>
 
           <form
@@ -401,7 +436,7 @@ export const HomeView: React.FC = () => {
               gap: '10px',
               maxWidth: '460px',
               width: '100%',
-              marginTop: '24px',
+              marginTop: '20px',
               flexWrap: 'wrap'
             }}
           >
@@ -412,13 +447,13 @@ export const HomeView: React.FC = () => {
               onChange={(e) => setEmailSub(e.target.value)}
               required
               className="input-field"
-              style={{ flex: 1, minWidth: '220px' }}
+              style={{ flex: 1, minWidth: '220px', background: '#ffffff' }}
             />
-            <button type="submit" className="btn p" style={{ padding: '12px 24px' }}>
+            <button type="submit" className="clay-btn-primary" style={{ padding: '12px 24px' }}>
               Subscribe
             </button>
           </form>
-          <span style={{ fontSize: '12px', color: '#5C6E52', marginTop: '12px' }}>
+          <span style={{ fontSize: '12px', color: '#5C6E52', marginTop: '10px' }}>
             No spam, ever. Unsubscribe anytime with 1 click.
           </span>
         </div>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useShop } from '../context/ShopContext';
-import { Sparkles, CheckCircle2, MapPin, Heart, ShieldCheck, Mail, Phone, Send, ChevronDown } from 'lucide-react';
+import { Sparkles, CheckCircle2, MapPin, Heart, ShieldCheck, Mail, Phone, Send, ChevronDown, Leaf, Users } from 'lucide-react';
 
 export const OurStoryView: React.FC = () => {
-  const { addToast } = useShop();
+  const { addToast, setActivePage } = useShop();
 
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
@@ -48,91 +48,129 @@ export const OurStoryView: React.FC = () => {
   return (
     <div style={{ paddingBottom: '90px' }}>
       {/* Story Hero */}
-      <section className="w" style={{ paddingTop: '56px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '48px', alignItems: 'center' }}>
+      <section className="w" style={{ paddingTop: '48px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '40px', alignItems: 'center' }}>
           <div>
-            <span style={{ color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.08em', fontSize: '13px' }}>
-              OUR ROOTS &amp; MISSION
+            <span className="clay-badge" style={{ marginBottom: '12px' }}>
+              <Sparkles size={13} /> ABOUT US · FARMERSMILL.IN
             </span>
-            <h1 style={{ fontSize: 'clamp(34px, 4.5vw, 54px)', lineHeight: 1.08, marginTop: '12px' }}>
+            <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 50px)', lineHeight: 1.1, marginTop: '8px', color: '#1E2B17' }}>
               Born in the fields, milled with respect.
             </h1>
-            <p style={{ fontSize: '18px', lineHeight: 1.7, marginTop: '20px', color: '#435538' }}>
-              Farmers Mill was founded with a singular conviction: our daily food should not be stripped of its soul in massive industrial factories.
+            <p className="subheading" style={{ marginTop: '16px', lineHeight: 1.7, color: '#435538' }}>
+              We started Farmers Mill with one unbending conviction: you shouldn’t have to settle for factory-packaged flours that were ground 4 months ago under 90°C steel rollers with their germ and fiber stripped away.
             </p>
-            <p style={{ fontSize: '16px', lineHeight: 1.7, marginTop: '14px', color: '#5C6E52' }}>
-              For generations, Indian households bought whole grains from local mandis and visited the neighborhood stone chakki. The flour was aromatic, warm, wholesome, and alive. Mass packaging replaced that sacred ritual with chemically bleached, germ-extracted packets sitting on supermarket shelves for half a year. We returned to the roots to restore pure, fresh food to your table.
+            <p style={{ marginTop: '14px', lineHeight: 1.7, color: '#5C6E52', fontSize: '15px' }}>
+              Operating live flour and oil chakkis in Gurugram and Rajnagar Extension Ghaziabad, we bring back traditional stone-milling on emery stones and slow wooden marachekku kolhu pressing.
             </p>
           </div>
 
           <div
-            className="ph"
+            className="clay-card-static"
             style={{
-              aspectRatio: '4/3',
-              borderRadius: '28px',
               overflow: 'hidden',
-              boxShadow: 'var(--shadow-lg)'
+              borderRadius: '32px',
+              aspectRatio: '4/3',
+              minHeight: '320px',
+              position: 'relative'
             }}
           >
-            <img src="/images/f8dc54fe-056f-4b37-961a-f230dd340160.jpeg" alt="Farmers Mill fields and harvest" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img
+              src="/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg"
+              alt="Farmers Mill authentic stone grinding facility"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
           </div>
         </div>
       </section>
 
-      {/* 4 Pillars of Farmers Mill */}
-      <section className="w" style={{ marginTop: '80px' }}>
-        <h2 style={{ fontSize: '36px', textAlign: 'center', marginBottom: '36px' }}>Our Four Golden Purity Standards</h2>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
-          <div className="card" style={{ padding: '28px', background: '#ffffff' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#E1EBCB', color: '#3F6B2C', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+      {/* 3 Pillars from farmersmill.in/about-us */}
+      <section className="w" style={{ marginTop: '64px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+            gap: '24px'
+          }}
+        >
+          {/* Pillar 1 */}
+          <div className="clay-card" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                background: '#E1EBCB',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#3F6B2C'
+              }}
+            >
               <Sparkles size={24} />
             </div>
-            <b style={{ fontSize: '18px', color: '#1E2B17', display: 'block' }}>1. Zero Warehouse Aging</b>
-            <p style={{ fontSize: '14px', color: '#5C6E52', marginTop: '8px', lineHeight: 1.6 }}>
-              We mill after you order. Grains remain in climate-controlled whole seed storage until ground, preventing oxidation.
+            <h2 style={{ fontSize: '20px', color: '#1E2B17' }}>Delivering Freshness with Every Product</h2>
+            <p className="body-text" style={{ color: '#435538', lineHeight: 1.7 }}>
+              At FarmersMill, freshness is our priority. We source our ingredients directly from local farmers and process them in small batches to retain their natural goodness. Our commitment to quality ensures that every product you receive is fresh and packed with flavor.
             </p>
           </div>
 
-          <div className="card" style={{ padding: '28px', background: '#ffffff' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#E1EBCB', color: '#3F6B2C', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-              <ShieldCheck size={24} />
+          {/* Pillar 2 */}
+          <div className="clay-card" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                background: '#E1EBCB',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#3F6B2C'
+              }}
+            >
+              <Leaf size={24} />
             </div>
-            <b style={{ fontSize: '18px', color: '#1E2B17', display: 'block' }}>2. Retaining the Whole Grain</b>
-            <p style={{ fontSize: '14px', color: '#5C6E52', marginTop: '8px', lineHeight: 1.6 }}>
-              We never sift out the germ or bran. You receive 100% of the fiber, potassium, vitamin E, and natural wheat lipids.
+            <h2 style={{ fontSize: '20px', color: '#1E2B17' }}>We Commit to Sustainability</h2>
+            <p className="body-text" style={{ color: '#435538', lineHeight: 1.7 }}>
+              Sustainability is at the heart of what we do. From our eco-friendly packaging to our sustainable sourcing practices, we strive to reduce our environmental footprint while supporting local agriculture and conserving indigenous heirloom seeds.
             </p>
           </div>
 
-          <div className="card" style={{ padding: '28px', background: '#ffffff' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#E1EBCB', color: '#3F6B2C', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-              <Heart size={24} />
+          {/* Pillar 3 */}
+          <div className="clay-card" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                background: '#E1EBCB',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#3F6B2C'
+              }}
+            >
+              <Users size={24} />
             </div>
-            <b style={{ fontSize: '18px', color: '#1E2B17', display: 'block' }}>3. Fair Direct Farmer Gate</b>
-            <p style={{ fontSize: '14px', color: '#5C6E52', marginTop: '8px', lineHeight: 1.6 }}>
-              We pay our farmer partners 20-30% above MSP for rain-fed, natural cultivation methods and organic field stewardship.
-            </p>
-          </div>
-
-          <div className="card" style={{ padding: '28px', background: '#ffffff' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#E1EBCB', color: '#3F6B2C', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-              <MapPin size={24} />
-            </div>
-            <b style={{ fontSize: '18px', color: '#1E2B17', display: 'block' }}>4. Single-Origin Traceability</b>
-            <p style={{ fontSize: '14px', color: '#5C6E52', marginTop: '8px', lineHeight: 1.6 }}>
-              Every batch has a verifiable geographical trail: Sehore for Sharbati, Erode for Curcumin Haldi, Bharatpur for Mustard.
+            <h2 style={{ fontSize: '20px', color: '#1E2B17' }}>Supporting Local Farmers and Communities</h2>
+            <p className="body-text" style={{ color: '#435538', lineHeight: 1.7 }}>
+              By choosing FarmersMill, you are not just buying food; you are supporting local farmers and their communities. We believe in creating a positive impact by fostering fair trade practices and helping small-scale farmers thrive.
             </p>
           </div>
         </div>
       </section>
 
-      {/* FAQs Accordion */}
-      <section className="w" style={{ marginTop: '90px' }}>
-        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 36px' }}>
-          <span style={{ color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.08em', fontSize: '13px' }}>
-            FREQUENTLY ASKED QUESTIONS
-          </span>
-          <h2 style={{ fontSize: '36px', marginTop: '8px' }}>Got Questions? We Have Honest Answers.</h2>
+      {/* FAQs */}
+      <section className="w" style={{ marginTop: '80px' }}>
+        <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 36px' }}>
+          <span className="clay-badge">TRANSPARENCY &amp; PURITY FAQ</span>
+          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 36px)', marginTop: '8px' }}>
+            Frequently Asked Questions
+          </h2>
+          <p className="subheading" style={{ marginTop: '8px' }}>
+            Everything you need to know about our slow stone grinding and pure cold extraction.
+          </p>
         </div>
 
         <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -141,30 +179,28 @@ export const OurStoryView: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="card"
+                className="clay-card"
                 style={{
-                  background: '#ffffff',
-                  overflow: 'hidden',
+                  padding: '20px 24px',
                   cursor: 'pointer'
                 }}
                 onClick={() => setOpenFaq(isOpen ? null : idx)}
               >
-                <div style={{ padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <b style={{ fontSize: '16px', color: '#1E2B17' }}>{faq.q}</b>
                   <ChevronDown
-                    size={20}
+                    size={18}
                     style={{
-                      transform: isOpen ? 'rotate(180deg)' : 'none',
-                      transition: 'transform 0.25s ease',
-                      flex: 'none',
+                      transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transition: 'transform 0.2s ease',
                       color: '#3F6B2C'
                     }}
                   />
                 </div>
                 {isOpen && (
-                  <div style={{ padding: '0 24px 20px', color: '#5C6E52', fontSize: '15px', lineHeight: 1.7, borderTop: '1px solid #F2F6E6', paddingTop: '14px' }}>
+                  <p style={{ marginTop: '12px', fontSize: '14.5px', color: '#435538', lineHeight: 1.7 }}>
                     {faq.a}
-                  </div>
+                  </p>
                 )}
               </div>
             );
@@ -172,98 +208,101 @@ export const OurStoryView: React.FC = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="w" style={{ marginTop: '90px' }}>
+      {/* Contact Us Form */}
+      <section className="w" style={{ marginTop: '80px' }}>
         <div
-          className="card"
+          className="clay-card-static"
           style={{
-            padding: 'clamp(32px, 5vw, 48px)',
-            background: '#FBFDF5',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '40px'
+            padding: 'clamp(28px, 4vw, 48px)',
+            background: 'linear-gradient(135deg, #FBFDF5 0%, #F2F6E6 100%)'
           }}
         >
-          <div>
-            <span style={{ color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.08em', fontSize: '13px' }}>
-              GET IN TOUCH
-            </span>
-            <h2 style={{ fontSize: '34px', marginTop: '6px' }}>Speak with Our Milling Master</h2>
-            <p style={{ fontSize: '15px', color: '#5C6E52', marginTop: '12px', lineHeight: 1.6 }}>
-              Have a bulk grain query, special coarseness request for your rotis, or want to stock Farmers Mill in your organic community? Drop us a note.
-            </p>
-
-            <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '15px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <Mail size={18} color="#3F6B2C" />
-                <span>hello@farmersmill.in</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <Phone size={18} color="#3F6B2C" />
-                <span>+91 98110 54321 / +91 98765 43210</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <MapPin size={18} color="#3F6B2C" />
-                <span>Plot 48, Agro Flour &amp; Oil Mill Complex, Udyog Vihar Phase 4, Gurugram, NCR</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Interactive Form */}
-          <form onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '40px' }}>
             <div>
-              <label style={{ fontSize: '13px', fontWeight: 600, display: 'block', marginBottom: '4px' }}>Your Name *</label>
-              <input
-                type="text"
-                placeholder="Rohan Mehra"
-                value={contactName}
-                onChange={(e) => setContactName(e.target.value)}
-                required
-                className="input-field"
-              />
+              <span className="clay-badge" style={{ marginBottom: '8px' }}>GET IN TOUCH</span>
+              <h2 style={{ fontSize: '30px', color: '#1E2B17', marginTop: '6px' }}>Speak with Our Head Miller</h2>
+              <p style={{ fontSize: '15px', color: '#435538', marginTop: '10px', lineHeight: 1.6 }}>
+                Have questions about custom grain milling, wedding gifting, or wholesale delivery to your society? Drop us a line.
+              </p>
+
+              <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14px', color: '#1E2B17' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <MapPin size={18} color="#3F6B2C" />
+                  <span><b>MCC Signature Heights Outlet:</b> Rajnagar Extension, Ghaziabad, NCR 201017</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <Phone size={18} color="#3F6B2C" />
+                  <span><b>Direct Support:</b> +91-8826313986 / +91 98110 54321</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <Mail size={18} color="#3F6B2C" />
+                  <span><b>Email:</b> support@farmersmill.in / hello@farmersmill.in</span>
+                </div>
+              </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <form onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div>
-                <label style={{ fontSize: '13px', fontWeight: 600, display: 'block', marginBottom: '4px' }}>Email Address *</label>
+                <label style={{ fontSize: '13px', fontWeight: 600, color: '#1E2B17', display: 'block', marginBottom: '4px' }}>
+                  Your Name *
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Shalini Roy"
+                  value={contactName}
+                  onChange={(e) => setContactName(e.target.value)}
+                  required
+                  className="input-field"
+                />
+              </div>
+
+              <div>
+                <label style={{ fontSize: '13px', fontWeight: 600, color: '#1E2B17', display: 'block', marginBottom: '4px' }}>
+                  Email Address *
+                </label>
                 <input
                   type="email"
-                  placeholder="rohan@example.com"
+                  placeholder="you@example.com"
                   value={contactEmail}
                   onChange={(e) => setContactEmail(e.target.value)}
                   required
                   className="input-field"
                 />
               </div>
+
               <div>
-                <label style={{ fontSize: '13px', fontWeight: 600, display: 'block', marginBottom: '4px' }}>Phone Number</label>
+                <label style={{ fontSize: '13px', fontWeight: 600, color: '#1E2B17', display: 'block', marginBottom: '4px' }}>
+                  Phone Number
+                </label>
                 <input
-                  type="text"
-                  placeholder="+91 98765..."
+                  type="tel"
+                  placeholder="+91 98765 43210"
                   value={contactPhone}
                   onChange={(e) => setContactPhone(e.target.value)}
                   className="input-field"
                 />
               </div>
-            </div>
 
-            <div>
-              <label style={{ fontSize: '13px', fontWeight: 600, display: 'block', marginBottom: '4px' }}>How can we help? *</label>
-              <textarea
-                placeholder="Ask about grain origin, custom coarseness, corporate gifting, or wholesale delivery..."
-                value={contactMessage}
-                onChange={(e) => setContactMessage(e.target.value)}
-                required
-                className="input-field"
-                style={{ minHeight: '110px', fontFamily: 'inherit' }}
-              />
-            </div>
+              <div>
+                <label style={{ fontSize: '13px', fontWeight: 600, color: '#1E2B17', display: 'block', marginBottom: '4px' }}>
+                  Message *
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="How can we help your kitchen table?"
+                  value={contactMessage}
+                  onChange={(e) => setContactMessage(e.target.value)}
+                  required
+                  className="input-field"
+                />
+              </div>
 
-            <button type="submit" className="btn p" style={{ padding: '14px', marginTop: '6px' }}>
-              <Send size={16} />
-              <span>Send Message</span>
-            </button>
-          </form>
+              <button type="submit" className="clay-btn-primary" style={{ padding: '12px 24px', alignSelf: 'flex-start' }}>
+                <Send size={15} />
+                <span>Send Message</span>
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </div>

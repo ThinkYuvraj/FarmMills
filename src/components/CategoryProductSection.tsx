@@ -70,21 +70,37 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
     }
   };
 
+  // Helper to match category gracefully
+  const isProductInCategory = (p: Product, cat: string) => {
+    if (cat === 'All') return true;
+    if (p.category === cat) return true;
+    if (cat === 'Fresh Atta' && (p.category === 'Atta' || p.subCategory?.includes('Atta') || p.name.includes('Atta') || p.name.includes('Flour'))) {
+      return true;
+    }
+    return false;
+  };
+
   // Sub-categories available for current product type
   const subCategories = React.useMemo(() => {
     if (selectedType === 'All') return ['All'];
-    const prods = products.filter((p) => p.category === selectedType);
+    const prods = products.filter((p) => isProductInCategory(p, selectedType));
     const subs = Array.from(new Set(prods.map((p) => p.subCategory).filter(Boolean)));
     return ['All', ...subs];
   }, [products, selectedType]);
 
   // Filter products by selected product type and subcategory
   const displayedProducts = React.useMemo(() => {
-    return products.filter((p) => {
-      const matchType = selectedType === 'All' || p.category === selectedType;
+    const list = products.filter((p) => {
+      const matchType = isProductInCategory(p, selectedType);
       const matchSub = selectedSubCategory === 'All' || p.subCategory === selectedSubCategory;
       return matchType && matchSub;
     });
+
+    // If subcategory filter left zero products, gracefully fallback to category products
+    if (list.length === 0) {
+      return products.filter((p) => isProductInCategory(p, selectedType));
+    }
+    return list;
   }, [products, selectedType, selectedSubCategory]);
 
   const activeHighlight = categoryHighlights[selectedType] || categoryHighlights['All'];
@@ -99,23 +115,13 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
       {/* Section Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              color: '#3F6B2C',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              fontSize: '13px'
-            }}
-          >
-            <Sparkles size={14} /> CHOOSE BY PRODUCT TYPE
+          <span className="clay-badge" style={{ marginBottom: '8px' }}>
+            <Sparkles size={13} /> CHOOSE BY PRODUCT TYPE
           </span>
-          <h2 style={{ fontSize: 'clamp(28px, 4.2vw, 42px)', marginTop: '6px', color: '#1E2B17' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', marginTop: '6px', color: '#1E2B17' }}>
             What would you like freshly milled today?
           </h2>
-          <p style={{ fontSize: '16px', color: '#5C6E52', marginTop: '6px', maxWidth: '640px', lineHeight: 1.5 }}>
+          <p className="subheading" style={{ marginTop: '6px', maxWidth: '640px' }}>
             Select a product category below to explore honest, stone-milled harvests with zero preservatives and same-day dispatch.
           </p>
         </div>
@@ -127,7 +133,7 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
               setActivePage('shop');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="btn g"
+            className="clay-btn-secondary"
             style={{ fontWeight: 700, padding: '10px 20px', fontSize: '14px' }}
           >
             <span>View full catalog</span>
@@ -146,23 +152,21 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
       >
         {CATEGORIES.filter((c) => c.name !== 'All').map((cat) => {
           const isSelected = selectedType === cat.name;
-          const count = products.filter((p) => p.category === cat.name).length;
+          const count = products.filter((p) => isProductInCategory(p, cat.name)).length;
 
           return (
             <div
               key={cat.name}
               onClick={() => handleTypeSelect(cat.name)}
-              className="card hoverable"
+              className="clay-card"
               style={{
                 padding: '16px',
                 cursor: 'pointer',
                 textAlign: 'center',
                 position: 'relative',
-                transition: 'all 0.25s ease',
                 background: isSelected ? '#F2F6E6' : '#FBFDF5',
-                borderColor: isSelected ? '#3F6B2C' : '#D3E0BC',
-                borderWidth: isSelected ? '2px' : '1px',
-                boxShadow: isSelected ? '0 8px 24px rgba(63, 107, 44, 0.16)' : 'var(--shadow-sm)',
+                borderColor: isSelected ? '#3F6B2C' : 'rgba(211, 224, 188, 0.75)',
+                borderWidth: isSelected ? '2px' : '1.5px',
                 transform: isSelected ? 'translateY(-3px)' : 'none'
               }}
             >
@@ -191,7 +195,6 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
 
               {/* Category Image Thumbnail */}
               <div
-                className="ph"
                 style={{
                   aspectRatio: '1/1',
                   borderRadius: '16px',
@@ -218,7 +221,7 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
                 style={{
                   display: 'block',
                   marginTop: '12px',
-                  fontSize: '17px',
+                  fontSize: '16px',
                   color: isSelected ? '#3F6B2C' : '#1E2B17',
                   fontWeight: 700
                 }}
@@ -226,7 +229,7 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
                 {cat.name}
               </b>
 
-              <p style={{ fontSize: '12.5px', color: '#5C6E52', marginTop: '4px', lineHeight: 1.4 }}>
+              <p style={{ fontSize: '12px', color: '#5C6E52', marginTop: '4px', lineHeight: 1.4 }}>
                 {cat.desc}
               </p>
 
@@ -236,7 +239,7 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
                   alignItems: 'center',
                   gap: '4px',
                   marginTop: '10px',
-                  fontSize: '12.5px',
+                  fontSize: '12px',
                   fontWeight: 700,
                   color: isSelected ? '#3F6B2C' : '#5C6E52'
                 }}
@@ -252,12 +255,11 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
 
       {/* Selected Category Feature & Milling Process Banner */}
       <div
-        className="card"
+        className="clay-card-static"
         style={{
           marginTop: '28px',
           padding: '24px 28px',
           background: 'linear-gradient(135deg, #FBFDF5 0%, #F2F6E6 100%)',
-          borderColor: '#B8CC98',
           display: 'flex',
           flexDirection: 'column',
           gap: '16px'
@@ -279,25 +281,16 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
               >
                 {activeHighlight.millingTag}
               </span>
-              <span
-                style={{
-                  background: '#E1EBCB',
-                  color: '#3F6B2C',
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  padding: '4px 12px',
-                  borderRadius: '999px'
-                }}
-              >
+              <span className="clay-badge" style={{ fontSize: '12px' }}>
                 {activeHighlight.processBadge}
               </span>
             </div>
 
-            <h3 style={{ fontSize: '24px', color: '#1E2B17', marginTop: '10px' }}>
-              {selectedType} — Farm Fresh & Cold-Milled
+            <h3 style={{ fontSize: '22px', color: '#1E2B17', marginTop: '10px' }}>
+              {selectedType} — Farm Fresh &amp; Cold-Milled
             </h3>
 
-            <p style={{ fontSize: '15px', color: '#435538', marginTop: '6px', maxWidth: '820px', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '14.5px', color: '#435538', marginTop: '6px', maxWidth: '820px', lineHeight: 1.6 }}>
               {activeHighlight.description}
             </p>
           </div>
@@ -307,11 +300,11 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
               const matchedProduct = displayedProducts[0];
               if (matchedProduct) openLabReport(matchedProduct);
             }}
-            className="btn g sm"
-            style={{ fontSize: '13px', background: '#ffffff', whiteSpace: 'nowrap' }}
+            className="clay-btn-secondary"
+            style={{ fontSize: '13px', padding: '8px 16px', whiteSpace: 'nowrap' }}
           >
-            <ShieldCheck size={16} />
-            <span>View NABL Lab Report</span>
+            <ShieldCheck size={16} color="#3F6B2C" />
+            <span>NABL Certified Lab Report</span>
           </button>
         </div>
 
@@ -323,7 +316,7 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
             flexWrap: 'wrap',
             paddingTop: '12px',
             borderTop: '1px solid #D3E0BC',
-            fontSize: '13.5px',
+            fontSize: '13px',
             color: '#1E2B17',
             fontWeight: 600
           }}
@@ -357,7 +350,7 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
               <button
                 key={sub}
                 onClick={() => setSelectedSubCategory(sub)}
-                className={`btn sm ${isSubActive ? 'p' : 'g'}`}
+                className={isSubActive ? 'clay-btn-primary' : 'clay-btn-secondary'}
                 style={{
                   padding: '6px 16px',
                   fontSize: '13px',
@@ -385,29 +378,6 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-
-      {displayedProducts.length === 0 && (
-        <div
-          className="card"
-          style={{
-            padding: '48px 24px',
-            textAlign: 'center',
-            marginTop: '24px',
-            background: '#ffffff'
-          }}
-        >
-          <p style={{ fontSize: '16px', color: '#5C6E52' }}>
-            No products found matching the selected sub-category.
-          </p>
-          <button
-            onClick={() => setSelectedSubCategory('All')}
-            className="btn g sm"
-            style={{ marginTop: '14px' }}
-          >
-            Show all {selectedType}
-          </button>
-        </div>
-      )}
     </section>
   );
 };

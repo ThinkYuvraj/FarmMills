@@ -12,6 +12,10 @@ export interface NutritionFact {
 
 export interface Review {
   id: string;
+  productId?: string;
+  productName?: string;
+  productImage?: string;
+  category?: string;
   author: string;
   rating: number;
   date: string;
@@ -269,4 +273,6 @@ export type ActivePage =
   | 'subscriptions'
   | 'track-order'
   | 'wishlist'
+  | 'terms'
+  | 'shipping'
   | 'admin';

@@ -172,8 +172,8 @@ export const INITIAL_DATA = {
       id: 'fm-atta-chakki',
       slug: 'freshly-milled-chakki-atta',
       name: 'Chakki Fresh Atta (100% MP Sharbati)',
-      category: 'Besan & Flours',
-      subCategory: 'Atta',
+      category: 'Fresh Atta',
+      subCategory: 'Chakki Atta',
       tagline: 'Stone Ground Fresh on Order · Zero Maida · 100% Whole Grain',
       shortDesc: 'Milled fresh on cold-grinding stone chakki hours before delivery. Ultra-soft rotis that stay tender for 12+ hours.',
       fullDesc: 'Commercial packaged flour sits in warehouses for months, treated with bleaching agents, artificial enzymes, and preservatives. Farmers Mill Chakki Fresh Atta is strictly milled to order on our slow-revolving heavy granite stone chakki. Because the mill stone stays below 40°C, the vital wheat germ, natural dietary fiber (bran), vitamins B & E, and wheat germ oils remain completely unharmed. Makes exceptionally fragrant, golden-hued rotis that puff up effortlessly.',
@@ -185,9 +185,9 @@ export const INITIAL_DATA = {
       badges: ['Milled on Order', 'Cold Chakki (< 40°C)', 'Zero Bleach or Maida', 'High Bran Fiber'],
       rating: 4.96,
       reviewCount: 480,
-      image: '/images/mota-besan.jpg',
+      image: '/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg',
       galleryImages: [
-        '/images/mota-besan.jpg',
+        '/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg',
         '/images/44fe32e6-a6f3-4530-a2fd-3065deb31ebc.jpeg',
         '/images/f1b53163-2b6c-45ce-b19e-ac9731daa175.jpeg'
       ],
@@ -217,10 +217,10 @@ export const INITIAL_DATA = {
       badges: ['Wood Pressed', 'Cold Extracted (< 38°C)', 'Zero Chemicals', 'Kachi Ghani'],
       rating: 4.91,
       reviewCount: 164,
-      image: '/images/raw-mango-pickle.jpg',
+      image: '/images/d2c37772-bb26-4dff-96f8-57fcb5a8510f.jpeg',
       galleryImages: [
-        '/images/raw-mango-pickle.jpg',
-        '/images/3a0d39f9-75fe-4e5d-9a7e-e5386a51a5de.jpeg'
+        '/images/d2c37772-bb26-4dff-96f8-57fcb5a8510f.jpeg',
+        '/images/ccd854fd-1d04-4c82-8ee6-5df37f3b2e94.jpeg'
       ],
       packOptions: [
         { size: '500 ml', price: 165, originalPrice: 190, stock: 60 },
@@ -248,8 +248,8 @@ export const INITIAL_DATA = {
       badges: ['7 Super Grains', 'Diabetic Friendly', 'High Soluble Fiber', 'Stone Ground'],
       rating: 4.89,
       reviewCount: 142,
-      image: '/images/mota-besan.jpg',
-      galleryImages: ['/images/mota-besan.jpg'],
+      image: '/images/629253da-3e8b-4287-8867-28af87737d97.jpeg',
+      galleryImages: ['/images/629253da-3e8b-4287-8867-28af87737d97.jpeg'],
       packOptions: [
         { size: '1 kg', price: 85, originalPrice: 99, stock: 75 },
         { size: '5 kg', price: 390, originalPrice: 460, stock: 45 }
@@ -275,8 +275,8 @@ export const INITIAL_DATA = {
       badges: ['Heirloom Variety', 'Zero Sudan Dye', 'Natural Crimson Hue', 'Lab Tested Safe'],
       rating: 4.93,
       reviewCount: 118,
-      image: '/images/haldi-turmeric.jpg',
-      galleryImages: ['/images/haldi-turmeric.jpg'],
+      image: '/images/449fb6df-ccdb-420d-a056-c90f519bd2d5.jpeg',
+      galleryImages: ['/images/449fb6df-ccdb-420d-a056-c90f519bd2d5.jpeg'],
       packOptions: [
         { size: '100 g', price: 95, originalPrice: 115, stock: 65 },
         { size: '200 g', price: 180, originalPrice: 220, stock: 50 },
@@ -303,8 +303,8 @@ export const INITIAL_DATA = {
       badges: ['Unpolished Grain', 'Rich Natural Aroma', 'High Mineral Zinc', 'Farm Direct'],
       rating: 4.86,
       reviewCount: 76,
-      image: '/images/dhaniya-powder.jpg',
-      galleryImages: ['/images/dhaniya-powder.jpg'],
+      image: '/images/8505cf59-d90f-46a8-b9eb-ce6eb4c5dd8d.jpeg',
+      galleryImages: ['/images/8505cf59-d90f-46a8-b9eb-ce6eb4c5dd8d.jpeg'],
       packOptions: [
         { size: '1 kg', price: 95, originalPrice: 110, stock: 90 },
         { size: '5 kg', price: 440, originalPrice: 520, stock: 40 }
@@ -330,8 +330,8 @@ export const INITIAL_DATA = {
       badges: ['Sprouted Goodness', '10x Calcium of Milk', 'Zero Gluten', 'Easy to Digest'],
       rating: 4.94,
       reviewCount: 160,
-      image: '/images/mota-besan.jpg',
-      galleryImages: ['/images/mota-besan.jpg'],
+      image: '/images/f0fb09fd-2921-43a8-86c9-050fcc2e7571.jpeg',
+      galleryImages: ['/images/f0fb09fd-2921-43a8-86c9-050fcc2e7571.jpeg'],
       packOptions: [
         { size: '500 g', price: 90, originalPrice: 110, stock: 70 },
         { size: '1 kg', price: 170, originalPrice: 205, stock: 55 }
@@ -608,6 +608,39 @@ export const INITIAL_DATA = {
       city: 'Delhi',
       title: 'Perfect grainy texture for Mysore Pak and Laddoos',
       comment: 'Store bought besan is like maida powder, makes laddoos sticky and pasty. This mota besan roasts with an intoxicating nutty fragrance and gives that authentic danedar bite!'
+    },
+    {
+      id: 'rev-4',
+      productId: 'fm-oil-mustard',
+      author: 'Vikramaditya Roy',
+      rating: 5,
+      date: 'Oct 18, 2026',
+      verified: true,
+      city: 'Kolkata',
+      title: 'The authentic jhajh of real wooden kolhu mustard oil',
+      comment: 'Being from Bengal, we judge mustard oil by the pungent aroma when cooking macher jhol. Modern solvent oils have zero kick. Farmers Mill woodpressed oil brought tears of joy to my grandmother. Unbelievably fresh!'
+    },
+    {
+      id: 'rev-5',
+      productId: 'fm-pickle-mango',
+      author: 'Sunita Agarwal',
+      rating: 5,
+      date: 'Oct 19, 2026',
+      verified: true,
+      city: 'Jaipur',
+      title: 'Reminds me of my Nani’s sun-cured Martaban pickle',
+      comment: 'No artificial vinegar sourness! You can taste the genuine cold-pressed mustard oil and cracked methi seeds. The raw mango wedges are firm and spicy. Finished the jar in two weeks.'
+    },
+    {
+      id: 'rev-6',
+      productId: 'fm-honey-wild',
+      author: 'Kavita Chawla',
+      rating: 5,
+      date: 'Oct 20, 2026',
+      verified: true,
+      city: 'Gurugram',
+      title: 'Real raw honey with pollen that isn’t boiled corn syrup',
+      comment: 'Passed the warm water and NMR test without question. It has subtle floral notes of mustard bloom and wild jamun. My kids have a spoonful daily with warm water.'
     }
   ]
 };

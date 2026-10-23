@@ -282,9 +282,9 @@
       ],
       "rating": 4.96,
       "reviewCount": 480,
-      "image": "/images/mota-besan.jpg",
+      "image": "/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg",
       "galleryImages": [
-        "/images/mota-besan.jpg",
+        "/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg",
         "/images/44fe32e6-a6f3-4530-a2fd-3065deb31ebc.jpeg",
         "/images/f1b53163-2b6c-45ce-b19e-ac9731daa175.jpeg"
       ],
@@ -299,7 +299,7 @@
           "size": "5 kg",
           "price": 280,
           "originalPrice": 325,
-          "stock": 80
+          "stock": 84
         },
         {
           "size": "10 kg",
@@ -334,10 +334,10 @@
       ],
       "rating": 4.91,
       "reviewCount": 164,
-      "image": "/images/raw-mango-pickle.jpg",
+      "image": "/images/d2c37772-bb26-4dff-96f8-57fcb5a8510f.jpeg",
       "galleryImages": [
-        "/images/raw-mango-pickle.jpg",
-        "/images/3a0d39f9-75fe-4e5d-9a7e-e5386a51a5de.jpeg"
+        "/images/d2c37772-bb26-4dff-96f8-57fcb5a8510f.jpeg",
+        "/images/ccd854fd-1d04-4c82-8ee6-5df37f3b2e94.jpeg"
       ],
       "packOptions": [
         {
@@ -385,9 +385,9 @@
       ],
       "rating": 4.89,
       "reviewCount": 142,
-      "image": "/images/mota-besan.jpg",
+      "image": "/images/629253da-3e8b-4287-8867-28af87737d97.jpeg",
       "galleryImages": [
-        "/images/mota-besan.jpg"
+        "/images/629253da-3e8b-4287-8867-28af87737d97.jpeg"
       ],
       "packOptions": [
         {
@@ -429,9 +429,9 @@
       ],
       "rating": 4.93,
       "reviewCount": 118,
-      "image": "/images/haldi-turmeric.jpg",
+      "image": "/images/449fb6df-ccdb-420d-a056-c90f519bd2d5.jpeg",
       "galleryImages": [
-        "/images/haldi-turmeric.jpg"
+        "/images/449fb6df-ccdb-420d-a056-c90f519bd2d5.jpeg"
       ],
       "packOptions": [
         {
@@ -479,9 +479,9 @@
       ],
       "rating": 4.86,
       "reviewCount": 76,
-      "image": "/images/dhaniya-powder.jpg",
+      "image": "/images/8505cf59-d90f-46a8-b9eb-ce6eb4c5dd8d.jpeg",
       "galleryImages": [
-        "/images/dhaniya-powder.jpg"
+        "/images/8505cf59-d90f-46a8-b9eb-ce6eb4c5dd8d.jpeg"
       ],
       "packOptions": [
         {
@@ -523,9 +523,9 @@
       ],
       "rating": 4.94,
       "reviewCount": 160,
-      "image": "/images/mota-besan.jpg",
+      "image": "/images/f0fb09fd-2921-43a8-86c9-050fcc2e7571.jpeg",
       "galleryImages": [
-        "/images/mota-besan.jpg"
+        "/images/f0fb09fd-2921-43a8-86c9-050fcc2e7571.jpeg"
       ],
       "packOptions": [
         {
@@ -810,6 +810,100 @@
     }
   },
   "orders": [
+    {
+      "id": "FM-93292",
+      "date": "Oct 23, 2026",
+      "createdAt": "2026-10-23T06:18:37.198Z",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta (100% MP Sharbati)",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 0,
+      "discount": 0,
+      "appliedCoupon": null,
+      "total": 280,
+      "status": "Milled on Chakki",
+      "shippingAddress": {
+        "fullName": "Aarav Mehta",
+        "phone": "9876543210",
+        "address": "B-404, Palm Meadows",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "UPI (PhonePe)",
+      "paymentStatus": "PAID",
+      "razorpayOrderId": null,
+      "razorpayPaymentId": null,
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "estimatedDelivery": "Saturday, Oct 24 (7:00 AM - 11:00 AM)",
+      "trackingEvents": [
+        {
+          "status": "Order Placed & Confirmed",
+          "time": "Oct 23, 2026 06:18 AM",
+          "note": "Order placed via UPI (PhonePe). Grains queued in grain hopper."
+        },
+        {
+          "status": "Chakki Milling Scheduled",
+          "time": "Saturday, Oct 24 05:00 AM",
+          "note": "Assigned to Stone Chakki Mill #3 (Master Miller Ram Singh). Cold-milling speed set to 280 RPM (< 40°C)."
+        }
+      ]
+    },
+    {
+      "id": "FM-84824",
+      "date": "Oct 23, 2026",
+      "createdAt": "2026-10-23T05:59:28.551Z",
+      "items": [
+        {
+          "id": "fm-atta-chakki",
+          "name": "Chakki Fresh Atta (100% MP Sharbati)",
+          "packSize": "5 kg",
+          "price": 280,
+          "quantity": 1,
+          "image": "/images/mota-besan.jpg"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 0,
+      "discount": 0,
+      "appliedCoupon": null,
+      "total": 280,
+      "status": "Milled on Chakki",
+      "shippingAddress": {
+        "fullName": "Aarav Mehta",
+        "phone": "9876543210",
+        "address": "B-404, Palm Meadows",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "paymentMethod": "UPI (PhonePe)",
+      "paymentStatus": "PAID",
+      "razorpayOrderId": null,
+      "razorpayPaymentId": null,
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "estimatedDelivery": "Saturday, Oct 24 (7:00 AM - 11:00 AM)",
+      "trackingEvents": [
+        {
+          "status": "Order Placed & Confirmed",
+          "time": "Oct 23, 2026 05:59 AM",
+          "note": "Order placed via UPI (PhonePe). Grains queued in grain hopper."
+        },
+        {
+          "status": "Chakki Milling Scheduled",
+          "time": "Saturday, Oct 24 05:00 AM",
+          "note": "Assigned to Stone Chakki Mill #3 (Master Miller Ram Singh). Cold-milling speed set to 280 RPM (< 40°C)."
+        }
+      ]
+    },
     {
       "id": "FM-82397",
       "date": "Oct 20, 2026",
@@ -1099,6 +1193,38 @@
     }
   ],
   "subscriptions": [
+    {
+      "id": "sub-1792736317206",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta (100% MP Sharbati)",
+      "productImage": "/images/c7702f34-2d4c-4994-9757-ac0571c00f78.jpeg",
+      "packSize": "5 kg",
+      "originalPrice": 280,
+      "discountedPrice": 238,
+      "discountPercent": 15,
+      "frequency": "Every 2 Weeks",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-23T06:18:37.206Z",
+      "nextDeliveryDate": "Friday, Nov 6",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "deliveryAddress": "B-404, Palm Meadows, Bengaluru - 560103"
+    },
+    {
+      "id": "sub-1792735168558",
+      "productId": "fm-atta-chakki",
+      "productName": "Chakki Fresh Atta (100% MP Sharbati)",
+      "productImage": "/images/mota-besan.jpg",
+      "packSize": "5 kg",
+      "originalPrice": 280,
+      "discountedPrice": 238,
+      "discountPercent": 15,
+      "frequency": "Every 2 Weeks",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-23T05:59:28.558Z",
+      "nextDeliveryDate": "Friday, Nov 6",
+      "deliverySlot": "Morning (7:00 AM - 11:00 AM)",
+      "deliveryAddress": "B-404, Palm Meadows, Bengaluru - 560103"
+    },
     {
       "id": "sub-1792462496773",
       "productId": "fm-atta-chakki",
@@ -1412,6 +1538,39 @@
       "city": "Delhi",
       "title": "Perfect grainy texture for Mysore Pak and Laddoos",
       "comment": "Store bought besan is like maida powder, makes laddoos sticky and pasty. This mota besan roasts with an intoxicating nutty fragrance and gives that authentic danedar bite!"
+    },
+    {
+      "id": "rev-4",
+      "productId": "fm-oil-mustard",
+      "author": "Vikramaditya Roy",
+      "rating": 5,
+      "date": "Oct 18, 2026",
+      "verified": true,
+      "city": "Kolkata",
+      "title": "The authentic jhajh of real wooden kolhu mustard oil",
+      "comment": "Being from Bengal, we judge mustard oil by the pungent aroma when cooking macher jhol. Modern solvent oils have zero kick. Farmers Mill woodpressed oil brought tears of joy to my grandmother. Unbelievably fresh!"
+    },
+    {
+      "id": "rev-5",
+      "productId": "fm-pickle-mango",
+      "author": "Sunita Agarwal",
+      "rating": 5,
+      "date": "Oct 19, 2026",
+      "verified": true,
+      "city": "Jaipur",
+      "title": "Reminds me of my Nani’s sun-cured Martaban pickle",
+      "comment": "No artificial vinegar sourness! You can taste the genuine cold-pressed mustard oil and cracked methi seeds. The raw mango wedges are firm and spicy. Finished the jar in two weeks."
+    },
+    {
+      "id": "rev-6",
+      "productId": "fm-honey-wild",
+      "author": "Kavita Chawla",
+      "rating": 5,
+      "date": "Oct 20, 2026",
+      "verified": true,
+      "city": "Gurugram",
+      "title": "Real raw honey with pollen that isn’t boiled corn syrup",
+      "comment": "Passed the warm water and NMR test without question. It has subtle floral notes of mustard bloom and wild jamun. My kids have a spoonful daily with warm water."
     }
   ],
   "users": [

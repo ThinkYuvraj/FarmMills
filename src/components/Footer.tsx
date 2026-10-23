@@ -1,10 +1,10 @@
 import React from 'react';
 import { useShop } from '../context/ShopContext';
 import { PRODUCTS } from '../data/products';
-import { ShieldCheck, Sparkles, Truck, Award, Heart } from 'lucide-react';
+import { ShieldCheck, MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { setActivePage, setSelectedCategory, openLabReport } = useShop();
+  const { setActivePage, setSelectedCategory, openLabReport, setIsOutletPickerOpen } = useShop();
 
   const handleNav = (page: any, category?: string) => {
     if (category) {
@@ -18,68 +18,31 @@ export const Footer: React.FC = () => {
 
   return (
     <footer style={{ background: '#1E2B17', color: '#E1EBCB', marginTop: 'auto', borderTop: '4px solid #3F6B2C' }}>
-      {/* Trust Badges Strip */}
-      <div style={{ background: '#162011', borderBottom: '1px solid rgba(225, 235, 203, 0.1)', padding: '24px 0' }}>
-        <div className="w" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(63, 107, 44, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7BC652', flex: 'none' }}>
-              <Sparkles size={22} />
-            </div>
-            <div>
-              <b style={{ color: '#ffffff', fontSize: '15px', display: 'block' }}>Milled Fresh on Order</b>
-              <p style={{ fontSize: '13px', color: '#B3C4A5', marginTop: '2px' }}>Slow stone chakki, zero warehouse staleness</p>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(63, 107, 44, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7BC652', flex: 'none' }}>
-              <ShieldCheck size={22} />
-            </div>
-            <div>
-              <b style={{ color: '#ffffff', fontSize: '15px', display: 'block' }}>100% Pure &amp; Chemical Free</b>
-              <p style={{ fontSize: '13px', color: '#B3C4A5', marginTop: '2px' }}>Zero preservatives, artificial dyes or fillers</p>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(63, 107, 44, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7BC652', flex: 'none' }}>
-              <Award size={22} />
-            </div>
-            <div>
-              <b style={{ color: '#ffffff', fontSize: '15px', display: 'block' }}>Direct Farmer Partner</b>
-              <p style={{ fontSize: '13px', color: '#B3C4A5', marginTop: '2px' }}>Fair farm-gate prices &amp; certified soil batches</p>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(63, 107, 44, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7BC652', flex: 'none' }}>
-              <Truck size={22} />
-            </div>
-            <div>
-              <b style={{ color: '#ffffff', fontSize: '15px', display: 'block' }}>Free Fast Delivery</b>
-              <p style={{ fontSize: '13px', color: '#B3C4A5', marginTop: '2px' }}>Orders above ₹499 delivered in airtight bags</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Links */}
-      <div className="w" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '40px', paddingTop: '56px', paddingBottom: '40px' }}>
-        {/* Brand Column with Prominent Logo */}
+      {/* Main Links Grid - Compact 4-column layout */}
+      <div
+        className="w"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+          gap: '32px',
+          paddingTop: '40px',
+          paddingBottom: '32px'
+        }}
+      >
+        {/* Brand Column */}
         <div>
           <div
             onClick={() => handleNav('home')}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '12px',
+              gap: '10px',
               background: '#FBFDF5',
-              padding: '10px 18px',
-              borderRadius: '14px',
+              padding: '8px 16px',
+              borderRadius: '12px',
               border: '1.5px solid #D3E0BC',
               cursor: 'pointer',
-              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
-              transition: 'transform 0.2s ease'
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
             }}
             title="Farmers Mill - Return to Home"
           >
@@ -87,62 +50,279 @@ export const Footer: React.FC = () => {
               src="/images/farmers-mill-logo.png"
               alt="Farmers Mill Official Logo"
               style={{
-                height: '44px',
+                height: '36px',
                 width: 'auto',
                 objectFit: 'contain',
                 display: 'block'
               }}
             />
           </div>
-          <p style={{ marginTop: '18px', lineHeight: '1.7', fontSize: '14px', color: '#D2E0BC' }}>
-            Honest grains, single-origin spices, wood-pressed oils and raw honey from farm to your kitchen table. Milled slowly on natural emery stone chakkis without artificial heat.
+
+          <p style={{ marginTop: '14px', lineHeight: '1.6', fontSize: '13.5px', color: '#D2E0BC' }}>
+            Operated by Wholesome Harvest Company. Stone-ground whole wheat attas, single-origin spices, wood-pressed oils, and raw honey milled fresh to order below 38°C.
           </p>
-          <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#A9BF93' }}>
+
+          <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#A9BF93' }}>
             <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#7BC652' }} />
             <span>FSSAI Lic. No: <strong style={{ color: '#E1EBCB' }}>10822999000142</strong></span>
           </div>
         </div>
 
-        {/* Shop Col */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '15px' }}>
-          <b style={{ color: '#ffffff', fontSize: '17px', marginBottom: '6px' }}>Shop Fresh</b>
+        {/* Shop Harvest Categories */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
+          <b style={{ color: '#ffffff', fontSize: '15px', marginBottom: '4px' }}>Fresh Harvest</b>
           <a onClick={() => handleNav('shop', 'Fresh Atta')} style={{ color: '#D2E0BC' }}>🌾 Chakki Fresh Atta &amp; Sharbati</a>
-          <a onClick={() => handleNav('shop', 'Besan & Flours')} style={{ color: '#D2E0BC' }}>🥣 Mota Besan &amp; Millet Flours</a>
+          <a onClick={() => handleNav('shop', 'Besan & Flours')} style={{ color: '#D2E0BC' }}>🥣 Danedar Mota Besan &amp; Ragi</a>
           <a onClick={() => handleNav('shop', 'Spices')} style={{ color: '#D2E0BC' }}>🌶️ Stone Ground Turmeric &amp; Spices</a>
-          <a onClick={() => handleNav('shop', 'Oils & Ghee')} style={{ color: '#D2E0BC' }}>🫒 Wood Pressed Mustard Oil &amp; A2 Ghee</a>
+          <a onClick={() => handleNav('shop', 'Oils & Ghee')} style={{ color: '#D2E0BC' }}>🫒 Woodpressed Mustard Oil &amp; A2 Ghee</a>
           <a onClick={() => handleNav('shop', 'Honey & Pickles')} style={{ color: '#D2E0BC' }}>🍯 Raw Honey &amp; Mango Pickle</a>
         </div>
 
-        {/* Company Col */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '15px' }}>
-          <b style={{ color: '#ffffff', fontSize: '17px', marginBottom: '6px' }}>Our Mission</b>
-          <a onClick={() => handleNav('subscriptions')} style={{ color: '#E1EBCB', fontWeight: 600 }}>✨ Subscribe &amp; Save (15% OFF)</a>
-          <a onClick={() => handleNav('story')} style={{ color: '#D2E0BC' }}>Our Story &amp; Origin</a>
-          <a onClick={() => handleNav('story')} style={{ color: '#D2E0BC' }}>The Stone Chakki Difference</a>
-          <a onClick={() => handleNav('track-order')} style={{ color: '#E1EBCB', fontWeight: 600 }}>🚚 Track Your Order Batch</a>
+        {/* Customer Care & Policies */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
+          <b style={{ color: '#ffffff', fontSize: '15px', marginBottom: '4px' }}>Policies &amp; Orders</b>
+          <a onClick={() => handleNav('terms')} style={{ color: '#E1EBCB', fontWeight: 600 }}>📄 Terms &amp; Conditions</a>
+          <a onClick={() => handleNav('shipping')} style={{ color: '#E1EBCB', fontWeight: 600 }}>🚚 Shipping &amp; Returns (7-Day)</a>
+          <a onClick={() => handleNav('track-order')} style={{ color: '#D2E0BC' }}>📦 Track Order Batch</a>
+          <a onClick={() => handleNav('subscriptions')} style={{ color: '#D2E0BC' }}>✨ Monthly Grain Subscriptions</a>
           <a onClick={() => openLabReport(PRODUCTS[5])} style={{ color: '#D2E0BC' }}>🔬 NABL Certified Lab Reports</a>
-          <a onClick={() => handleNav('contact')} style={{ color: '#D2E0BC' }}>Shipping &amp; Delivery Policy</a>
-          <a onClick={() => handleNav('contact')} style={{ color: '#D2E0BC' }}>Frequently Asked Questions</a>
+          <a onClick={() => handleNav('story')} style={{ color: '#D2E0BC' }}>🌱 About Wholesome Harvest</a>
         </div>
 
-        {/* Reach Us Col */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '15px' }}>
-          <b style={{ color: '#ffffff', fontSize: '17px', marginBottom: '6px' }}>Reach Our Mill</b>
-          <p style={{ color: '#D2E0BC' }}><b>Email:</b> hello@farmersmill.in</p>
-          <p style={{ color: '#D2E0BC' }}><b>Care &amp; WhatsApp:</b> +91 98110 54321</p>
-          <p style={{ color: '#D2E0BC' }}><b>Chakki Unit:</b> Plot 48, Agro Flour &amp; Oil Mill Complex, Udyog Vihar Phase 4, Gurugram, NCR 122016</p>
-          <p style={{ color: '#A9BF93', fontSize: '13px', marginTop: '4px' }}>Milling Hours: Mon - Sat: 7:00 AM - 6:00 PM</p>
+        {/* Reach Our Mill */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px' }}>
+          <b style={{ color: '#ffffff', fontSize: '15px', marginBottom: '4px' }}>Mill Outlets &amp; Support</b>
+          <p style={{ color: '#D2E0BC', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+            <MapPin size={15} color="#7BC652" style={{ flexShrink: 0, marginTop: '3px' }} />
+            <span><b>MCC Signature Heights:</b> Rajnagar Extension, Ghaziabad, NCR</span>
+          </p>
+          <p style={{ color: '#D2E0BC', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+            <MapPin size={15} color="#7BC652" style={{ flexShrink: 0, marginTop: '3px' }} />
+            <span><b>Central Mill:</b> Plot 48, Udyog Vihar Ph 4, Gurugram</span>
+          </p>
+          <p style={{ color: '#D2E0BC', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Phone size={14} color="#7BC652" />
+            <a href="tel:+918826313986" style={{ color: '#ffffff', fontWeight: 700 }}>+91-8826313986</a>
+          </p>
+          <p style={{ color: '#D2E0BC', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Mail size={14} color="#7BC652" />
+            <a href="mailto:support@farmersmill.in" style={{ color: '#D2E0BC' }}>support@farmersmill.in</a>
+          </p>
+          <p style={{ color: '#A9BF93', fontSize: '12px', marginTop: '2px' }}>
+            Milling Hours: Mon - Sat: 7:00 AM - 8:30 PM
+          </p>
+        </div>
+      </div>
+
+      {/* Payment Methods Section - Requested by user */}
+      <div
+        style={{
+          background: '#162011',
+          borderTop: '1px solid rgba(225, 235, 203, 0.1)',
+          borderBottom: '1px solid rgba(225, 235, 203, 0.1)',
+          padding: '20px 0'
+        }}
+      >
+        <div className="w" style={{ textAlign: 'center' }}>
+          <p style={{ fontSize: '13px', fontWeight: 700, color: '#E1EBCB', letterSpacing: '0.04em', marginBottom: '14px' }}>
+            We accept the following payment methods
+          </p>
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              gap: '12px'
+            }}
+          >
+            {/* Mastercard */}
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '6px',
+                padding: '4px 10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.2)'
+              }}
+              title="Mastercard"
+            >
+              <svg width="36" height="22" viewBox="0 0 36 22">
+                <circle cx="13" cy="11" r="8" fill="#EB001B" />
+                <circle cx="23" cy="11" r="8" fill="#F79E1B" fillOpacity="0.85" />
+              </svg>
+            </div>
+
+            {/* American Express */}
+            <div
+              style={{
+                background: '#006FCF',
+                borderRadius: '6px',
+                padding: '4px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.2)'
+              }}
+              title="American Express"
+            >
+              <span style={{ color: '#ffffff', fontWeight: 900, fontSize: '11px', letterSpacing: '0.5px' }}>
+                AMERICAN EXPRESS
+              </span>
+            </div>
+
+            {/* UnionPay */}
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '6px',
+                padding: '4px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.2)'
+              }}
+              title="UnionPay"
+            >
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ background: '#E21836', color: '#fff', fontSize: '9px', fontWeight: 800, padding: '2px 4px', borderRadius: '3px 0 0 3px' }}>Union</span>
+                <span style={{ background: '#004B87', color: '#fff', fontSize: '9px', fontWeight: 800, padding: '2px 4px', borderRadius: '0 3px 3px 0' }}>Pay</span>
+              </div>
+            </div>
+
+            {/* JCB */}
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '6px',
+                padding: '4px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.2)'
+              }}
+              title="JCB"
+            >
+              <span style={{ color: '#0E4EAD', fontWeight: 900, fontSize: '12px', letterSpacing: '1px' }}>
+                JCB
+              </span>
+            </div>
+
+            {/* Discover */}
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '6px',
+                padding: '4px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.2)'
+              }}
+              title="Discover"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1px', fontWeight: 900, fontSize: '11px', color: '#1E2B17' }}>
+                <span>DISC</span>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FF6000', display: 'inline-block' }} />
+                <span>VER</span>
+              </div>
+            </div>
+
+            {/* VISA */}
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '6px',
+                padding: '4px 10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.2)'
+              }}
+              title="VISA"
+            >
+              <span style={{ color: '#1A1F71', fontWeight: 900, fontSize: '14px', fontStyle: 'italic', letterSpacing: '1px' }}>
+                VISA
+              </span>
+            </div>
+
+            {/* PayPal */}
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '6px',
+                padding: '4px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.2)'
+              }}
+              title="PayPal"
+            >
+              <span style={{ color: '#003087', fontWeight: 900, fontSize: '12px' }}>
+                Pay<span style={{ color: '#0079C1' }}>Pal</span>
+              </span>
+            </div>
+
+            {/* Diners Club */}
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: '6px',
+                padding: '4px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.2)'
+              }}
+              title="Diners Club International"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                <span style={{ width: '14px', height: '14px', borderRadius: '50%', border: '2px solid #004B87', display: 'inline-block' }} />
+                <span style={{ color: '#004B87', fontWeight: 800, fontSize: '9px', lineHeight: 1 }}>Diners Club</span>
+              </div>
+            </div>
+
+            {/* UPI & NetBanking Badge */}
+            <div
+              style={{
+                background: '#E1EBCB',
+                borderRadius: '6px',
+                padding: '4px 10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '32px'
+              }}
+              title="UPI (GPay / PhonePe / Paytm / BHIM) & Net Banking"
+            >
+              <span style={{ color: '#2E5220', fontWeight: 800, fontSize: '11px' }}>
+                ⚡ UPI &amp; NetBanking
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Copyright Bar */}
-      <div style={{ borderTop: '1px solid rgba(225, 235, 203, 0.12)', padding: '20px 0', fontSize: '13px', color: '#9DB388' }}>
-        <div className="w" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-          <span>© 2026 Farmers Mill Pvt. Ltd. All rights reserved. Milled with care in India.</span>
-          <div style={{ display: 'flex', gap: '20px' }}>
-            <a onClick={() => handleNav('contact')}>Privacy Policy</a>
-            <a onClick={() => handleNav('contact')}>Terms of Service</a>
-            <a onClick={() => handleNav('contact')}>FSSAI Compliance</a>
+      <div style={{ padding: '16px 0', fontSize: '12.5px', color: '#9DB388' }}>
+        <div className="w" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+          <span>© 2026 Farmers Mill / Wholesome Harvest Co. All rights reserved. Milled fresh in India.</span>
+          <div style={{ display: 'flex', gap: '16px' }}>
+            <a onClick={() => handleNav('terms')}>Terms &amp; Conditions</a>
+            <a onClick={() => handleNav('shipping')}>Shipping &amp; Returns</a>
+            <a onClick={() => handleNav('story')}>FSSAI Compliance</a>
           </div>
         </div>
       </div>

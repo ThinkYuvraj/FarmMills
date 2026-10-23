@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useShop } from '../context/ShopContext';
-import { ShoppingBag, User, Search, Menu, X, ChevronDown, Sparkles, Truck, ArrowRight, Heart } from 'lucide-react';
+import { ShoppingBag, User, Search, Menu, X, ChevronDown, Sparkles, Truck, ArrowRight, Heart, MapPin } from 'lucide-react';
 import { CATEGORIES } from '../data/products';
 
 export const Navbar: React.FC = () => {
@@ -16,7 +16,9 @@ export const Navbar: React.FC = () => {
     user,
     setIsAuthModalOpen,
     searchQuery,
-    setSearchQuery
+    setSearchQuery,
+    selectedOutlet,
+    setIsOutletPickerOpen
   } = useShop();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -102,16 +104,69 @@ export const Navbar: React.FC = () => {
           background: '#1E2B17',
           color: '#E1EBCB',
           fontSize: '12.5px',
-          padding: '7px 20px',
+          padding: '6px 16px',
           fontWeight: 500,
           letterSpacing: '0.01em',
-          textAlign: 'center'
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '8px'
         }}
       >
-        <span>
-          🌾 Stoneground Fresh on Order &nbsp;·&nbsp; Free Delivery above ₹499 &nbsp;·&nbsp; Use code{' '}
-          <strong style={{ color: '#FBFDF5', textDecoration: 'underline' }}>FARMERS10</strong> for 10% OFF
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+          <span>
+            🌾 Stoneground Fresh on Order &nbsp;·&nbsp; Free Delivery above ₹499 &nbsp;·&nbsp; Use code{' '}
+            <strong style={{ color: '#FBFDF5', textDecoration: 'underline' }}>FARMERS10</strong> for 10% OFF
+          </span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+          {/* Mill Factory Outlet Pill */}
+          <button
+            onClick={() => setIsOutletPickerOpen(true)}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px',
+              background: 'rgba(255, 255, 255, 0.12)',
+              border: '1px solid rgba(225, 235, 203, 0.25)',
+              padding: '3px 10px',
+              borderRadius: '999px',
+              color: '#FBFDF5',
+              fontSize: '11.5px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'background 0.15s ease'
+            }}
+            title="Select Farmers Mill dispatch factory outlet"
+          >
+            <MapPin size={12} style={{ color: '#D4A346' }} />
+            <span>Mill: <strong>{selectedOutlet.name.split(',')[0]}</strong></span>
+            <span style={{ color: '#D4A346', textDecoration: 'underline', fontSize: '11px', marginLeft: '2px' }}>Change</span>
+          </button>
+
+          {/* Official Facebook Link */}
+          <a
+            href="https://www.facebook.com/people/Farmers-Mill/pfbid0HfPHVwMvfZU2c2kVGBPHrZm8PFYH3di4LERF5sUgZGW57fBUSogLL8uCdJVxvZVRl/?rdid=VrOoM7MokhWyFSNF&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Li444CByG%2F"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+              color: '#E1EBCB',
+              fontSize: '11.5px',
+              textDecoration: 'none'
+            }}
+            title="Follow Farmers Mill on Facebook"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            <span className="facebook-top-text">Facebook</span>
+          </a>
+        </div>
       </div>
 
       {/* Main Header */}
@@ -718,6 +773,39 @@ export const Navbar: React.FC = () => {
 
             <div style={{ height: '1px', background: '#D3E0BC', margin: '4px 0' }} />
 
+            {/* Mobile Mill Outlet Selector Box */}
+            <div
+              onClick={() => {
+                setIsOutletPickerOpen(true);
+                setMobileMenuOpen(false);
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '12px 14px',
+                background: '#EDF3DF',
+                borderRadius: '12px',
+                border: '1.5px solid #D3E0BC',
+                cursor: 'pointer'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <MapPin size={18} style={{ color: '#3F6B2C' }} />
+                <div>
+                  <div style={{ fontSize: '11px', fontWeight: 700, color: '#5C6E52', textTransform: 'uppercase' }}>
+                    Dispatch Mill Outlet
+                  </div>
+                  <div style={{ fontSize: '13.5px', fontWeight: 700, color: '#1E2B17' }}>
+                    {selectedOutlet.name}
+                  </div>
+                </div>
+              </div>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: '#3F6B2C', textDecoration: 'underline' }}>
+                Change
+              </span>
+            </div>
+
             {/* Account / Support Footer */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {user ? (
@@ -741,13 +829,40 @@ export const Navbar: React.FC = () => {
                   Sign In to Your Account
                 </button>
               )}
+
+              {/* Policies & External Links */}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', marginTop: '6px' }}>
+                <a
+                  onClick={() => handleNavClick('terms')}
+                  style={{ fontSize: '12px', color: '#5C6E52', textDecoration: 'underline' }}
+                >
+                  Terms &amp; Conditions
+                </a>
+                <span style={{ color: '#D3E0BC' }}>·</span>
+                <a
+                  onClick={() => handleNavClick('shipping')}
+                  style={{ fontSize: '12px', color: '#5C6E52', textDecoration: 'underline' }}
+                >
+                  Shipping &amp; Returns
+                </a>
+                <span style={{ color: '#D3E0BC' }}>·</span>
+                <a
+                  href="https://www.facebook.com/people/Farmers-Mill/pfbid0HfPHVwMvfZU2c2kVGBPHrZm8PFYH3di4LERF5sUgZGW57fBUSogLL8uCdJVxvZVRl/?rdid=VrOoM7MokhWyFSNF&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Li444CByG%2F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontSize: '12px', color: '#3F6B2C', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                >
+                  <span>Facebook</span>
+                </a>
+              </div>
+
               <a
                 onClick={() => handleNavClick('contact')}
                 style={{
-                  fontSize: '13px',
+                  fontSize: '12.5px',
                   color: '#5C6E52',
                   textAlign: 'center',
-                  padding: '6px'
+                  padding: '4px'
                 }}
               >
                 Need Help? Contact Support
@@ -771,6 +886,9 @@ export const Navbar: React.FC = () => {
           .user-name-text { display: none; }
           .sign-in-text { display: none; }
           .cart-label { display: none; }
+        }
+        @media (max-width: 480px) {
+          .facebook-top-text { display: none; }
         }
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-4px); }

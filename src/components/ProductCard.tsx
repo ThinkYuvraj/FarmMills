@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Product, PackOption } from '../types';
 import { useShop } from '../context/ShopContext';
-import { Star, Eye, Plus, Check } from 'lucide-react';
+import { Star, Eye, Plus, Check, Sparkles } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -9,10 +9,18 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, openProductDetail, setQuickViewProduct } = useShop();
-  
-  const [selectedPack, setSelectedPack] = useState<PackOption>(product.packOptions[0]);
+
+  const [selectedPack, setSelectedPack] = useState<PackOption>(product.packOptions[0] || { size: '1 kg', price: 100 });
   const [quantity, setQuantity] = useState<number>(1);
   const [isAdding, setIsAdding] = useState<boolean>(false);
+
+  // Synchronize when product changes
+  useEffect(() => {
+    if (product.packOptions && product.packOptions.length > 0) {
+      setSelectedPack(product.packOptions[0]);
+      setQuantity(1);
+    }
+  }, [product]);
 
   const handlePackSelect = (e: React.MouseEvent, pack: PackOption) => {
     e.stopPropagation();
@@ -33,25 +41,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }, 700);
   };
 
-  const discountPercent = selectedPack.originalPrice
+  const discountPercent = selectedPack?.originalPrice
     ? Math.round(((selectedPack.originalPrice - selectedPack.price) / selectedPack.originalPrice) * 100)
     : 0;
 
   return (
     <div
-      className="card hoverable"
+      className="clay-card"
       onClick={() => openProductDetail(product)}
       style={{
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         cursor: 'pointer',
-        height: '100%'
+        height: '100%',
+        borderRadius: '24px'
       }}
     >
       {/* Product Image Frame */}
       <div
-        className="ph"
         style={{
           aspectRatio: '4/3',
           position: 'relative',
@@ -63,18 +71,37 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           src={product.image}
           alt={product.name}
           loading="lazy"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s ease' }}
         />
 
         {/* Badges Overlay */}
         <div style={{ position: 'absolute', top: '12px', left: '12px', display: 'flex', flexDirection: 'column', gap: '6px', zIndex: 2 }}>
           {product.isBestseller && (
-            <span className="badge badge-gold" style={{ fontSize: '11px', padding: '4px 10px', boxShadow: '0 2px 6px rgba(0,0,0,0.1)' }}>
+            <span
+              style={{
+                background: '#FEF3D6',
+                color: '#946808',
+                fontWeight: 700,
+                fontSize: '11px',
+                padding: '4px 10px',
+                borderRadius: '999px',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+              }}
+            >
               ★ Bestseller
             </span>
           )}
           {discountPercent > 0 && (
-            <span className="badge" style={{ fontSize: '11px', padding: '4px 10px', background: '#3F6B2C', color: '#ffffff' }}>
+            <span
+              style={{
+                background: '#3F6B2C',
+                color: '#ffffff',
+                fontWeight: 700,
+                fontSize: '11px',
+                padding: '4px 10px',
+                borderRadius: '999px'
+              }}
+            >
               {discountPercent}% OFF
             </span>
           )}
@@ -86,32 +113,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             e.stopPropagation();
             setQuickViewProduct(product);
           }}
-          className="quick-view-btn"
+          className="clay-btn-secondary"
           aria-label="Quick view product"
           style={{
             position: 'absolute',
             bottom: '12px',
             right: '12px',
-            background: 'rgba(251, 253, 245, 0.92)',
-            color: '#1E2B17',
-            border: '1px solid #D3E0BC',
-            borderRadius: '50%',
             width: '36px',
             height: '36px',
+            padding: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-            transition: 'all 0.2s ease',
             zIndex: 3
           }}
         >
-          <Eye size={17} />
+          <Eye size={17} color="#1E2B17" />
         </button>
       </div>
 
-      {/* Product Content */}
-      <div className="product-card-body" style={{ display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
+      {/* Product Content Body */}
+      <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: '12px', color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
@@ -124,10 +146,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
           </div>
 
-          <h3 style={{ fontSize: '19px', marginTop: '6px', lineHeight: 1.25, color: '#1E2B17' }}>
+          <h3 style={{ fontSize: '18px', marginTop: '6px', lineHeight: 1.25, color: '#1E2B17' }}>
             {product.name}
           </h3>
-          <p style={{ fontSize: '13px', color: '#5C6E52', marginTop: '4px', lineHeight: 1.4 }}>
+          <p style={{ fontSize: '13px', color: '#5C6E52', marginTop: '4px', lineHeight: 1.45 }}>
             {product.tagline || product.shortDesc}
           </p>
         </div>
@@ -136,21 +158,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
             <span style={{ fontSize: '12px', fontWeight: 600, color: '#5C6E52' }}>Pack size</span>
-            <span style={{ fontSize: '11px', color: '#3F6B2C', fontWeight: 700 }}>Single source</span>
+            <span style={{ fontSize: '11px', color: '#3F6B2C', fontWeight: 700 }}>Slow Stoneground</span>
           </div>
           <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
             {product.packOptions.map((pack) => {
-              const active = pack.size === selectedPack.size;
+              const active = pack.size === selectedPack?.size;
               return (
                 <button
                   key={pack.size}
                   onClick={(e) => handlePackSelect(e, pack)}
-                  className={`btn sm ${active ? 'p' : 'g'}`}
+                  className={active ? 'clay-btn-primary' : 'clay-btn-secondary'}
                   style={{
                     padding: '5px 12px',
                     fontSize: '12px',
-                    borderRadius: '8px',
-                    borderWidth: '1.5px'
+                    borderRadius: '8px'
                   }}
                 >
                   {pack.size}
@@ -164,9 +185,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div style={{ marginTop: 'auto', paddingTop: '10px' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '12px' }}>
             <b style={{ fontSize: '22px', color: '#1E2B17', fontWeight: 700 }}>
-              ₹{selectedPack.price}
+              ₹{selectedPack?.price}
             </b>
-            {selectedPack.originalPrice && (
+            {selectedPack?.originalPrice && (
               <span style={{ fontSize: '14px', textDecoration: 'line-through', color: '#7E9171' }}>
                 ₹{selectedPack.originalPrice}
               </span>
@@ -175,7 +196,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             {/* Stepper */}
-            <div className="quantity-stepper" onClick={(e) => e.stopPropagation()}>
+            <div className="quantity-stepper clay-inset" onClick={(e) => e.stopPropagation()}>
               <button onClick={(e) => handleQuantity(e, -1)} aria-label="Decrease quantity">
                 −
               </button>
@@ -188,13 +209,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {/* Add to Cart button */}
             <button
               onClick={handleAddToCart}
-              className="btn p"
+              className="clay-btn-primary"
               style={{
                 flex: 1,
-                padding: '9px 14px',
+                padding: '10px 14px',
                 fontSize: '13px',
-                background: isAdding ? '#2E7D32' : undefined,
-                borderColor: isAdding ? '#2E7D32' : undefined
+                background: isAdding ? '#2E7D32' : undefined
               }}
             >
               {isAdding ? (

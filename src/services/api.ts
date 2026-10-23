@@ -233,11 +233,30 @@ export const api = {
   },
 
   // --- Reviews ---
+  async getAllReviews(params?: { category?: string; minRating?: number; limit?: number }): Promise<Review[]> {
+    const query = new URLSearchParams();
+    if (params?.category && params.category !== 'All') query.set('category', params.category);
+    if (params?.minRating) query.set('minRating', params.minRating.toString());
+    if (params?.limit) query.set('limit', params.limit.toString());
+    try {
+      const res = await fetch(`${API_BASE}/reviews?${query.toString()}`);
+      if (!res.ok) return [];
+      const json = await res.json();
+      return json.data || [];
+    } catch (e) {
+      return [];
+    }
+  },
+
   async getReviews(productId: string): Promise<Review[]> {
-    const res = await fetch(`${API_BASE}/reviews/${productId}`);
-    if (!res.ok) return [];
-    const json = await res.json();
-    return json.data;
+    try {
+      const res = await fetch(`${API_BASE}/reviews/${productId}`);
+      if (!res.ok) return [];
+      const json = await res.json();
+      return json.data || [];
+    } catch (e) {
+      return [];
+    }
   },
 
   async submitReview(payload: {
@@ -247,10 +266,14 @@ export const api = {
     title: string;
     comment: string;
     city?: string;
-  }) {
+  }): Promise<Review> {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('farmers_mill_token') : null;
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
     const res = await fetch(`${API_BASE}/reviews`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify(payload)
     });
     const json = await res.json();

@@ -1,10 +1,10 @@
 import { authService } from '../services/authService.js';
 
 export const authController = {
-  signup(req, res) {
+  async signup(req, res) {
     try {
       const { name, email, password, phone } = req.body;
-      const result = authService.signup({ name, email, password, phone });
+      const result = await authService.signup({ name, email, password, phone });
       res.status(201).json({
         success: true,
         message: `Welcome to Farmers Mill, ${result.user.name}!`,
@@ -15,10 +15,10 @@ export const authController = {
     }
   },
 
-  login(req, res) {
+  async login(req, res) {
     try {
       const { email, password } = req.body;
-      const result = authService.loginWithPassword({ email, password });
+      const result = await authService.loginWithPassword({ email, password });
       res.json({
         success: true,
         message: `Signed in successfully. Welcome back, ${result.user.name}!`,

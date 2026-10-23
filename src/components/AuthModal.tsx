@@ -24,7 +24,8 @@ export const AuthModal: React.FC = () => {
     loginWithEmail,
     loginWithGoogle,
     loginWithApple,
-    loginWithPasskey
+    loginWithPasskey,
+    setActivePage
   } = useShop();
 
   const [mode, setMode] = useState<'signin' | 'signup' | 'passkey'>('signin');
@@ -89,22 +90,24 @@ export const AuthModal: React.FC = () => {
   return (
     <div className="modal-overlay" onClick={() => setIsAuthModalOpen(false)}>
       <div
-        className="modal-content"
+        className="modal-content clay-card-static"
         onClick={(e) => e.stopPropagation()}
         style={{
           maxWidth: '460px',
-          padding: '32px',
+          padding: '28px 24px',
           borderRadius: '24px',
-          background: '#ffffff',
-          boxShadow: '0 24px 60px rgba(30, 43, 23, 0.25)'
+          background: '#FBFDF5',
+          boxShadow: '0 24px 60px rgba(30, 43, 23, 0.25)',
+          maxHeight: '92vh',
+          overflowY: 'auto'
         }}
       >
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
           <img
             src="/images/farmers-mill-logo.png"
             alt="Farmers Mill"
-            style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
+            style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
           />
           <button
             onClick={() => setIsAuthModalOpen(false)}
@@ -116,21 +119,73 @@ export const AuthModal: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#1E3415'
+              color: '#1E3415',
+              cursor: 'pointer'
             }}
           >
             <X size={16} />
           </button>
         </div>
 
-        <p style={{ fontSize: '14px', color: '#5C6E52', marginBottom: '20px' }}>
+        {/* Security Shield Callout */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: '#EDF3DF',
+            border: '1px solid #D3E0BC',
+            borderRadius: '10px',
+            padding: '8px 12px',
+            marginBottom: '16px',
+            fontSize: '12px',
+            color: '#2E5220'
+          }}
+        >
+          <ShieldCheck size={16} style={{ color: '#3F6B2C', flexShrink: 0 }} />
+          <span>
+            <strong>Bcrypt + JWT Secured:</strong> Military-grade 10-round salted password hashing &amp; signed tokens.
+          </span>
+        </div>
+
+        <p style={{ fontSize: '13.5px', color: '#5C6E52', marginBottom: '16px' }}>
           {mode === 'signup'
             ? 'Join our farm patron circle for priority morning stone-milling & exclusive member discounts.'
             : 'Sign in to track live chakki milling, manage subscriptions, and access saved addresses.'}
         </p>
 
+        {/* Quick Demo Fill Helper */}
+        {mode === 'signin' && (
+          <div
+            onClick={() => {
+              setEmail('priya.sharma@example.com');
+              setPassword('farmers2026');
+            }}
+            style={{
+              padding: '8px 12px',
+              background: '#E1EBCB',
+              borderRadius: '10px',
+              fontSize: '12px',
+              color: '#1E3415',
+              marginBottom: '16px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              transition: 'background 0.15s'
+            }}
+            title="Click to fill test credentials"
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Sparkles size={13} style={{ color: '#3F6B2C' }} />
+              <span>Demo Account: <strong>priya.sharma@example.com</strong></span>
+            </div>
+            <span style={{ fontWeight: 700, color: '#3F6B2C', textDecoration: 'underline' }}>Auto-Fill</span>
+          </div>
+        )}
+
         {/* 3-Way Mode Switcher */}
-        <div style={{ display: 'flex', background: '#F2F6E6', padding: '4px', borderRadius: '12px', marginBottom: '20px', border: '1px solid #D3E0BC' }}>
+        <div style={{ display: 'flex', background: '#F2F6E6', padding: '4px', borderRadius: '12px', marginBottom: '18px', border: '1px solid #D3E0BC' }}>
           <button
             type="button"
             onClick={() => setMode('signin')}
@@ -422,8 +477,28 @@ export const AuthModal: React.FC = () => {
           </button>
         </div>
 
-        <p style={{ fontSize: '12px', color: '#7E9171', textAlign: 'center', marginTop: '18px' }}>
-          By continuing, you agree to Farmers Mill Purity Charter &amp; encrypted authentication terms.
+        <p style={{ fontSize: '12px', color: '#7E9171', textAlign: 'center', marginTop: '16px', lineHeight: 1.5 }}>
+          By continuing, you agree to Farmers Mill{' '}
+          <a
+            onClick={() => {
+              setIsAuthModalOpen(false);
+              setActivePage('terms');
+            }}
+            style={{ color: '#3F6B2C', textDecoration: 'underline', fontWeight: 600 }}
+          >
+            Terms &amp; Conditions
+          </a>{' '}
+          and{' '}
+          <a
+            onClick={() => {
+              setIsAuthModalOpen(false);
+              setActivePage('shipping');
+            }}
+            style={{ color: '#3F6B2C', textDecoration: 'underline', fontWeight: 600 }}
+          >
+            Shipping Policy
+          </a>
+          .
         </p>
       </div>
     </div>

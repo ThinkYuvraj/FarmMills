@@ -3,6 +3,8 @@ import { Product, CartItem, PackOption, Order, UserProfile, ActivePage, Subscrip
 import { PRODUCTS } from '../data/products';
 import { api } from '../services/api';
 
+import { FACTORY_OUTLETS, FactoryOutlet } from '../data/outlets';
+
 interface ToastItem {
   id: string;
   message: string;
@@ -14,7 +16,13 @@ interface ShopContextType {
   products: Product[];
   isLoadingProducts: boolean;
 
-  // Navigation
+  // Factory Outlets (MCC Signature Heights, Rajnagar Extension, etc.)
+  selectedOutlet: FactoryOutlet;
+  setSelectedOutlet: (outlet: FactoryOutlet) => void;
+  isOutletPickerOpen: boolean;
+  setIsOutletPickerOpen: (open: boolean) => void;
+
+  // Navigation & Route synchronization
   activePage: ActivePage;
   setActivePage: (page: ActivePage) => void;
   selectedCategory: string;
@@ -133,8 +141,88 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
   const [isLoadingProducts, setIsLoadingProducts] = useState<boolean>(false);
 
-  // Navigation state
-  const [activePage, setActivePage] = useState<ActivePage>('home');
+  // Factory Outlet State (Default: MCC Signature Heights, Rajnagar Extension)
+  const [selectedOutlet, setSelectedOutletState] = useState<FactoryOutlet>(() => {
+    try {
+      const saved = localStorage.getItem('farmers_mill_outlet');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    return FACTORY_OUTLETS[0];
+  });
+  const [isOutletPickerOpen, setIsOutletPickerOpen] = useState<boolean>(false);
+
+  const setSelectedOutlet = (outlet: FactoryOutlet) => {
+    setSelectedOutletState(outlet);
+    try {
+      localStorage.setItem('farmers_mill_outlet', JSON.stringify(outlet));
+    } catch (e) {}
+    addToast(`Selected Milling Outlet: ${outlet.name}`, 'success');
+  };
+
+  // URL Path synchronization (e.g. /terms-conditions, /shipping-returns, /shop, /our-story)
+  const pageToPath = (page: ActivePage): string => {
+    switch (page) {
+      case 'home': return '/';
+      case 'shop': return '/shop';
+      case 'terms': return '/terms-conditions';
+      case 'shipping': return '/shipping-returns';
+      case 'story': return '/our-story';
+      case 'contact': return '/contact';
+      case 'cart': return '/cart';
+      case 'checkout': return '/checkout';
+      case 'account': return '/account';
+      case 'subscriptions': return '/subscriptions';
+      case 'track-order': return '/track-order';
+      case 'order-success': return '/order-success';
+      case 'admin': return '/admin';
+      default: return '/';
+    }
+  };
+
+  const pathToPage = (path: string): ActivePage => {
+    const clean = path.replace(/\/$/, '') || '/';
+    if (clean === '/terms-conditions' || clean === '/terms') return 'terms';
+    if (clean === '/shipping-returns' || clean === '/shipping') return 'shipping';
+    if (clean === '/shop') return 'shop';
+    if (clean === '/our-story' || clean === '/story') return 'story';
+    if (clean === '/contact') return 'contact';
+    if (clean === '/cart') return 'cart';
+    if (clean === '/checkout') return 'checkout';
+    if (clean === '/account') return 'account';
+    if (clean === '/subscriptions') return 'subscriptions';
+    if (clean === '/track-order') return 'track-order';
+    if (clean === '/order-success') return 'order-success';
+    if (clean === '/admin') return 'admin';
+    return 'home';
+  };
+
+  // Navigation state synced with browser URL
+  const [activePage, setActivePageState] = useState<ActivePage>(() => {
+    if (typeof window !== 'undefined') {
+      return pathToPage(window.location.pathname);
+    }
+    return 'home';
+  });
+
+  const setActivePage = (page: ActivePage) => {
+    setActivePageState(page);
+    if (typeof window !== 'undefined') {
+      const targetPath = pageToPath(page);
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState(null, '', targetPath);
+      }
+    }
+  };
+
+  // Listen to popstate (back/forward)
+  useEffect(() => {
+    const handlePopState = () => {
+      setActivePageState(pathToPage(window.location.pathname));
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<Product>(PRODUCTS[0]);
@@ -918,6 +1006,10 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSearchQuery,
         selectedProduct,
         openProductDetail,
+        selectedOutlet,
+        setSelectedOutlet,
+        isOutletPickerOpen,
+        setIsOutletPickerOpen,
         quickViewProduct,
         setQuickViewProduct,
         cart,
