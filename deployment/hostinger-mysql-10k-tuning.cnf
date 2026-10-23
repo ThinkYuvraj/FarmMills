@@ -1,0 +1,47 @@
+# ==============================================================================
+# Hostinger MySQL Database Optimization Configuration for 10,000+ Concurrent Users
+# Place in: /etc/mysql/mysql.conf.d/mysqld.cnf or /etc/my.cnf
+# ==============================================================================
+
+[mysqld]
+# --- Connection & Thread Management ---
+# Maximum concurrent client connections (defaults to 151 which would fail under 10k load)
+max_connections = 2000
+max_user_connections = 1800
+thread_cache_size = 128
+max_connect_errors = 100000
+
+# Connection timeouts to prevent orphaned threads from consuming RAM
+wait_timeout = 60
+interactive_timeout = 60
+connect_timeout = 15
+
+# --- Buffer & Memory Allocation (Assumes 8GB RAM VPS; scale to 70% of total RAM) ---
+innodb_buffer_pool_size = 4G
+innodb_buffer_pool_instances = 4
+innodb_log_buffer_size = 64M
+innodb_log_file_size = 512M
+
+# High write throughput setting: 2 flushes log buffer to OS cache every transaction
+# and syncs to disk once per second (10x faster write performance for flash orders)
+innodb_flush_log_at_trx_commit = 2
+innodb_flush_method = O_DIRECT
+
+# --- File Descriptors & Table Cache ---
+open_files_limit = 65535
+table_open_cache = 4096
+table_definition_cache = 2048
+
+# --- Query Performance & Temp Tables ---
+tmp_table_size = 64M
+max_heap_table_size = 64M
+join_buffer_size = 4M
+sort_buffer_size = 4M
+read_rnd_buffer_size = 2M
+
+# --- Character Set & Collation ---
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+[client]
+default-character-set = utf8mb4

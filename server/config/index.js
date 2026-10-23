@@ -10,8 +10,10 @@ export const config = {
     name: process.env.DB_NAME || '',
     port: Number(process.env.DB_PORT) || 3306,
     ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
-    connectionLimit: Number(process.env.DB_CONNECTION_LIMIT) || 10,
-    connectTimeout: Number(process.env.DB_CONNECT_TIMEOUT) || 10000
+    connectionLimit: Number(process.env.DB_CONNECTION_LIMIT) || 50,
+    queueLimit: Number(process.env.DB_QUEUE_LIMIT) || 1000,
+    connectTimeout: Number(process.env.DB_CONNECT_TIMEOUT) || 15000,
+    idleTimeout: Number(process.env.DB_IDLE_TIMEOUT) || 60000
   },
   razorpay: {
     keyId: process.env.RAZORPAY_KEY_ID || '',

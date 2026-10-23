@@ -34,9 +34,12 @@ class SqlDatabase {
         database: name,
         port: port || 3306,
         waitForConnections: true,
-        connectionLimit: connectionLimit || 10,
-        queueLimit: 0,
-        connectTimeout: connectTimeout || 10000,
+        connectionLimit: connectionLimit || 50,
+        queueLimit: config.database.queueLimit || 1000,
+        connectTimeout: connectTimeout || 15000,
+        idleTimeout: config.database.idleTimeout || 60000,
+        enableKeepAlive: true,
+        keepAliveInitialDelay: 10000,
         ssl: ssl || undefined,
         charset: 'utf8mb4'
       });

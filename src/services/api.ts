@@ -138,6 +138,25 @@ export const api = {
     return json.data;
   },
 
+  async detectLocation() {
+    try {
+      const res = await fetch(`${API_BASE}/location/detect`);
+      if (!res.ok) throw new Error('Location detection failed');
+      const json = await res.json();
+      return json.data;
+    } catch (e) {
+      return {
+        latitude: 28.7058,
+        longitude: 77.4265,
+        city: 'Ghaziabad',
+        state: 'Uttar Pradesh',
+        locality: 'MCC Signature Heights, Rajnagar Extension',
+        pincode: '201017',
+        primaryHubId: 'outlet-mcc-rajnagar'
+      };
+    }
+  },
+
   // --- Orders ---
   async createOrder(payload: {
     items: { productId: string; packSize: string; quantity: number }[];

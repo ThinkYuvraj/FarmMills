@@ -45,9 +45,14 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`🌾 Farmers Mill server running at http://0.0.0.0:${PORT}`);
   });
+
+  // High Concurrency Tuning: keep-alive and headers timeout for 10,000+ simultaneous connections
+  server.keepAliveTimeout = 65000;
+  server.headersTimeout = 66000;
+  server.maxHeadersCount = 100;
 }
 
 startServer().catch((err) => {
