@@ -165,6 +165,7 @@ export interface UserProfile {
     tag: string;
     address: string;
     city: string;
+    state?: string;
     pincode: string;
     isDefault?: boolean;
   }>;

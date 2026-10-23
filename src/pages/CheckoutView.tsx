@@ -31,19 +31,30 @@ export const CheckoutView: React.FC = () => {
     setActivePage,
     processRazorpayPayment,
     razorpayConfig,
-    isProcessingPayment
+    isProcessingPayment,
+    selectedOutlet
   } = useShop();
 
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [validationError, setValidationError] = useState<string | null>(null);
 
-  // Address fields
+  // Address fields - defaulted intelligently to user's saved address or current milling outlet
   const [fullName, setFullName] = useState(user?.name || 'Priya Sharma');
   const [phone, setPhone] = useState(user?.phone || '+91 98765 43210');
-  const [address, setAddress] = useState(user?.addresses?.[0]?.address || 'Flat 402, Green Glen Palms, Bellandur');
-  const [city, setCity] = useState(user?.addresses?.[0]?.city || 'Bengaluru');
-  const [state, setState] = useState('Karnataka');
-  const [pincode, setPincode] = useState(user?.addresses?.[0]?.pincode || '560103');
+  const [address, setAddress] = useState(
+    user?.addresses?.[0]?.address ||
+      (selectedOutlet ? `Near ${selectedOutlet.landmark}, ${selectedOutlet.address}` : 'Flat 402, Green Glen Palms')
+  );
+  const [city, setCity] = useState(
+    user?.addresses?.[0]?.city ||
+      (selectedOutlet ? selectedOutlet.city.replace(/ \(Delhi NCR\)/, '') : 'Ghaziabad')
+  );
+  const [state, setState] = useState(
+    user?.addresses?.[0]?.state || selectedOutlet?.state || 'Uttar Pradesh'
+  );
+  const [pincode, setPincode] = useState(
+    user?.addresses?.[0]?.pincode || selectedOutlet?.pincode || '201017'
+  );
 
   // Delivery slot
   const [slot, setSlot] = useState('Morning Fresh Batch (7:00 AM - 11:00 AM)');

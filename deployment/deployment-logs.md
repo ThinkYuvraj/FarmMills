@@ -84,6 +84,27 @@ To handle at least 10,000 concurrent clients simultaneously without degradation 
 7. **Load Testing Verification Script (`deployment/load-test-k6.js`)**:
    - Script simulating ramp-up to 10,000 virtual users with p95 latency threshold < 350ms.
 
+### Step 8: Hero Section & Visual Experience Enhancement
+- **Design Constitution Adherence**: Applied `frontend-design` guidelines:
+  - Eliminated static pill containers in favor of editorial dot-separated kickers (`Slow Stoneground · 100% Whole Grain & Wood-Pressed · Milled On Order`).
+  - Implemented high-contrast live milling status banner featuring active batch numbers (`#FM-2026-88`), local outlet location binding, and dispatch countdown.
+  - Generated bespoke 16:9 cinematic artisanal photography (`farmersmill_hero_artisan`) capturing natural stone chakki milling, streaming golden flour into burlap sacks, cold wood-pressed mustard oil, and A2 bilona cow ghee in clay vessels.
+  - Added interactive 4-staple selector bar allowing customers to immediately switch between Chakki Fresh Atta, MP Sharbati Gold, Wood-Pressed Mustard Oil, and A2 Bilona Cow Ghee with dynamic pack sizing, pricing, and 1-click add to cart.
+  - Integrated NABL Accredited Purity Certificate viewer trigger that directly launches the lab analysis report.
+  - Maintained zero horizontal scroll and mobile-compact card touch interactions.
+
+### Step 9: Frontend Refinement & Tablet View Slim Card Optimization
+- **Hero Status Card Redesign**:
+  - Re-engineered the "LIVE MILLING RUN" top status ticker from a bulky 85px box into an ultra-slim, compact 42px strip (`padding: 7px 14px`, `border-radius: 12px`, emerald gradient).
+  - Fixed tablet view issue where the Outlet selector button wrapped onto a new line and floated awkwardly on the bottom left.
+  - Implemented responsive bottom-right corner anchoring (`.hero-live-btn-anchor` with `margin-left: auto` and `align-self: flex-end` under `@media (min-width: 600px) and (max-width: 1024px)`), keeping the button cleanly docked in the bottom-right corner on tablet and mobile viewports.
+  - Retained single-line right-aligned layout for wide desktop monitors.
+- **Dynamic Checkout Localization**:
+  - Fixed address initializers in `CheckoutView.tsx` where unauthenticated users were defaulted to Bellandur Bengaluru even if they had chosen an NCR mill hub.
+  - Now dynamically binds default city, state, and pincode to `selectedOutlet` (e.g., Ghaziabad, Uttar Pradesh, 201017) while respecting user profile saved addresses.
+- **Rendering & Scroll Performance**:
+  - Memoized `ProductCard` with `React.memo` to eliminate unnecessary DOM re-renders during catalog searching, sorting, and category switching.
+
 ---
 
 ## Health & Performance Telemetry Verification

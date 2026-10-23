@@ -7,7 +7,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCardComponent: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, openProductDetail, setQuickViewProduct } = useShop();
 
   const [selectedPack, setSelectedPack] = useState<PackOption>(product.packOptions[0] || { size: '1 kg', price: 100 });
@@ -233,3 +233,5 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     </div>
   );
 };
+
+export const ProductCard = React.memo(ProductCardComponent);

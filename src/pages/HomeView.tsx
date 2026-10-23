@@ -5,29 +5,23 @@ import { CategoryProductSection } from '../components/CategoryProductSection';
 import { ProofSection } from '../components/ProofSection';
 import { FacilitySection } from '../components/FacilitySection';
 import { AppDownloadBanner } from '../components/AppDownloadBanner';
-import { HeroProductCarousel } from '../components/HeroProductCarousel';
+import { HeroSection } from '../components/HeroSection';
 import { Testimonials } from '../components/Testimonials';
 import {
   Sparkles,
   ArrowRight,
-  CheckCircle,
-  MapPin,
   Flame,
   Award,
   Thermometer,
-  ShieldAlert,
   ShieldCheck,
-  ChevronRight,
-  Store
+  ChevronRight
 } from 'lucide-react';
 
 export const HomeView: React.FC = () => {
   const {
     setActivePage,
     setSelectedCategory,
-    addToast,
-    selectedOutlet,
-    setIsOutletPickerOpen
+    addToast
   } = useShop();
 
   const [emailSub, setEmailSub] = useState('');
@@ -42,198 +36,8 @@ export const HomeView: React.FC = () => {
 
   return (
     <div style={{ paddingBottom: '60px', overflowX: 'hidden', width: '100%' }}>
-      {/* Factory Outlet Location Sharing Strip */}
-      <section className="w" style={{ paddingTop: '16px' }}>
-        <div
-          onClick={() => setIsOutletPickerOpen(true)}
-          className="clay-inset"
-          style={{
-            padding: '10px 18px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '12px',
-            cursor: 'pointer',
-            flexWrap: 'wrap',
-            transition: 'all 0.2s ease'
-          }}
-          title="Click to change your milling outlet location"
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-            <span
-              style={{
-                background: '#3F6B2C',
-                color: '#ffffff',
-                padding: '3px 8px',
-                borderRadius: '6px',
-                fontSize: '11px',
-                fontWeight: 700,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}
-            >
-              <Store size={12} /> FACTORY OUTLET
-            </span>
-            <span style={{ fontSize: '13px', color: '#1E2B17', fontWeight: 600 }}>
-              📍 I’m sharing you the location for now:{' '}
-              <strong style={{ color: '#2E5220' }}>{selectedOutlet.name}</strong> ({selectedOutlet.landmark})
-            </span>
-            <span
-              style={{
-                background: '#E1EBCB',
-                color: '#3F6B2C',
-                padding: '2px 8px',
-                borderRadius: '999px',
-                fontSize: '11px',
-                fontWeight: 700
-              }}
-            >
-              Milling Active Today
-            </span>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#3F6B2C', fontSize: '12.5px', fontWeight: 700 }}>
-            <span>Change Outlet</span>
-            <ChevronRight size={14} />
-          </div>
-        </div>
-      </section>
-
-      {/* Hero Section */}
-      <section
-        className="w"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
-          gap: 'clamp(24px, 4vw, 48px)',
-          alignItems: 'center',
-          paddingTop: 'clamp(20px, 3vw, 40px)',
-          paddingBottom: '24px'
-        }}
-      >
-        <div>
-          <span className="clay-badge" style={{ marginBottom: '16px' }}>
-            <Sparkles size={14} /> FRESHLY MILLED · FARM SOURCED
-          </span>
-
-          <h1
-            style={{
-              fontSize: 'clamp(34px, 5vw, 56px)',
-              lineHeight: 1.1,
-              marginTop: '12px',
-              color: '#1E2B17'
-            }}
-          >
-            From the farmer’s field to your family’s table.
-          </h1>
-
-          <p
-            className="subheading"
-            style={{
-              marginTop: '16px',
-              maxWidth: '520px',
-              color: '#435538'
-            }}
-          >
-            Stone-ground chakki attas, pure cold spices, coarse pulses, and wood-pressed oils — milled with care and delivered fresh to your door.
-          </p>
-
-          <div style={{ display: 'flex', gap: '14px', marginTop: '28px', flexWrap: 'wrap' }}>
-            <button
-              className="clay-btn-primary"
-              style={{ padding: '14px 28px', fontSize: '15px' }}
-              onClick={() => {
-                setSelectedCategory('All');
-                setActivePage('shop');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              <span>Shop fresh harvest</span>
-              <ArrowRight size={18} />
-            </button>
-
-            <button
-              className="clay-btn-secondary"
-              style={{ padding: '14px 26px', fontSize: '15px' }}
-              onClick={() => {
-                setActivePage('story');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              How we mill
-            </button>
-          </div>
-
-          <div
-            style={{
-              display: 'flex',
-              gap: '16px',
-              alignItems: 'center',
-              marginTop: '28px',
-              fontSize: '13px',
-              color: '#5C6E52',
-              flexWrap: 'wrap'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <CheckCircle size={16} color="#3F6B2C" />
-              <span>Zero Preservatives</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <CheckCircle size={16} color="#3F6B2C" />
-              <span>100% Whole Grain</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <CheckCircle size={16} color="#3F6B2C" />
-              <span>Milled on Order</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Hero Product Carousel */}
-        <div>
-          <HeroProductCarousel />
-        </div>
-      </section>
-
-      {/* 4 Value Pillars Strip */}
-      <section className="w" style={{ marginTop: '36px' }}>
-        <div
-          className="clay-card-static"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
-            gap: '24px',
-            padding: '28px'
-          }}
-        >
-          <div>
-            <b style={{ fontSize: '16px', color: '#1E2B17', display: 'block' }}>Same-day fresh</b>
-            <p style={{ fontSize: '13.5px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
-              Milled on order so you get the natural essential wheat oils, distinct aroma and authentic sweet flavour.
-            </p>
-          </div>
-          <div>
-            <b style={{ fontSize: '16px', color: '#1E2B17', display: 'block' }}>Zero additives</b>
-            <p style={{ fontSize: '13.5px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
-              Pure grain from clean fields. No preservatives, bleaching agents, anti-caking chemicals, or maida blends.
-            </p>
-          </div>
-          <div>
-            <b style={{ fontSize: '16px', color: '#1E2B17', display: 'block' }}>Slow stone milling</b>
-            <p style={{ fontSize: '13.5px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
-              Natural emery stone chakki running at low RPM keeps friction heat below 35°C to protect delicate vitamins.
-            </p>
-          </div>
-          <div>
-            <b style={{ fontSize: '16px', color: '#1E2B17', display: 'block' }}>Traceable to the farm</b>
-            <p style={{ fontSize: '13.5px', color: '#5C6E52', marginTop: '6px', lineHeight: 1.5 }}>
-              Direct partnerships with smallholder farmers across Sehore, Bikaner, and Ramganj Mandi.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Modern High-Impact Artisanal Hero Section */}
+      <HeroSection />
 
       {/* Unified Category & Product Type Section */}
       <CategoryProductSection initialCategory="Fresh Atta" showExploreAllButton={true} />

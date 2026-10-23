@@ -695,3 +695,59 @@ button, a, input, select {
   }
 }
 
+/* Slim Live Milling Tracker Bar & Tablet Bottom-Right Anchor */
+.hero-live-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  background: linear-gradient(90deg, #172513 0%, #22351B 50%, #192714 100%);
+  border: 1px solid rgba(159, 232, 112, 0.26);
+  border-radius: 12px;
+  padding: 7px 14px;
+  color: #F4F7EE;
+  box-shadow: 0 2px 10px rgba(18, 29, 13, 0.12);
+  margin-bottom: 18px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.hero-live-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 320px;
+  min-width: 240px;
+}
+
+.hero-live-btn-anchor {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  align-self: flex-end;
+  flex-shrink: 0;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  .hero-live-bar {
+    padding: 6px 12px !important;
+  }
+  .hero-live-btn-anchor {
+    margin-left: auto !important;
+    align-self: flex-end !important;
+    padding-top: 2px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-live-bar {
+    padding: 6px 10px !important;
+  }
+  .hero-live-btn-anchor {
+    margin-left: auto !important;
+    align-self: flex-end !important;
+  }
+}
+
