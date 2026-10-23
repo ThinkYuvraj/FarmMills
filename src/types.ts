@@ -268,4 +268,5 @@ export type ActivePage =
   | 'contact' 
   | 'subscriptions'
   | 'track-order'
+  | 'wishlist'
   | 'admin';

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useShop } from '../context/ShopContext';
-import { ShoppingBag, User, Search, Menu, X, ChevronDown, Sparkles, Truck, ArrowRight } from 'lucide-react';
+import { ShoppingBag, User, Search, Menu, X, ChevronDown, Sparkles, Truck, ArrowRight, Heart } from 'lucide-react';
 import { CATEGORIES } from '../data/products';
 
 export const Navbar: React.FC = () => {
@@ -11,6 +11,8 @@ export const Navbar: React.FC = () => {
     setSelectedCategory,
     cartCount,
     setIsCartDrawerOpen,
+    wishlistCount,
+    setIsWishlistDrawerOpen,
     user,
     setIsAuthModalOpen,
     searchQuery,
@@ -322,8 +324,8 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Right Action Controls */}
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-            {/* Desktop Quick Search */}
+          <div style={{ display: 'flex', gap: 'clamp(6px, 1.5vw, 12px)', alignItems: 'center' }}>
+            {/* Desktop Quick Search Input */}
             <form onSubmit={handleSearchSubmit} className="desktop-search" style={{ position: 'relative' }}>
               <input
                 type="text"
@@ -336,17 +338,17 @@ export const Navbar: React.FC = () => {
                   border: '1.5px solid #D3E0BC',
                   background: '#ffffff',
                   fontSize: '13px',
-                  width: '190px',
+                  width: '180px',
                   outline: 'none',
                   transition: 'width 0.25s ease, border-color 0.2s ease'
                 }}
                 onFocus={(e) => {
-                  e.currentTarget.style.width = '240px';
+                  e.currentTarget.style.width = '230px';
                   e.currentTarget.style.borderColor = '#3F6B2C';
                 }}
                 onBlur={(e) => {
                   if (!searchQuery) {
-                    e.currentTarget.style.width = '190px';
+                    e.currentTarget.style.width = '180px';
                   }
                   e.currentTarget.style.borderColor = '#D3E0BC';
                 }}
@@ -356,7 +358,7 @@ export const Navbar: React.FC = () => {
                 style={{
                   position: 'absolute',
                   left: '12px',
-                  top: '10px',
+                  top: '11px',
                   color: '#5C6E52',
                   pointerEvents: 'none'
                 }}
@@ -370,7 +372,10 @@ export const Navbar: React.FC = () => {
                     right: '10px',
                     top: '8px',
                     color: '#8E9F84',
-                    padding: '2px'
+                    padding: '2px',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer'
                   }}
                 >
                   <X size={13} />
@@ -378,80 +383,155 @@ export const Navbar: React.FC = () => {
               )}
             </form>
 
-            {/* Mobile Search Toggle */}
+            {/* Mobile / Quick Search Icon Toggle */}
             <button
               onClick={() => setShowSearchInput(!showSearchInput)}
-              className="mobile-search-btn"
+              className="navbar-search-btn"
               style={{
-                padding: '8px',
+                background: 'none',
+                border: 'none',
+                padding: '6px',
                 color: '#1E2B17',
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center'
-              }}
-              aria-label="Toggle search"
-            >
-              <Search size={20} />
-            </button>
-
-            {/* User Account / Sign In */}
-            {user ? (
-              <button
-                className="btn g sm"
-                onClick={() => handleNavClick('account')}
-                style={{
-                  padding: '7px 14px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  fontSize: '13.5px'
-                }}
-                title={`Signed in as ${user.name}`}
-              >
-                <User size={15} />
-                <span className="user-name-text">{user.name.split(' ')[0]}</span>
-              </button>
-            ) : (
-              <button
-                className="btn g sm"
-                onClick={() => setIsAuthModalOpen(true)}
-                style={{
-                  padding: '7px 14px',
-                  fontSize: '13.5px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px'
-                }}
-              >
-                <User size={15} />
-                <span className="sign-in-text">Sign In</span>
-              </button>
-            )}
-
-            {/* Cart Button */}
-            <button
-              className="btn p sm"
-              onClick={() => setIsCartDrawerOpen(true)}
-              style={{
-                padding: '7px 16px',
+                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '7px',
-                fontSize: '13.5px'
+                justifyContent: 'center',
+                borderRadius: '8px',
+                transition: 'background 0.15s ease'
               }}
+              title="Search store"
+              aria-label="Toggle search input"
+            >
+              <Search size={21} strokeWidth={2.2} />
+            </button>
+
+            {/* Wishlist Heart Icon Button */}
+            <button
+              onClick={() => setIsWishlistDrawerOpen(true)}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: '6px',
+                color: wishlistCount > 0 ? '#D94436' : '#1E2B17',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '8px',
+                position: 'relative',
+                transition: 'transform 0.15s ease'
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              title={`Wishlist (${wishlistCount} saved items)`}
+              aria-label={`View wishlist with ${wishlistCount} items`}
+            >
+              <Heart
+                size={21}
+                strokeWidth={2.2}
+                fill={wishlistCount > 0 ? '#D94436' : 'none'}
+                color={wishlistCount > 0 ? '#D94436' : '#1E2B17'}
+              />
+              {wishlistCount > 0 && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '2px',
+                    right: '1px',
+                    background: '#D94436',
+                    color: '#ffffff',
+                    fontSize: '9.5px',
+                    fontWeight: 800,
+                    minWidth: '15px',
+                    height: '15px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    lineHeight: 1,
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
+                  }}
+                >
+                  {wishlistCount}
+                </span>
+              )}
+            </button>
+
+            {/* User Outline Pill Button (Exact Match to Screenshot) */}
+            <button
+              onClick={() => (user ? handleNavClick('account') : setIsAuthModalOpen(true))}
+              className="navbar-user-pill"
+              style={{
+                border: '1.5px solid #3F6B2C',
+                borderRadius: '999px',
+                height: '38px',
+                padding: user ? '0 14px' : '0 16px',
+                background: 'transparent',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                color: '#3F6B2C',
+                cursor: 'pointer',
+                transition: 'background 0.15s ease, border-color 0.15s ease'
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#EDF3DF')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+              title={user ? `Signed in as ${user.name}` : 'Sign In / Account'}
+              aria-label="User Account"
+            >
+              <User size={19} strokeWidth={2.1} />
+              {user && (
+                <span className="navbar-username" style={{ fontSize: '13px', fontWeight: 600 }}>
+                  {user.name.split(' ')[0]}
+                </span>
+              )}
+            </button>
+
+            {/* Cart Solid Green Pill Button with Dark Circular Badge (Exact Match to Screenshot) */}
+            <button
+              onClick={() => setIsCartDrawerOpen(true)}
+              className="navbar-cart-pill"
+              style={{
+                background: '#3F6B2C',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '999px',
+                height: '38px',
+                padding: '0 10px 0 14px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(63, 107, 44, 0.22)',
+                transition: 'background 0.15s ease, transform 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#345B24';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#3F6B2C';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+              title={`Shopping cart with ${cartCount} items`}
               aria-label={`Cart with ${cartCount} items`}
             >
-              <ShoppingBag size={16} />
-              <span className="cart-label">Cart</span>
+              <ShoppingBag size={18} strokeWidth={2.2} />
               <span
                 style={{
-                  background: 'rgba(255, 255, 255, 0.25)',
+                  background: 'rgba(0, 0, 0, 0.28)',
                   color: '#ffffff',
-                  fontSize: '12px',
+                  minWidth: '22px',
+                  height: '22px',
+                  borderRadius: '50%',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '12.5px',
                   fontWeight: 700,
-                  padding: '1px 6px',
-                  borderRadius: '999px',
-                  marginLeft: '2px'
+                  padding: '0 4px',
+                  lineHeight: 1
                 }}
               >
                 {cartCount}
@@ -463,15 +543,19 @@ export const Navbar: React.FC = () => {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="mobile-menu-btn"
               style={{
-                padding: '8px',
+                background: 'none',
+                border: 'none',
+                padding: '6px',
                 color: '#1E2B17',
-                borderRadius: '8px',
+                cursor: 'pointer',
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '8px'
               }}
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X size={23} /> : <Menu size={23} />}
+              {mobileMenuOpen ? <X size={24} strokeWidth={2.2} /> : <Menu size={24} strokeWidth={2.2} />}
             </button>
           </div>
         </div>
@@ -668,24 +752,6 @@ export const Navbar: React.FC = () => {
               >
                 Need Help? Contact Support
               </a>
-              <button
-                onClick={() => handleNavClick('admin')}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  background: '#1E2B17',
-                  color: '#CBE3B0',
-                  padding: '10px',
-                  borderRadius: '10px',
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  marginTop: '4px'
-                }}
-              >
-                <span>⚙️ Open Operations &amp; Admin Dashboard</span>
-              </button>
             </div>
           </div>
         )}

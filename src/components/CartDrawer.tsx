@@ -49,9 +49,9 @@ export const CartDrawer: React.FC = () => {
   };
 
   return (
-    <div className="modal-overlay" onClick={() => setIsCartDrawerOpen(false)} style={{ justifyContent: 'flex-end', padding: 0 }}>
+    <div className="modal-overlay cart-drawer-overlay" onClick={() => setIsCartDrawerOpen(false)} style={{ justifyContent: 'flex-end', padding: 0 }}>
       <div
-        className="modal-content"
+        className="modal-content cart-drawer-content"
         onClick={(e) => e.stopPropagation()}
         style={{
           maxWidth: '460px',
@@ -64,8 +64,13 @@ export const CartDrawer: React.FC = () => {
           background: '#FBFDF5'
         }}
       >
+        {/* Mobile Drag Indicator Bar */}
+        <div className="mobile-sheet-pill" style={{ display: 'none', justifyContent: 'center', paddingTop: '10px' }}>
+          <div style={{ width: '42px', height: '4px', borderRadius: '999px', background: '#D3E0BC' }} />
+        </div>
+
         {/* Drawer Header */}
-        <div style={{ padding: '20px 24px', borderBottom: '1px solid #D3E0BC', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ padding: '16px 20px', borderBottom: '1px solid #D3E0BC', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <ShoppingBag size={22} color="#3F6B2C" />
             <h3 style={{ fontSize: '20px' }}>Your Cart ({cartCount})</h3>

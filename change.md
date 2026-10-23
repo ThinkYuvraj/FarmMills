@@ -38,15 +38,14 @@ This document tracks all changes made to the Farmers Mill web application across
 
 ---
 
-### 4. Mobile & Tablet Responsiveness
-- **Files Modified**:
-  - `src/index.css`:
-    - Added global viewport constraints: `max-width: 100vw; overflow-x: hidden;` preventing horizontal layout shift on mobile screens.
-    - Defined clean breakpoint media queries (`@media (min-width: 992px)` and `@media (max-width: 991px)`) for desktop navigation and mobile hamburger menu.
-    - Compact UI rules for small mobile devices (`<480px`): hides text labels on secondary buttons, retaining crisp icons.
-    - Responsive product grids (`.responsive-products-grid`) adapting cleanly from 1 column on mobile to 2 on tablets and 3-4 on desktops.
-    - Mobile-friendly touch manipulation targets on buttons and input fields.
-    - Modal and drawer responsiveness adjustments for screens under 640px.
+### 4. Mobile & Tablet Responsiveness & App Experience
+- **Files Modified/Created**:
+  - `src/components/MobileBottomNav.tsx`: Created native app-like bottom navigation bar (Home, Shop, Subscribe, Track Order, and Cart drawer trigger with live badge counter).
+  - `src/components/Navbar.tsx`: Removed remaining admin console trigger from mobile menu drawer; added clean quick navigation.
+  - `src/components/CartDrawer.tsx`: Converted drawer on mobile (<640px) to a native iOS/Android bottom sheet with grab indicator pill (`---`) and smooth slide-up animation.
+  - `src/components/CategoryProductSection.tsx`: Enhanced category cards to render as a smooth horizontal swipeable carousel on mobile devices instead of an overwhelming vertical stack.
+  - `src/pages/ProductDetailView.tsx`, `src/pages/CheckoutView.tsx`, `src/pages/CartView.tsx`, `src/pages/HomeView.tsx`: Updated grid column definitions from fixed `minmax(340px, 1fr)` to flexible `minmax(min(100%, 300px), 1fr)`, preventing horizontal overflow on phones.
+  - `src/index.css`: Added bottom padding for mobile main content to ensure bottom bar never obscures content; added smooth tap-action responsiveness.
 
 ---
 

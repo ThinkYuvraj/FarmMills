@@ -336,8 +336,8 @@ export const CheckoutView: React.FC = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '32px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: 'clamp(20px, 3.5vw, 32px)',
             alignItems: 'start'
           }}
         >

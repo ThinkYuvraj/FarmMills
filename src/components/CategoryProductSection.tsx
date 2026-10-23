@@ -138,11 +138,10 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
 
       {/* Product Type Selector Visual Cards Grid */}
       <div
+        className="category-cards-grid"
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
           gap: '16px',
-          marginTop: '32px'
+          marginTop: '28px'
         }}
       >
         {CATEGORIES.filter((c) => c.name !== 'All').map((cat) => {

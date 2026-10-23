@@ -111,6 +111,17 @@ interface ShopContextType {
   subscriptions: SubscriptionItem[];
   addSubscription: (product: Product, pack: PackOption, frequency: 'Weekly' | 'Every 2 Weeks' | 'Monthly') => Promise<void>;
   cancelSubscription: (subId: string) => Promise<void>;
+
+  // Wishlist
+  wishlist: Product[];
+  wishlistCount: number;
+  isWishlisted: (productId: string) => boolean;
+  toggleWishlist: (product: Product) => void;
+  addToWishlist: (product: Product) => void;
+  removeFromWishlist: (productId: string) => void;
+  clearWishlist: () => void;
+  isWishlistDrawerOpen: boolean;
+  setIsWishlistDrawerOpen: (open: boolean) => void;
 }
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
@@ -276,6 +287,64 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     ];
   });
+
+  // Wishlist State (persisted in localStorage)
+  const [wishlist, setWishlist] = useState<Product[]>(() => {
+    try {
+      const saved = localStorage.getItem('farmers_mill_wishlist');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {}
+    return [PRODUCTS[5]];
+  });
+  const [isWishlistDrawerOpen, setIsWishlistDrawerOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('farmers_mill_wishlist', JSON.stringify(wishlist));
+    } catch (e) {
+      console.warn('Failed to save wishlist to localStorage', e);
+    }
+  }, [wishlist]);
+
+  const isWishlisted = (productId: string): boolean => {
+    return wishlist.some((item) => item.id === productId);
+  };
+
+  const toggleWishlist = (product: Product) => {
+    setWishlist((prev) => {
+      const exists = prev.some((p) => p.id === product.id);
+      if (exists) {
+        addToast(`Removed "${product.name}" from your wishlist`, 'info');
+        return prev.filter((p) => p.id !== product.id);
+      } else {
+        addToast(`Saved "${product.name}" to your wishlist! ❤️`, 'success');
+        return [...prev, product];
+      }
+    });
+  };
+
+  const addToWishlist = (product: Product) => {
+    setWishlist((prev) => {
+      if (!prev.some((p) => p.id === product.id)) {
+        addToast(`Saved "${product.name}" to your wishlist! ❤️`, 'success');
+        return [...prev, product];
+      }
+      return prev;
+    });
+  };
+
+  const removeFromWishlist = (productId: string) => {
+    setWishlist((prev) => prev.filter((p) => p.id !== productId));
+    addToast('Item removed from wishlist', 'info');
+  };
+
+  const clearWishlist = () => {
+    setWishlist([]);
+    addToast('Wishlist cleared', 'info');
+  };
 
   // Load products from backend on start
   useEffect(() => {
@@ -899,7 +968,16 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
         closeLabReport,
         subscriptions,
         addSubscription,
-        cancelSubscription
+        cancelSubscription,
+        wishlist,
+        wishlistCount: wishlist.length,
+        isWishlisted,
+        toggleWishlist,
+        addToWishlist,
+        removeFromWishlist,
+        clearWishlist,
+        isWishlistDrawerOpen,
+        setIsWishlistDrawerOpen
       }}
     >
       {children}

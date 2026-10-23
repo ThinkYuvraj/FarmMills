@@ -35,10 +35,10 @@ export const HomeView: React.FC = () => {
         className="w"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '48px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+          gap: 'clamp(28px, 4vw, 48px)',
           alignItems: 'center',
-          paddingTop: '56px',
+          paddingTop: 'clamp(24px, 4vw, 56px)',
           paddingBottom: '24px'
         }}
       >

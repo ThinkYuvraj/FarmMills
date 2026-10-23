@@ -450,3 +450,87 @@ html, body {
 button, a, input, select {
   touch-action: manipulation;
 }
+
+/* Mobile Bottom App Navigation */
+.mobile-bottom-bar {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-bar {
+    display: flex !important;
+  }
+  main {
+    padding-bottom: 74px !important;
+  }
+}
+
+/* Mobile Category Cards Grid Carousel */
+.category-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@media (max-width: 640px) {
+  .category-cards-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    gap: 12px !important;
+    padding-bottom: 6px !important;
+    margin-top: 18px !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .category-cards-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .category-cards-grid > * {
+    flex: 0 0 170px !important;
+    scroll-snap-align: start;
+    padding: 14px 10px !important;
+  }
+}
+
+/* Mobile Bottom Sheet Drawer */
+@media (max-width: 640px) {
+  .cart-drawer-overlay {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+  .cart-drawer-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 88vh !important;
+    max-height: 88vh !important;
+    border-radius: 24px 24px 0 0 !important;
+    animation: sheetSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .mobile-sheet-pill {
+    display: flex !important;
+  }
+}
+
+@keyframes sheetSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Product Card Responsiveness */
+.product-card-body {
+  padding: 18px;
+}
+
+@media (max-width: 600px) {
+  .product-card-body {
+    padding: 12px 14px !important;
+  }
+  .card {
+    border-radius: 16px !important;
+  }
+}
+

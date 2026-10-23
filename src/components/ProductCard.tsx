@@ -111,7 +111,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Product Content */}
-      <div style={{ padding: '18px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
+      <div className="product-card-body" style={{ display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: '12px', color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>

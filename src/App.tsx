@@ -3,6 +3,7 @@ import { ShopProvider, useShop } from './context/ShopContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
+import { WishlistDrawer } from './components/WishlistDrawer';
 import { QuickViewModal } from './components/QuickViewModal';
 import { AuthModal } from './components/AuthModal';
 import { ToastContainer } from './components/Toast';
@@ -19,6 +20,7 @@ import { SubscriptionsView } from './pages/SubscriptionsView';
 import { TrackOrderView } from './pages/TrackOrderView';
 import { AdminDashboardView } from './pages/AdminDashboardView';
 import { LabReportModal } from './components/LabReportModal';
+import { MobileBottomNav } from './components/MobileBottomNav';
 
 const MainContent: React.FC = () => {
   const { activePage } = useShop();
@@ -51,10 +53,12 @@ export const App: React.FC = () => {
 
         {/* Global Drawers & Modals */}
         <CartDrawer />
+        <WishlistDrawer />
         <QuickViewModal />
         <AuthModal />
         <LabReportModal />
         <ToastContainer />
+        <MobileBottomNav />
       </div>
     </ShopProvider>
   );
