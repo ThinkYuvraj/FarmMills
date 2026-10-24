@@ -14,13 +14,17 @@ import {
   Award,
   Thermometer,
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  CheckCircle,
+  MapPin,
+  Clock
 } from 'lucide-react';
 
 export const HomeView: React.FC = () => {
   const {
     setActivePage,
     setSelectedCategory,
+    setIsOutletPickerOpen,
     addToast
   } = useShop();
 
@@ -42,145 +46,163 @@ export const HomeView: React.FC = () => {
       {/* Unified Category & Product Type Section */}
       <CategoryProductSection initialCategory="Fresh Atta" showExploreAllButton={true} />
 
-      {/* FIXED: The Stone Milling Difference (Comparative Story) */}
-      <section className="w" style={{ marginTop: '80px' }}>
+      {/* About Farmers Mill: Company Story & Direct Farm Heritage */}
+      <section className="w" style={{ marginTop: '90px' }}>
         <div
           className="clay-card-static"
           style={{
-            background: 'linear-gradient(135deg, #1E2B17 0%, #293D1F 100%)',
-            borderRadius: '32px',
-            color: '#FBFDF5',
-            padding: 'clamp(28px, 4.5vw, 56px)',
-            overflow: 'hidden'
+            padding: 'clamp(32px, 5vw, 56px)',
+            background: 'linear-gradient(135deg, #FBFDF5 0%, #F4F8EB 100%)',
+            border: '1.5px solid #D3E0BC'
           }}
         >
-          {/* Header */}
-          <div style={{ maxWidth: '680px' }}>
-            <span
-              style={{
-                background: 'rgba(225, 235, 203, 0.2)',
-                color: '#E1EBCB',
-                padding: '6px 14px',
-                borderRadius: '999px',
-                fontSize: '12px',
-                fontWeight: 700,
-                letterSpacing: '0.08em'
-              }}
-            >
-              ANCIENT WISDOM · MODERN TRANSPARENCY
-            </span>
-            <h2 style={{ fontSize: 'clamp(26px, 4vw, 40px)', color: '#ffffff', marginTop: '14px', lineHeight: 1.15 }}>
-              Why stone-ground chakki flour beats industrial roller mills.
-            </h2>
-            <p style={{ fontSize: '15.5px', color: '#D2E0BC', marginTop: '12px', lineHeight: 1.7 }}>
-              Factory mills use fast steel rollers that generate friction temperatures over 85°C. This extreme heat scorches delicate B-vitamins, burns vital germ oils, and dries out the bran. Here is how Farmers Mill natural stone chakkis differ:
-            </p>
-          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))', gap: '48px', alignItems: 'center' }}>
+            {/* Left: Narrative and Values */}
+            <div>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', color: '#1E2B17', lineHeight: 1.15, margin: 0, fontWeight: 800 }}>
+                About Farmers Mill
+              </h2>
+              <p style={{ fontSize: '18px', color: '#3F6B2C', fontWeight: 600, marginTop: '8px' }}>
+                Born in the fields, stone-milled with honest Indian tradition.
+              </p>
+              <p style={{ fontSize: '15.5px', color: '#435538', lineHeight: 1.7, marginTop: '16px' }}>
+                We founded Farmers Mill on one uncompromising belief: your family should never have to eat 4-month-old flour that was crushed under 90°C high-speed factory rollers with the wheat germ and bran stripped away.
+              </p>
+              <p style={{ fontSize: '15px', color: '#5C6E52', lineHeight: 1.65, marginTop: '12px' }}>
+                Across our live artisanal milling hubs in Gurugram, Noida, and Bengaluru, we mill whole grains slowly on natural emery stones below 38°C and cold-press oils in traditional wooden Marachekku Kolhu expellers. Every batch is milled strictly on order and dispatched within 24 hours.
+              </p>
 
-          {/* Comparative Cards Grid */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
-              gap: '24px',
-              marginTop: '36px'
-            }}
-          >
-            {/* Farmers Mill Column */}
-            <div
-              className="clay-card"
-              style={{
-                background: 'rgba(63, 107, 44, 0.55)',
-                border: '1.5px solid #7BC652',
-                borderRadius: '24px',
-                padding: '28px',
-                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#7BC652', fontWeight: 700, fontSize: '18px' }}>
-                  <ShieldCheck size={24} />
-                  <span>Farmers Mill Stone Chakki</span>
+              {/* 4 Pillars Grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginTop: '24px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <CheckCircle size={18} color="#3F6B2C" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <b style={{ fontSize: '13.5px', color: '#1E2B17', display: 'block' }}>Direct From Farmers</b>
+                    <span style={{ fontSize: '12px', color: '#5C6E52' }}>Fair price, single-origin MP &amp; Rajasthan harvest</span>
+                  </div>
                 </div>
-                <span
-                  style={{
-                    background: '#7BC652',
-                    color: '#1E2B17',
-                    fontWeight: 800,
-                    fontSize: '11px',
-                    padding: '3px 8px',
-                    borderRadius: '999px'
-                  }}
-                >
-                  &lt; 35°C COLD
-                </span>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <CheckCircle size={18} color="#3F6B2C" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <b style={{ fontSize: '13.5px', color: '#1E2B17', display: 'block' }}>100% Whole Grain</b>
+                    <span style={{ fontSize: '12px', color: '#5C6E52' }}>Zero maida, zero bleaching chemicals</span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <CheckCircle size={18} color="#3F6B2C" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <b style={{ fontSize: '13.5px', color: '#1E2B17', display: 'block' }}>Cold Stone Milled (&lt;38°C)</b>
+                    <span style={{ fontSize: '12px', color: '#5C6E52' }}>Intact natural germ oils &amp; aroma</span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <CheckCircle size={18} color="#3F6B2C" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <b style={{ fontSize: '13.5px', color: '#1E2B17', display: 'block' }}>24-Hr Freshness Window</b>
+                    <span style={{ fontSize: '12px', color: '#5C6E52' }}>Milled on order, delivered fresh</span>
+                  </div>
+                </div>
               </div>
 
-              <ul style={{ paddingLeft: '18px', fontSize: '14px', lineHeight: 1.85, color: '#F2F6E6', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <li>
-                  <b>Low-RPM Stone Pulverization:</b> Friction temperature stays below 35°C, ensuring zero vitamin destruction.
-                </li>
-                <li>
-                  <b>100% Whole Grain Retained:</b> Retains the aleurone layer, rich wheat germ oils, and natural dietary fiber.
-                </li>
-                <li>
-                  <b>Soft Rotis for 12+ Hours:</b> Natural moisture absorption creates fluffy, tender rotis that don't dry out.
-                </li>
-                <li>
-                  <b>Zero Preservatives or Bleach:</b> Zero benzoyl peroxide, zero maida blending, and zero artificial shelf extenders.
-                </li>
-                <li>
-                  <b>Milled on Order with Date:</b> Dispatched within 24 hours of stone milling with batch date stamped on pack.
-                </li>
-              </ul>
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '30px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => {
+                    setActivePage('story');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="clay-btn-primary"
+                  style={{ padding: '12px 22px', fontSize: '14px', fontWeight: 700 }}
+                >
+                  <span>Our Complete Story</span>
+                  <ArrowRight size={16} />
+                </button>
+
+                <button
+                  onClick={() => {
+                    setSelectedCategory('All');
+                    setActivePage('shop');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="clay-btn-secondary"
+                  style={{ padding: '12px 20px', fontSize: '14px', fontWeight: 700 }}
+                >
+                  <span>Explore All Products</span>
+                </button>
+              </div>
             </div>
 
-            {/* Industrial Factory Column */}
+            {/* Right: Company Stats & Outlets Overview Card */}
             <div
-              className="clay-card"
               style={{
-                background: 'rgba(255, 255, 255, 0.06)',
-                border: '1.5px solid rgba(255, 138, 128, 0.4)',
+                background: '#ffffff',
                 borderRadius: '24px',
-                padding: '28px'
+                border: '1px solid #D3E0BC',
+                padding: '28px',
+                boxShadow: '0 8px 24px rgba(30, 43, 23, 0.06)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FF8A80', fontWeight: 700, fontSize: '18px' }}>
-                  <Flame size={24} />
-                  <span>Commercial Factory Mills</span>
-                </div>
-                <span
-                  style={{
-                    background: 'rgba(255, 138, 128, 0.2)',
-                    color: '#FF8A80',
-                    fontWeight: 800,
-                    fontSize: '11px',
-                    padding: '3px 8px',
-                    borderRadius: '999px'
-                  }}
-                >
-                  &gt; 85°C HEAT
+              <div style={{ borderBottom: '1px solid #EDF3DF', paddingBottom: '16px' }}>
+                <span style={{ fontSize: '12px', color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                  The Live Mill Network
                 </span>
+                <h3 style={{ fontSize: '20px', color: '#1E2B17', marginTop: '4px' }}>
+                  Freshness You Can Trace to the Grain
+                </h3>
               </div>
 
-              <ul style={{ paddingLeft: '18px', fontSize: '14px', lineHeight: 1.85, color: '#C8D8BE', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <li>
-                  <b>High Friction Scorching:</b> Steel rollers exceed 85°C–90°C, burning away volatile nutrients and natural sweetness.
-                </li>
-                <li>
-                  <b>Germ &amp; Bran Stripped:</b> Vital nutritious germ oils removed to prolong warehouse shelf-life up to 6 months.
-                </li>
-                <li>
-                  <b>Rubber-like Rotis:</b> Rotis turn stiff, chewy, or rubbery within 2 hours of cooking.
-                </li>
-                <li>
-                  <b>Chemical Bleaching:</b> Frequently treated with chemical bleaches and anti-caking agents for stark white color.
-                </li>
-                <li>
-                  <b>Stale Warehouse Storage:</b> Packet flours sit in distribution hubs for months before reaching supermarket shelves.
-                </li>
-              </ul>
+              {/* 3 Metric Cards */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+                <div style={{ background: '#F8FAF2', padding: '16px', borderRadius: '16px', border: '1px solid #E1EBCB' }}>
+                  <b style={{ fontSize: '26px', color: '#1E2B17', display: 'block', lineHeight: 1 }}>18,400+</b>
+                  <span style={{ fontSize: '12px', color: '#5C6E52', marginTop: '4px', display: 'block' }}>Families nourished with pure stoneground harvest</span>
+                </div>
+
+                <div style={{ background: '#F8FAF2', padding: '16px', borderRadius: '16px', border: '1px solid #E1EBCB' }}>
+                  <b style={{ fontSize: '26px', color: '#3F6B2C', display: 'block', lineHeight: 1 }}>3 Hubs</b>
+                  <span style={{ fontSize: '12px', color: '#5C6E52', marginTop: '4px', display: 'block' }}>Live milling outlets in Gurugram, Noida &amp; Bengaluru</span>
+                </div>
+
+                <div style={{ background: '#F8FAF2', padding: '16px', borderRadius: '16px', border: '1px solid #E1EBCB' }}>
+                  <b style={{ fontSize: '26px', color: '#1E2B17', display: 'block', lineHeight: 1 }}>230+</b>
+                  <span style={{ fontSize: '12px', color: '#5C6E52', marginTop: '4px', display: 'block' }}>Pesticides tested zero via NABL certified labs</span>
+                </div>
+
+                <div style={{ background: '#F8FAF2', padding: '16px', borderRadius: '16px', border: '1px solid #E1EBCB' }}>
+                  <b style={{ fontSize: '26px', color: '#3F6B2C', display: 'block', lineHeight: 1 }}>&lt; 24h</b>
+                  <span style={{ fontSize: '12px', color: '#5C6E52', marginTop: '4px', display: 'block' }}>From stone grinding directly to your home doorstep</span>
+                </div>
+              </div>
+
+              {/* Outlets Mini-Bar */}
+              <div
+                onClick={() => setIsOutletPickerOpen(true)}
+                style={{
+                  padding: '14px 16px',
+                  background: 'linear-gradient(135deg, #E1EBCB 0%, #D4E3BA 100%)',
+                  borderRadius: '14px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '10px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <MapPin size={18} color="#3F6B2C" />
+                  <div>
+                    <b style={{ fontSize: '13px', color: '#1E2B17', display: 'block' }}>Explore Live Mill Outlets</b>
+                    <span style={{ fontSize: '11.5px', color: '#435538' }}>Pick your nearest chakki hub for direct dispatch</span>
+                  </div>
+                </div>
+                <ArrowRight size={16} color="#1E2B17" />
+              </div>
             </div>
           </div>
         </div>

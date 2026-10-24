@@ -31,16 +31,16 @@ export const OutletPickerModal: React.FC<OutletPickerModalProps> = ({
       const saved = localStorage.getItem('farmers_mill_location_label');
       if (saved) return saved;
     } catch (e) {}
-    return 'Default Hub: MCC Signature Heights, Rajnagar Extension';
+    return 'Default Hub: Udyog Vihar Agro Extraction Facility, Gurugram';
   });
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Active reference coordinates (defaults to primary hub MCC Signature Heights, Rajnagar Extension)
+  // Active reference coordinates (defaults to primary hub Udyog Vihar Agro Facility, Gurugram)
   const referenceCoords = useMemo(() => {
-    return userCoords || { lat: 28.7058, lng: 77.4265 };
+    return userCoords || { lat: 28.5034, lng: 77.0865 };
   }, [userCoords]);
 
   // Compute nearest outlet relative to current reference coordinates
@@ -91,7 +91,7 @@ export const OutletPickerModal: React.FC<OutletPickerModalProps> = ({
     }
 
     const geoTimeout = setTimeout(() => {
-      handleFallbackLocation('Location request timed out. Using MCC Signature Heights, Rajnagar Extension.');
+      handleFallbackLocation('Location request timed out. Using primary hub: Udyog Vihar Agro Facility, Gurugram.');
     }, 7000);
 
     navigator.geolocation.getCurrentPosition(
@@ -117,13 +117,13 @@ export const OutletPickerModal: React.FC<OutletPickerModalProps> = ({
       },
       (error) => {
         clearTimeout(geoTimeout);
-        let msg = 'Using primary hub: MCC Signature Heights, Rajnagar Extension.';
+        let msg = 'Using primary hub: Udyog Vihar Agro Extraction Facility, Gurugram.';
         if (error.code === error.PERMISSION_DENIED) {
           msg = 'Location permission was denied. You can enter your 6-digit Pincode below.';
         } else if (error.code === error.POSITION_UNAVAILABLE) {
-          msg = 'GPS signal unavailable. Defaulted to MCC Signature Heights Hub.';
+          msg = 'GPS signal unavailable. Defaulted to Udyog Vihar Hub.';
         } else if (error.code === error.TIMEOUT) {
-          msg = 'GPS request timed out. Defaulted to Rajnagar Extension Hub.';
+          msg = 'GPS request timed out. Defaulted to Gurugram Udyog Vihar Hub.';
         }
         handleFallbackLocation(msg);
       },
@@ -141,20 +141,20 @@ export const OutletPickerModal: React.FC<OutletPickerModalProps> = ({
     try {
       const serverLoc = await api.detectLocation();
       const coords = {
-        lat: serverLoc.latitude || 28.7058,
-        lng: serverLoc.longitude || 77.4265
+        lat: serverLoc.latitude || 28.5034,
+        lng: serverLoc.longitude || 77.0865
       };
       setUserCoords(coords);
-      const label = `${serverLoc.locality || 'MCC Signature Heights, Rajnagar Extension'} (${serverLoc.pincode || '201017'})`;
+      const label = `${serverLoc.locality || 'Udyog Vihar Phase 4 Agro Facility'} (${serverLoc.pincode || '122016'})`;
       setLocationNote(label);
       try {
         localStorage.setItem('farmers_mill_user_coords', JSON.stringify(coords));
         localStorage.setItem('farmers_mill_location_label', label);
       } catch (e) {}
     } catch (e) {
-      const coords = { lat: 28.7058, lng: 77.4265 };
+      const coords = { lat: 28.5034, lng: 77.0865 };
       setUserCoords(coords);
-      setLocationNote('MCC Signature Heights, Rajnagar Extension (201017)');
+      setLocationNote('Udyog Vihar Agro Facility, Gurugram (122016)');
     }
   };
 
@@ -209,6 +209,11 @@ export const OutletPickerModal: React.FC<OutletPickerModalProps> = ({
           boxSizing: 'border-box'
         }}
       >
+        {/* Mobile Sheet Drag Indicator Bar */}
+        <div className="mobile-sheet-pill" style={{ display: 'none', justifyContent: 'center', marginBottom: '14px' }}>
+          <div style={{ width: '44px', height: '5px', borderRadius: '999px', background: '#CBD9B6' }} />
+        </div>
+
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

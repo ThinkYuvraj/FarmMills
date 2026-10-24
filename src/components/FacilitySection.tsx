@@ -45,10 +45,7 @@ export const FacilitySection: React.FC = () => {
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px', marginBottom: '32px' }}>
           <div>
-            <span style={{ color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.08em', fontSize: '13px' }}>
-              DIRECT FROM THE MILL
-            </span>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 38px)', marginTop: '6px' }}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 38px)', marginTop: '0' }}>
               See our production facility in action.
             </h2>
             <p style={{ fontSize: '15px', color: '#5C6E52', marginTop: '6px', maxWidth: '580px' }}>

@@ -184,24 +184,7 @@ export const ShopView: React.FC = () => {
 
         <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: '#E1EBCB',
-                color: '#3F6B2C',
-                fontWeight: 700,
-                fontSize: '12px',
-                letterSpacing: '0.08em',
-                padding: '6px 14px',
-                borderRadius: '999px',
-                textTransform: 'uppercase'
-              }}
-            >
-              <Sparkles size={14} /> 100% Traditional Stone &amp; Wood Milled
-            </span>
-            <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 46px)', marginTop: '8px', color: '#1E2B17' }}>
+            <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 46px)', color: '#1E2B17', marginTop: '4px' }}>
               Farmers Mill Marketplace
             </h1>
             <p style={{ fontSize: '16px', color: '#5C6E52', marginTop: '6px', maxWidth: '680px', lineHeight: 1.5 }}>

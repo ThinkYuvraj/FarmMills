@@ -136,3 +136,48 @@ To handle at least 10,000 concurrent clients simultaneously without degradation 
 
 - **Port Binding**: `0.0.0.0:3000`
 - **Pending Tasks Tracker**: Maintained in `Not done.md` at workspace root.
+
+---
+
+## Step 10: Complete UI Harmonization, Zero-Pill Discipline & Company Showcase (October 2026)
+
+- **Universal Zero-Pill Cleanup**:
+  - Removed all remaining floating pill badges above titles across secondary pages (`ShopView.tsx`, `OurStoryView.tsx`, `SubscriptionsView.tsx`, `TrackOrderView.tsx`).
+  - Streamlined `CategoryProductSection.tsx` category highlight header to eliminate nested pills.
+- **About Farmers Mill Showcase on Main Page (`HomeView.tsx`)**:
+  - Added dedicated, typographic "About Farmers Mill" company section between category products and facility sections.
+  - Highlights direct farm sourcing (Sehore, Bikaner, Bharatpur), cold stone milling (<38°C), 100% whole grain integrity, 24-hr freshness window, live mill outlets, and 18,400+ family milestone metrics.
+- **Complete Purchase Experience ("Add Everything When It Comes to Purchase")**:
+  - Added instant `Buy Now · ₹Amount` button next to quantity stepper and `Add to Cart` on every product card across the main page and shop.
+  - One-click trigger adds the item and immediately opens the cart checkout drawer.
+- **Shop Section Completeness ("Show All Products to Buy in Shop Section")**:
+  - Validated that `ShopView.tsx` shows all 20 harvest products in flat grid and grouped category layouts with pack selectors, quantity controls, Add to Cart, and Buy Now.
+- **Outlet Consistency**:
+  - Replaced all historical mentions of MCC Signature Heights in `OurStoryView.tsx` with Gurugram Udyog Vihar Mill Hub, Noida Sector 62, and Bengaluru Indiranagar.
+- **Verification**:
+  - `lint_applet`: 0 errors.
+  - `compile_applet`: Build succeeded.
+  - HTTP probe `http://127.0.0.1:3000/`: HTTP 200 OK.
+
+---
+
+## Step 11: Top Banner Outlet Pill Removal & Comprehensive Mobile UX Optimization (October 2026)
+
+- **Top Announcement Banner**:
+  - Removed the `📍 Mill: Udyog Vihar Agro Extraction Facility Change` pill button from the top dark green notification banner in `Navbar.tsx` as requested by user screenshot.
+- **Mobile Login Screen Optimization (`AuthModal.tsx`)**:
+  - Upgraded modal to a mobile bottom sheet with top drag indicator pill (`.mobile-sheet-pill`).
+  - Enforced `16px` font size on all text/email/password inputs on mobile to prevent automatic iOS Safari viewport zoom.
+  - Enlarged touch targets for close button (38px x 38px), 3-way mode switchers (`Sign In`, `Sign Up`, `Passkey`), and social login buttons (Google & Apple >= 46px height).
+  - Compacted the security shield callout and demo account auto-filler for clean viewing on small smartphone screens (360px - 428px).
+- **Universal Mobile Modal Enhancements**:
+  - `QuickViewModal.tsx`: Added mobile drag pill and responsive image sizing (`quickview-img-frame` max 240px height on mobile) so details, pack pills, and Add to Cart are instantly visible without excessive scrolling.
+  - `OutletPickerModal.tsx`: Added mobile drag pill, enlarged touch targets, and removed legacy fallback references.
+  - `LabReportModal.tsx`: Added mobile drag pill and enlarged touch close button.
+  - `CartDrawer.tsx` & `Footer.tsx`: Added safe-area padding at the bottom (`.footer-root padding-bottom: 64px`) to ensure content is never obscured by the mobile bottom navigation bar (`MobileBottomNav.tsx`).
+- **Verification**:
+  - `lint_applet`: 0 errors.
+  - `compile_applet`: Build succeeded.
+  - HTTP probe `http://127.0.0.1:3000/`: HTTP 200 OK.
+
+

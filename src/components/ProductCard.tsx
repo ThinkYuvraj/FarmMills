@@ -8,7 +8,7 @@ interface ProductCardProps {
 }
 
 const ProductCardComponent: React.FC<ProductCardProps> = ({ product }) => {
-  const { addToCart, openProductDetail, setQuickViewProduct } = useShop();
+  const { addToCart, openProductDetail, setQuickViewProduct, setIsCartDrawerOpen } = useShop();
 
   const [selectedPack, setSelectedPack] = useState<PackOption>(product.packOptions[0] || { size: '1 kg', price: 100 });
   const [quantity, setQuantity] = useState<number>(1);
@@ -39,6 +39,12 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ product }) => {
     setTimeout(() => {
       setIsAdding(false);
     }, 700);
+  };
+
+  const handleBuyNow = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    addToCart(product, selectedPack, quantity);
+    setIsCartDrawerOpen(true);
   };
 
   const discountPercent = selectedPack?.originalPrice
@@ -194,38 +200,59 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ product }) => {
             )}
           </div>
 
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-            {/* Stepper */}
-            <div className="quantity-stepper clay-inset" onClick={(e) => e.stopPropagation()}>
-              <button onClick={(e) => handleQuantity(e, -1)} aria-label="Decrease quantity">
-                −
-              </button>
-              <span>{quantity}</span>
-              <button onClick={(e) => handleQuantity(e, 1)} aria-label="Increase quantity">
-                +
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+              {/* Stepper */}
+              <div className="quantity-stepper clay-inset" onClick={(e) => e.stopPropagation()}>
+                <button onClick={(e) => handleQuantity(e, -1)} aria-label="Decrease quantity">
+                  −
+                </button>
+                <span>{quantity}</span>
+                <button onClick={(e) => handleQuantity(e, 1)} aria-label="Increase quantity">
+                  +
+                </button>
+              </div>
+
+              {/* Add to Cart button */}
+              <button
+                onClick={handleAddToCart}
+                className="clay-btn-secondary"
+                style={{
+                  flex: 1,
+                  padding: '9px 12px',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px'
+                }}
+              >
+                {isAdding ? (
+                  <>
+                    <Check size={15} color="#3F6B2C" /> Added
+                  </>
+                ) : (
+                  <>
+                    <Plus size={15} /> Add to Cart
+                  </>
+                )}
               </button>
             </div>
 
-            {/* Add to Cart button */}
+            {/* Instant Buy Now Button */}
             <button
-              onClick={handleAddToCart}
+              onClick={handleBuyNow}
               className="clay-btn-primary"
               style={{
-                flex: 1,
-                padding: '10px 14px',
+                width: '100%',
+                padding: '9px 14px',
                 fontSize: '13px',
-                background: isAdding ? '#2E7D32' : undefined
+                fontWeight: 700,
+                letterSpacing: '0.02em'
               }}
             >
-              {isAdding ? (
-                <>
-                  <Check size={16} /> Added
-                </>
-              ) : (
-                <>
-                  <Plus size={16} /> Add to cart
-                </>
-              )}
+              Buy Now · ₹{(selectedPack?.price || 0) * quantity}
             </button>
           </div>
         </div>

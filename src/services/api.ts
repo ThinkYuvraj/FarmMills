@@ -146,13 +146,13 @@ export const api = {
       return json.data;
     } catch (e) {
       return {
-        latitude: 28.7058,
-        longitude: 77.4265,
-        city: 'Ghaziabad',
-        state: 'Uttar Pradesh',
-        locality: 'MCC Signature Heights, Rajnagar Extension',
-        pincode: '201017',
-        primaryHubId: 'outlet-mcc-rajnagar'
+        latitude: 28.5034,
+        longitude: 77.0865,
+        city: 'Gurugram',
+        state: 'Haryana',
+        locality: 'Udyog Vihar Phase 4 Agro Facility',
+        pincode: '122016',
+        primaryHubId: 'outlet-gurugram-udyog'
       };
     }
   },

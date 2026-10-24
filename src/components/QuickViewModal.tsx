@@ -54,6 +54,11 @@ export const QuickViewModal: React.FC = () => {
           position: 'relative'
         }}
       >
+        {/* Mobile Sheet Drag Indicator Bar */}
+        <div className="mobile-sheet-pill" style={{ display: 'none', justifyContent: 'center', paddingTop: '12px', paddingBottom: '4px' }}>
+          <div style={{ width: '44px', height: '5px', borderRadius: '999px', background: '#CBD9B6' }} />
+        </div>
+
         {/* Close Button */}
         <button
           onClick={() => setQuickViewProduct(null)}
@@ -82,9 +87,8 @@ export const QuickViewModal: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
           {/* Product Image Frame */}
           <div
+            className="quickview-img-frame"
             style={{
-              minHeight: '340px',
-              maxHeight: '440px',
               background: '#E1EBCB',
               position: 'relative',
               overflow: 'hidden'

@@ -94,23 +94,6 @@ export const TrackOrderView: React.FC = () => {
       {/* Hero Header */}
       <section style={{ background: '#1E2B17', color: '#ffffff', paddingTop: '56px', paddingBottom: '56px' }}>
         <div className="w" style={{ maxWidth: '840px', textAlign: 'center' }}>
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: 'rgba(225, 235, 203, 0.15)',
-              color: '#E1EBCB',
-              fontSize: '13px',
-              fontWeight: 700,
-              padding: '6px 14px',
-              borderRadius: '999px',
-              marginBottom: '16px'
-            }}
-          >
-            <Sparkles size={14} /> LIVE STONEGROUND CHAKKI MONITOR
-          </span>
-
           <h1 style={{ fontSize: 'clamp(32px, 5vw, 48px)', color: '#ffffff', lineHeight: 1.15 }}>
             Track Your Fresh Milling Order
           </h1>

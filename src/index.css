@@ -598,12 +598,24 @@ html, body {
 /* Modal and Drawer responsiveness */
 @media (max-width: 640px) {
   .modal-overlay {
-    padding: 8px !important;
+    padding: 0 !important;
+    align-items: flex-end !important;
   }
   .modal-content {
-    border-radius: 18px !important;
-    max-height: 94vh !important;
+    border-radius: 24px 24px 0 0 !important;
+    max-height: 90vh !important;
     width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    animation: sheetSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 12px)) !important;
+  }
+  .modal-content .mobile-sheet-pill {
+    display: flex !important;
+  }
+  /* Prevent iOS automatic zoom on focus */
+  .input-field, input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select, textarea {
+    font-size: 16px !important;
   }
 }
 
@@ -623,6 +635,20 @@ button, a, input, select {
   }
   main {
     padding-bottom: 74px !important;
+  }
+  .footer-root {
+    padding-bottom: 64px !important;
+  }
+}
+
+.quickview-img-frame {
+  min-height: 340px;
+  max-height: 440px;
+}
+@media (max-width: 640px) {
+  .quickview-img-frame {
+    min-height: 200px !important;
+    max-height: 240px !important;
   }
 }
 

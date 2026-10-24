@@ -195,27 +195,6 @@ export const HeroSection: React.FC = () => {
       >
         {/* Left Column: Editorial Copy & Value Anchor */}
         <div>
-          {/* Zero-Pill Compliant Editorial Kicker */}
-          <p
-            style={{
-              fontSize: '12.5px',
-              fontWeight: 800,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: '#3F6B2C',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '10px'
-            }}
-          >
-            <span>Slow Stoneground</span>
-            <span style={{ opacity: 0.5 }}>·</span>
-            <span>100% Whole Grain &amp; Wood-Pressed</span>
-            <span style={{ opacity: 0.5 }}>·</span>
-            <span>Milled On Order</span>
-          </p>
-
           <h1
             style={{
               fontSize: 'clamp(32px, 4.4vw, 54px)',
@@ -378,28 +357,6 @@ export const HeroSection: React.FC = () => {
                   background: 'linear-gradient(to top, rgba(20, 29, 15, 0.92) 0%, rgba(20, 29, 15, 0.25) 45%, rgba(0,0,0,0.1) 100%)'
                 }}
               />
-
-              {/* Quality Seal Stamp Badge */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '16px',
-                  left: '16px',
-                  background: 'rgba(251, 253, 245, 0.95)',
-                  backdropFilter: 'blur(8px)',
-                  borderRadius: '12px',
-                  padding: '6px 12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-                }}
-              >
-                <Award size={14} color="#3F6B2C" />
-                <span style={{ fontSize: '11.5px', fontWeight: 800, color: '#1E2B17', letterSpacing: '0.04em' }}>
-                  NABL ACCREDITED · 100% PURE
-                </span>
-              </div>
 
               {/* Quick View Button */}
               {activeProduct && (

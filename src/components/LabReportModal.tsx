@@ -21,18 +21,23 @@ export const LabReportModal: React.FC = () => {
         onClick={(e) => e.stopPropagation()}
         style={{ maxWidth: '680px', padding: '0', overflow: 'hidden' }}
       >
+        {/* Mobile Sheet Drag Indicator Bar */}
+        <div className="mobile-sheet-pill" style={{ display: 'none', justifyContent: 'center', paddingTop: '10px', background: '#1E2B17' }}>
+          <div style={{ width: '44px', height: '5px', borderRadius: '999px', background: 'rgba(255, 255, 255, 0.3)' }} />
+        </div>
+
         {/* Certificate Header */}
-        <div style={{ background: '#1E2B17', color: '#FBFDF5', padding: '24px 28px', position: 'relative' }}>
+        <div style={{ background: '#1E2B17', color: '#FBFDF5', padding: '20px 24px', position: 'relative' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: '#3F6B2C', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <ShieldCheck size={26} color="#7BC652" />
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#3F6B2C', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <ShieldCheck size={24} color="#7BC652" />
               </div>
               <div>
                 <span style={{ fontSize: '11px', color: '#B3C4A5', letterSpacing: '0.08em', fontWeight: 700, textTransform: 'uppercase' }}>
                   CERTIFIED TEST REPORT · NABL ACCREDITED
                 </span>
-                <h3 style={{ fontSize: '22px', color: '#ffffff', marginTop: '2px' }}>
+                <h3 style={{ fontSize: '20px', color: '#ffffff', marginTop: '2px', lineHeight: 1.2 }}>
                   Purity &amp; Quality Test Certificate
                 </h3>
               </div>
@@ -41,18 +46,20 @@ export const LabReportModal: React.FC = () => {
             <button
               onClick={closeLabReport}
               style={{
-                width: '32px',
-                height: '32px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '50%',
-                background: 'rgba(255,255,255,0.1)',
+                background: 'rgba(255,255,255,0.15)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#ffffff'
+                color: '#ffffff',
+                cursor: 'pointer',
+                flexShrink: 0
               }}
               aria-label="Close modal"
             >
-              <X size={16} />
+              <X size={18} />
             </button>
           </div>
 

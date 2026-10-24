@@ -70,15 +70,47 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
     }
   };
 
-  // Helper to match category gracefully
+  // Helper to match category gracefully across all product types
   const isProductInCategory = (p: Product, cat: string) => {
-    if (cat === 'All') return true;
+    if (!cat || cat === 'All') return true;
     if (p.category === cat) return true;
-    if (cat === 'Fresh Atta' && (p.category === 'Atta' || p.subCategory?.includes('Atta') || p.name.includes('Atta') || p.name.includes('Flour'))) {
-      return true;
+
+    const lowerCat = cat.toLowerCase();
+    const pCat = (p.category || '').toLowerCase();
+    const pSub = (p.subCategory || '').toLowerCase();
+    const pName = (p.name || '').toLowerCase();
+
+    if (lowerCat.includes('atta') || lowerCat.includes('wheat')) {
+      return pCat.includes('atta') || pSub.includes('atta') || pName.includes('atta') || pName.includes('wheat') || (pCat.includes('flour') && !pCat.includes('besan'));
     }
+
+    if (lowerCat.includes('besan') || lowerCat.includes('flour')) {
+      return pCat.includes('besan') || pSub.includes('besan') || pName.includes('besan') || pSub.includes('ragi') || pSub.includes('jowar') || pCat.includes('flours');
+    }
+
+    if (lowerCat.includes('spice')) {
+      return pCat.includes('spice') || pSub.includes('turmeric') || pSub.includes('coriander') || pSub.includes('chilli') || pName.includes('haldi') || pName.includes('dhaniya') || pName.includes('mirch');
+    }
+
+    if (lowerCat.includes('oil') || lowerCat.includes('ghee')) {
+      return pCat.includes('oil') || pCat.includes('ghee') || pSub.includes('oil') || pSub.includes('ghee') || pName.includes('oil') || pName.includes('ghee') || pName.includes('kolhu') || pName.includes('kachi ghani');
+    }
+
+    if (lowerCat.includes('honey') || lowerCat.includes('pickle')) {
+      return pCat.includes('honey') || pCat.includes('pickle') || pSub.includes('honey') || pSub.includes('pickle') || pName.includes('honey') || pName.includes('pickle') || pName.includes('mango');
+    }
+
     return false;
   };
+
+  const CATEGORY_TABS = [
+    { id: 'Fresh Atta', label: 'Chakki Fresh Atta', icon: '🌾' },
+    { id: 'Besan & Flours', label: 'Besan & Millets', icon: '🥣' },
+    { id: 'Spices', label: 'Stone Ground Spices', icon: '🌶️' },
+    { id: 'Oils & Ghee', label: 'Wood-Pressed Oils & Ghee', icon: '🫒' },
+    { id: 'Honey & Pickles', label: 'Raw Honey & Pickles', icon: '🍯' },
+    { id: 'All', label: 'All Fresh Harvest', icon: '🌿' }
+  ];
 
   // Sub-categories available for current product type
   const subCategories = React.useMemo(() => {
@@ -111,17 +143,14 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
   };
 
   return (
-    <section className="w" style={{ marginTop: '72px' }}>
-      {/* Section Header */}
+    <section className="w" style={{ marginTop: '64px' }}>
+      {/* Section Header - Zero Pill Above Heading */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <span className="clay-badge" style={{ marginBottom: '8px' }}>
-            <Sparkles size={13} /> CHOOSE BY PRODUCT TYPE
-          </span>
-          <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', marginTop: '6px', color: '#1E2B17' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', margin: 0, color: '#1E2B17', fontWeight: 800 }}>
             What would you like freshly milled today?
           </h2>
-          <p className="subheading" style={{ marginTop: '6px', maxWidth: '640px' }}>
+          <p className="subheading" style={{ marginTop: '8px', maxWidth: '640px' }}>
             Select a product category below to explore honest, stone-milled harvests with zero preservatives and same-day dispatch.
           </p>
         </div>
@@ -142,113 +171,44 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
         )}
       </div>
 
-      {/* Product Type Selector Visual Cards Grid */}
+      {/* Sleek Horizontal Category Pill Tabs (Exact Design Match) */}
       <div
-        className="category-cards-grid"
         style={{
-          gap: '16px',
-          marginTop: '28px'
+          display: 'flex',
+          gap: '10px',
+          overflowX: 'auto',
+          paddingBottom: '8px',
+          marginTop: '22px',
+          scrollbarWidth: 'none',
+          WebkitOverflowScrolling: 'touch'
         }}
       >
-        {CATEGORIES.filter((c) => c.name !== 'All').map((cat) => {
-          const isSelected = selectedType === cat.name;
-          const count = products.filter((p) => isProductInCategory(p, cat.name)).length;
-
+        {CATEGORY_TABS.map((tab) => {
+          const isSelected = selectedType === tab.id;
           return (
-            <div
-              key={cat.name}
-              onClick={() => handleTypeSelect(cat.name)}
-              className="clay-card"
+            <button
+              key={tab.id}
+              onClick={() => handleTypeSelect(tab.id)}
               style={{
-                padding: '16px',
+                background: isSelected ? '#1E2B17' : 'rgba(235, 243, 222, 0.75)',
+                color: isSelected ? '#ffffff' : '#2D4421',
+                border: isSelected ? '1px solid #1E2B17' : '1px solid #CBD9B6',
+                borderRadius: '999px',
+                padding: '8px 18px',
+                fontSize: '13.5px',
+                fontWeight: isSelected ? 700 : 600,
                 cursor: 'pointer',
-                textAlign: 'center',
-                position: 'relative',
-                background: isSelected ? '#F2F6E6' : '#FBFDF5',
-                borderColor: isSelected ? '#3F6B2C' : 'rgba(211, 224, 188, 0.75)',
-                borderWidth: isSelected ? '2px' : '1.5px',
-                transform: isSelected ? 'translateY(-3px)' : 'none'
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.18s ease',
+                boxShadow: isSelected ? '0 3px 10px rgba(30, 43, 23, 0.25)' : 'none'
               }}
             >
-              {/* Active Selection Indicator Badge */}
-              {isSelected && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '10px',
-                    right: '10px',
-                    background: '#3F6B2C',
-                    color: '#ffffff',
-                    borderRadius: '50%',
-                    width: '24px',
-                    height: '24px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                    zIndex: 2
-                  }}
-                >
-                  <CheckCircle size={14} />
-                </div>
-              )}
-
-              {/* Category Image Thumbnail */}
-              <div
-                style={{
-                  aspectRatio: '1/1',
-                  borderRadius: '16px',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  background: '#E1EBCB'
-                }}
-              >
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    transition: 'transform 0.3s ease',
-                    transform: isSelected ? 'scale(1.05)' : 'scale(1)'
-                  }}
-                />
-              </div>
-
-              {/* Title & Metadata */}
-              <b
-                style={{
-                  display: 'block',
-                  marginTop: '12px',
-                  fontSize: '16px',
-                  color: isSelected ? '#3F6B2C' : '#1E2B17',
-                  fontWeight: 700
-                }}
-              >
-                {cat.name}
-              </b>
-
-              <p style={{ fontSize: '12px', color: '#5C6E52', marginTop: '4px', lineHeight: 1.4 }}>
-                {cat.desc}
-              </p>
-
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  marginTop: '10px',
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  color: isSelected ? '#3F6B2C' : '#5C6E52'
-                }}
-              >
-                <span>{count} products</span>
-                <span>·</span>
-                <span>{isSelected ? 'Selected' : 'Choose →'}</span>
-              </div>
-            </div>
+              <span>{tab.icon}</span>
+              <span>{tab.label}</span>
+            </button>
           );
         })}
       </div>
@@ -281,8 +241,8 @@ export const CategoryProductSection: React.FC<CategoryProductSectionProps> = ({
               >
                 {activeHighlight.millingTag}
               </span>
-              <span className="clay-badge" style={{ fontSize: '12px' }}>
-                {activeHighlight.processBadge}
+              <span style={{ fontSize: '12.5px', color: '#5C6E52', fontWeight: 600 }}>
+                · {activeHighlight.processBadge}
               </span>
             </div>
 

@@ -49,23 +49,7 @@ export const SubscriptionsView: React.FC = () => {
       <section className="w" style={{ paddingTop: '40px' }}>
         {/* Header */}
         <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto' }}>
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: '#E1EBCB',
-              color: '#3F6B2C',
-              fontWeight: 700,
-              fontSize: '13px',
-              letterSpacing: '0.08em',
-              padding: '6px 14px',
-              borderRadius: '999px'
-            }}
-          >
-            <Sparkles size={14} /> REPEAT MILLING SUBSCRIPTIONS
-          </span>
-          <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 48px)', marginTop: '12px' }}>
+          <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 48px)', color: '#1E2B17', marginTop: '4px' }}>
             Freshness On Auto-Pilot
           </h1>
           <p style={{ fontSize: '16px', color: '#5C6E52', marginTop: '10px', lineHeight: 1.6 }}>

@@ -141,11 +141,16 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
   const [isLoadingProducts, setIsLoadingProducts] = useState<boolean>(false);
 
-  // Factory Outlet State (Default: MCC Signature Heights, Rajnagar Extension)
+  // Factory Outlet State (Default: Udyog Vihar Agro Facility, Gurugram)
   const [selectedOutlet, setSelectedOutletState] = useState<FactoryOutlet>(() => {
     try {
       const saved = localStorage.getItem('farmers_mill_outlet');
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.id && parsed.id !== 'outlet-mcc-rajnagar' && FACTORY_OUTLETS.some((o) => o.id === parsed.id)) {
+          return parsed;
+        }
+      }
     } catch (e) {}
     return FACTORY_OUTLETS[0];
   });

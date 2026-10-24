@@ -99,10 +99,7 @@ export const Testimonials: React.FC = () => {
       {/* Header & Stats Bar */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
         <div>
-          <span className="clay-badge" style={{ marginBottom: '10px' }}>
-            <Sparkles size={13} /> VERIFIED MILL REVIEWS &amp; PATRON VOICES
-          </span>
-          <h2 style={{ fontSize: 'clamp(28px, 4.2vw, 42px)', color: '#1E2B17', marginTop: '6px' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 4.2vw, 42px)', color: '#1E2B17', marginTop: '0' }}>
             Loved by families who care about pure food.
           </h2>
           <p className="subheading" style={{ marginTop: '8px', maxWidth: '680px' }}>

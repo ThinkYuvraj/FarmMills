@@ -51,17 +51,14 @@ export const OurStoryView: React.FC = () => {
       <section className="w" style={{ paddingTop: '48px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '40px', alignItems: 'center' }}>
           <div>
-            <span className="clay-badge" style={{ marginBottom: '12px' }}>
-              <Sparkles size={13} /> ABOUT US · FARMERSMILL.IN
-            </span>
-            <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 50px)', lineHeight: 1.1, marginTop: '8px', color: '#1E2B17' }}>
+            <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 50px)', lineHeight: 1.1, color: '#1E2B17', marginTop: '4px' }}>
               Born in the fields, milled with respect.
             </h1>
             <p className="subheading" style={{ marginTop: '16px', lineHeight: 1.7, color: '#435538' }}>
               We started Farmers Mill with one unbending conviction: you shouldn’t have to settle for factory-packaged flours that were ground 4 months ago under 90°C steel rollers with their germ and fiber stripped away.
             </p>
             <p style={{ marginTop: '14px', lineHeight: 1.7, color: '#5C6E52', fontSize: '15px' }}>
-              Operating live flour and oil chakkis in Gurugram and Rajnagar Extension Ghaziabad, we bring back traditional stone-milling on emery stones and slow wooden marachekku kolhu pressing.
+              Operating live flour and oil chakkis in Gurugram, Noida, and Bengaluru, we bring back traditional stone-milling on emery stones and slow wooden marachekku kolhu pressing.
             </p>
           </div>
 
@@ -164,8 +161,7 @@ export const OurStoryView: React.FC = () => {
       {/* FAQs */}
       <section className="w" style={{ marginTop: '80px' }}>
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 36px' }}>
-          <span className="clay-badge">TRANSPARENCY &amp; PURITY FAQ</span>
-          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 36px)', marginTop: '8px' }}>
+          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 36px)', color: '#1E2B17' }}>
             Frequently Asked Questions
           </h2>
           <p className="subheading" style={{ marginTop: '8px' }}>
@@ -219,8 +215,7 @@ export const OurStoryView: React.FC = () => {
         >
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '40px' }}>
             <div>
-              <span className="clay-badge" style={{ marginBottom: '8px' }}>GET IN TOUCH</span>
-              <h2 style={{ fontSize: '30px', color: '#1E2B17', marginTop: '6px' }}>Speak with Our Head Miller</h2>
+              <h2 style={{ fontSize: '30px', color: '#1E2B17', marginTop: '4px' }}>Speak with Our Head Miller</h2>
               <p style={{ fontSize: '15px', color: '#435538', marginTop: '10px', lineHeight: 1.6 }}>
                 Have questions about custom grain milling, wedding gifting, or wholesale delivery to your society? Drop us a line.
               </p>
@@ -228,7 +223,7 @@ export const OurStoryView: React.FC = () => {
               <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14px', color: '#1E2B17' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <MapPin size={18} color="#3F6B2C" />
-                  <span><b>MCC Signature Heights Outlet:</b> Rajnagar Extension, Ghaziabad, NCR 201017</span>
+                  <span><b>Gurugram Udyog Vihar Mill Hub:</b> Plot 42, Phase 4, Udyog Vihar, Gurugram, Haryana 122015</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <Phone size={18} color="#3F6B2C" />

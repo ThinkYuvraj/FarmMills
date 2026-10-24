@@ -88,22 +88,29 @@ export const AuthModal: React.FC = () => {
   };
 
   return (
-    <div className="modal-overlay" onClick={() => setIsAuthModalOpen(false)}>
+    <div className="modal-overlay auth-modal-overlay" onClick={() => setIsAuthModalOpen(false)}>
       <div
-        className="modal-content clay-card-static"
+        className="modal-content auth-modal-content clay-card-static"
         onClick={(e) => e.stopPropagation()}
         style={{
           maxWidth: '460px',
-          padding: '28px 24px',
+          width: '100%',
+          padding: '24px 20px',
           borderRadius: '24px',
           background: '#FBFDF5',
           boxShadow: '0 24px 60px rgba(30, 43, 23, 0.25)',
           maxHeight: '92vh',
-          overflowY: 'auto'
+          overflowY: 'auto',
+          position: 'relative'
         }}
       >
+        {/* Mobile Sheet Drag Indicator Bar */}
+        <div className="mobile-sheet-pill" style={{ display: 'none', justifyContent: 'center', marginBottom: '14px' }}>
+          <div style={{ width: '44px', height: '5px', borderRadius: '999px', background: '#CBD9B6' }} />
+        </div>
+
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <img
             src="/images/farmers-mill-logo.png"
             alt="Farmers Mill"
@@ -111,19 +118,22 @@ export const AuthModal: React.FC = () => {
           />
           <button
             onClick={() => setIsAuthModalOpen(false)}
+            aria-label="Close authentication modal"
             style={{
-              width: '32px',
-              height: '32px',
+              width: '38px',
+              height: '38px',
               borderRadius: '50%',
               background: '#E1EBCB',
+              border: '1px solid #D3E0BC',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: '#1E3415',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              transition: 'background 0.15s'
             }}
           >
-            <X size={16} />
+            <X size={18} />
           </button>
         </div>
 
@@ -135,20 +145,20 @@ export const AuthModal: React.FC = () => {
             gap: '8px',
             background: '#EDF3DF',
             border: '1px solid #D3E0BC',
-            borderRadius: '10px',
-            padding: '8px 12px',
+            borderRadius: '12px',
+            padding: '10px 14px',
             marginBottom: '16px',
-            fontSize: '12px',
+            fontSize: '12.5px',
             color: '#2E5220'
           }}
         >
-          <ShieldCheck size={16} style={{ color: '#3F6B2C', flexShrink: 0 }} />
+          <ShieldCheck size={18} style={{ color: '#3F6B2C', flexShrink: 0 }} />
           <span>
-            <strong>Bcrypt + JWT Secured:</strong> Military-grade 10-round salted password hashing &amp; signed tokens.
+            <strong>Bcrypt + JWT Secured:</strong> 10-round salted password hashing &amp; encrypted sessions.
           </span>
         </div>
 
-        <p style={{ fontSize: '13.5px', color: '#5C6E52', marginBottom: '16px' }}>
+        <p style={{ fontSize: '13.5px', color: '#5C6E52', marginBottom: '16px', lineHeight: 1.5 }}>
           {mode === 'signup'
             ? 'Join our farm patron circle for priority morning stone-milling & exclusive member discounts.'
             : 'Sign in to track live chakki milling, manage subscriptions, and access saved addresses.'}
@@ -162,42 +172,59 @@ export const AuthModal: React.FC = () => {
               setPassword('farmers2026');
             }}
             style={{
-              padding: '8px 12px',
+              padding: '10px 14px',
               background: '#E1EBCB',
-              borderRadius: '10px',
-              fontSize: '12px',
+              borderRadius: '12px',
+              fontSize: '12.5px',
               color: '#1E3415',
               marginBottom: '16px',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
+              border: '1px solid #D3E0BC',
               transition: 'background 0.15s'
             }}
             title="Click to fill test credentials"
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Sparkles size={13} style={{ color: '#3F6B2C' }} />
-              <span>Demo Account: <strong>priya.sharma@example.com</strong></span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Sparkles size={14} style={{ color: '#3F6B2C', flexShrink: 0 }} />
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                Demo: <strong>priya.sharma@example.com</strong>
+              </span>
             </div>
-            <span style={{ fontWeight: 700, color: '#3F6B2C', textDecoration: 'underline' }}>Auto-Fill</span>
+            <span style={{ fontWeight: 700, color: '#3F6B2C', textDecoration: 'underline', flexShrink: 0, marginLeft: '8px' }}>
+              Auto-Fill
+            </span>
           </div>
         )}
 
-        {/* 3-Way Mode Switcher */}
-        <div style={{ display: 'flex', background: '#F2F6E6', padding: '4px', borderRadius: '12px', marginBottom: '18px', border: '1px solid #D3E0BC' }}>
+        {/* 3-Way Mode Switcher (Optimized Touch Targets for Mobile) */}
+        <div
+          style={{
+            display: 'flex',
+            background: '#F2F6E6',
+            padding: '5px',
+            borderRadius: '14px',
+            marginBottom: '18px',
+            border: '1.5px solid #D3E0BC',
+            gap: '4px'
+          }}
+        >
           <button
             type="button"
             onClick={() => setMode('signin')}
             style={{
               flex: 1,
-              padding: '8px 10px',
-              borderRadius: '8px',
-              fontSize: '13px',
+              padding: '10px 8px',
+              minHeight: '40px',
+              borderRadius: '10px',
+              fontSize: '13.5px',
               fontWeight: 700,
               background: mode === 'signin' ? '#3F6B2C' : 'transparent',
               color: mode === 'signin' ? '#ffffff' : '#1E2B17',
-              transition: 'all 0.2s'
+              boxShadow: mode === 'signin' ? '0 2px 6px rgba(63, 107, 44, 0.25)' : 'none',
+              transition: 'all 0.18s ease'
             }}
           >
             Sign In
@@ -207,13 +234,15 @@ export const AuthModal: React.FC = () => {
             onClick={() => setMode('signup')}
             style={{
               flex: 1,
-              padding: '8px 10px',
-              borderRadius: '8px',
-              fontSize: '13px',
+              padding: '10px 8px',
+              minHeight: '40px',
+              borderRadius: '10px',
+              fontSize: '13.5px',
               fontWeight: 700,
               background: mode === 'signup' ? '#3F6B2C' : 'transparent',
               color: mode === 'signup' ? '#ffffff' : '#1E2B17',
-              transition: 'all 0.2s'
+              boxShadow: mode === 'signup' ? '0 2px 6px rgba(63, 107, 44, 0.25)' : 'none',
+              transition: 'all 0.18s ease'
             }}
           >
             Sign Up
@@ -223,20 +252,22 @@ export const AuthModal: React.FC = () => {
             onClick={() => setMode('passkey')}
             style={{
               flex: 1,
-              padding: '8px 10px',
-              borderRadius: '8px',
-              fontSize: '13px',
+              padding: '10px 8px',
+              minHeight: '40px',
+              borderRadius: '10px',
+              fontSize: '13.5px',
               fontWeight: 700,
               background: mode === 'passkey' ? '#3F6B2C' : 'transparent',
               color: mode === 'passkey' ? '#ffffff' : '#1E2B17',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '4px',
-              transition: 'all 0.2s'
+              gap: '5px',
+              boxShadow: mode === 'passkey' ? '0 2px 6px rgba(63, 107, 44, 0.25)' : 'none',
+              transition: 'all 0.18s ease'
             }}
           >
-            <Fingerprint size={14} />
+            <Fingerprint size={16} />
             <span>Passkey</span>
           </button>
         </div>

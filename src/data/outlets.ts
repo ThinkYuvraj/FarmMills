@@ -18,23 +18,6 @@ export interface FactoryOutlet {
 
 export const FACTORY_OUTLETS: FactoryOutlet[] = [
   {
-    id: 'outlet-mcc-rajnagar',
-    name: 'MCC Signature Heights Mill Hub',
-    landmark: 'MCC Signature Heights',
-    address: 'Shop G-08, Commercial Arcade, MCC Signature Heights, Rajnagar Extension',
-    city: 'Ghaziabad (Delhi NCR)',
-    state: 'Uttar Pradesh',
-    pincode: '201017',
-    latitude: 28.7058,
-    longitude: 77.4265,
-    phone: '+91 98110 54321',
-    timing: '7:00 AM – 8:30 PM (Daily)',
-    isPrimary: true,
-    speciality: 'Cold Emery Stone Chakki Sharbati Atta & Live Woodpressed Mustard Oil',
-    activeChakkis: 4,
-    featuredNotice: '⭐ Sharing your selected outlet: MCC Signature Heights, Rajnagar Extension'
-  },
-  {
     id: 'outlet-gurugram-udyog',
     name: 'Udyog Vihar Agro Extraction Facility',
     landmark: 'Udyog Vihar Phase 4',
@@ -46,8 +29,10 @@ export const FACTORY_OUTLETS: FactoryOutlet[] = [
     longitude: 77.0865,
     phone: '+91 98110 54322',
     timing: '7:00 AM – 7:00 PM (Mon – Sat)',
+    isPrimary: true,
     speciality: 'High-Pungency Kachi Ghani Kolhu & Single-Origin Spices',
-    activeChakkis: 6
+    activeChakkis: 6,
+    featuredNotice: '⭐ Primary Hub: Udyog Vihar Agro Extraction Facility, Gurugram'
   },
   {
     id: 'outlet-noida-sec62',

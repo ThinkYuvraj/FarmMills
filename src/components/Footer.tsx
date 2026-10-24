@@ -17,16 +17,16 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer style={{ background: '#1E2B17', color: '#E1EBCB', marginTop: 'auto', borderTop: '4px solid #3F6B2C' }}>
+    <footer className="footer-root" style={{ background: '#1E2B17', color: '#E1EBCB', marginTop: 'auto', borderTop: '4px solid #3F6B2C' }}>
       {/* Main Links Grid - Compact 4-column layout */}
       <div
         className="w"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
-          gap: '32px',
-          paddingTop: '40px',
-          paddingBottom: '32px'
+          gap: '24px',
+          paddingTop: '28px',
+          paddingBottom: '22px'
         }}
       >
         {/* Brand Column */}
@@ -94,11 +94,11 @@ export const Footer: React.FC = () => {
           <b style={{ color: '#ffffff', fontSize: '15px', marginBottom: '4px' }}>Mill Outlets &amp; Support</b>
           <p style={{ color: '#D2E0BC', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
             <MapPin size={15} color="#7BC652" style={{ flexShrink: 0, marginTop: '3px' }} />
-            <span><b>MCC Signature Heights:</b> Rajnagar Extension, Ghaziabad, NCR</span>
+            <span><b>Primary Mill Hub:</b> Plot 48, Udyog Vihar Ph 4, Gurugram</span>
           </p>
           <p style={{ color: '#D2E0BC', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
             <MapPin size={15} color="#7BC652" style={{ flexShrink: 0, marginTop: '3px' }} />
-            <span><b>Central Mill:</b> Plot 48, Udyog Vihar Ph 4, Gurugram</span>
+            <span><b>Noida Mill Outlet:</b> Sector 62, Electronic City, Noida</span>
           </p>
           <p style={{ color: '#D2E0BC', display: 'flex', alignItems: 'center', gap: '6px' }}>
             <Phone size={14} color="#7BC652" />
@@ -114,18 +114,18 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Payment Methods Section - Requested by user */}
+      {/* Payment Methods Section - Compact & Clean */}
       <div
         style={{
           background: '#162011',
-          borderTop: '1px solid rgba(225, 235, 203, 0.1)',
-          borderBottom: '1px solid rgba(225, 235, 203, 0.1)',
-          padding: '20px 0'
+          borderTop: '1px solid rgba(225, 235, 203, 0.08)',
+          borderBottom: '1px solid rgba(225, 235, 203, 0.08)',
+          padding: '12px 0'
         }}
       >
         <div className="w" style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: '13px', fontWeight: 700, color: '#E1EBCB', letterSpacing: '0.04em', marginBottom: '14px' }}>
-            We accept the following payment methods
+          <p style={{ fontSize: '12px', fontWeight: 600, color: '#A9BF93', letterSpacing: '0.04em', marginBottom: '10px' }}>
+            Accepted Secure Payment Gateways &amp; Methods
           </p>
 
           <div
@@ -315,14 +315,29 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Copyright Bar */}
-      <div style={{ padding: '16px 0', fontSize: '12.5px', color: '#9DB388' }}>
-        <div className="w" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-          <span>© 2026 Farmers Mill / Wholesome Harvest Co. All rights reserved. Milled fresh in India.</span>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <a onClick={() => handleNav('terms')}>Terms &amp; Conditions</a>
-            <a onClick={() => handleNav('shipping')}>Shipping &amp; Returns</a>
-            <a onClick={() => handleNav('story')}>FSSAI Compliance</a>
+      {/* Copyright & Attribution Bar - Clean, Compact & Simple */}
+      <div style={{ padding: '16px 0', fontSize: '12.5px', color: '#A0B58C', borderTop: '1px solid rgba(225, 235, 203, 0.08)' }}>
+        <div className="w" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <span>© 2026 Farmers Mill. A product from <strong style={{ color: '#E1EBCB' }}>MarketinGlu</strong></span>
+            <span style={{ opacity: 0.4 }}>·</span>
+            <span>
+              Created by{' '}
+              <a
+                href="https://github.com/ThinkYuvraj"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#9FE870', fontWeight: 700, textDecoration: 'underline' }}
+              >
+                Github/ThinkYuvraj
+              </a>
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <a onClick={() => handleNav('terms')} style={{ color: '#C8D8BE', transition: 'color 0.15s ease' }}>Terms &amp; Conditions</a>
+            <a onClick={() => handleNav('shipping')} style={{ color: '#C8D8BE', transition: 'color 0.15s ease' }}>Shipping &amp; Returns</a>
+            <a onClick={() => handleNav('story')} style={{ color: '#C8D8BE', transition: 'color 0.15s ease' }}>FSSAI Compliance</a>
           </div>
         </div>
       </div>

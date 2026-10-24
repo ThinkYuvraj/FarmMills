@@ -122,30 +122,6 @@ export const Navbar: React.FC = () => {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-          {/* Mill Factory Outlet Pill */}
-          <button
-            onClick={() => setIsOutletPickerOpen(true)}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '5px',
-              background: 'rgba(255, 255, 255, 0.12)',
-              border: '1px solid rgba(225, 235, 203, 0.25)',
-              padding: '3px 10px',
-              borderRadius: '999px',
-              color: '#FBFDF5',
-              fontSize: '11.5px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'background 0.15s ease'
-            }}
-            title="Select Farmers Mill dispatch factory outlet"
-          >
-            <MapPin size={12} style={{ color: '#D4A346' }} />
-            <span>Mill: <strong>{selectedOutlet.name.split(',')[0]}</strong></span>
-            <span style={{ color: '#D4A346', textDecoration: 'underline', fontSize: '11px', marginLeft: '2px' }}>Change</span>
-          </button>
-
           {/* Official Facebook Link */}
           <a
             href="https://www.facebook.com/people/Farmers-Mill/pfbid0HfPHVwMvfZU2c2kVGBPHrZm8PFYH3di4LERF5sUgZGW57fBUSogLL8uCdJVxvZVRl/?rdid=VrOoM7MokhWyFSNF&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Li444CByG%2F"

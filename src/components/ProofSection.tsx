@@ -9,10 +9,7 @@ export const ProofSection: React.FC = () => {
   return (
     <section className="w" style={{ marginTop: '90px' }}>
       <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto' }}>
-        <span style={{ color: '#3F6B2C', fontWeight: 700, letterSpacing: '0.08em', fontSize: '13px' }}>
-          LAB TESTED TRANSPARENCY
-        </span>
-        <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', marginTop: '8px' }}>
+        <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', marginTop: '0' }}>
           See the Proof. Taste the Freshness.
         </h2>
         <p style={{ fontSize: '16px', color: '#5C6E52', marginTop: '10px' }}>
